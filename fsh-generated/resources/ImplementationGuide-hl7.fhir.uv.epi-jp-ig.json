@@ -1,0 +1,70 @@
+{
+  "resourceType": "ImplementationGuide",
+  "id": "hl7.fhir.uv.epi-jp-ig",
+  "url": "http://hl7.org/fhir/uv/epi-jp-ig/ImplementationGuide/hl7.fhir.uv.epi-jp-ig",
+  "version": "0.1.0",
+  "name": "epijp",
+  "status": "draft",
+  "publisher": "Gravitate Health Project",
+  "contact": [
+    {
+      "name": "Gravitate Health Project",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://www.gravitatehealth.eu/"
+        }
+      ]
+    }
+  ],
+  "packageId": "hl7.fhir.uv.epi-jp-ig",
+  "fhirVersion": [
+    "4.0.1"
+  ],
+  "definition": {
+    "resource": [
+      {
+        "reference": {
+          "reference": "StructureDefinition/MyPatient"
+        },
+        "name": "MyPatient",
+        "description": "An example profile of the Patient resource.",
+        "exampleBoolean": false
+      },
+      {
+        "reference": {
+          "reference": "Patient/PatientExample"
+        },
+        "name": "PatientExample",
+        "description": "An example of a patient with a license to krill.",
+        "exampleCanonical": "http://hl7.org/fhir/uv/epi-jp-ig/StructureDefinition/MyPatient"
+      }
+    ],
+    "page": {
+      "nameUrl": "toc.html",
+      "title": "Table of Contents",
+      "generation": "html",
+      "page": [
+        {
+          "nameUrl": "index.html",
+          "title": "Home",
+          "generation": "markdown"
+        }
+      ]
+    },
+    "parameter": [
+      {
+        "code": "copyrightyear",
+        "value": "2025+"
+      },
+      {
+        "code": "releaselabel",
+        "value": "ci-build"
+      },
+      {
+        "code": "path-history",
+        "value": "http://hl7.org/fhir/uv/epi-jp-ig/history.html"
+      }
+    ]
+  }
+}
