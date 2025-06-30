@@ -1,5 +1,3 @@
-# Mapping PMDA XML to FHIR ePI Resources
-
 This table maps elements from the PMDA's XML for Japanese Package Inserts (JPI) to FHIR resources compliant with the HL7 FHIR ePI Implementation Guide. It addresses Japan-specific requirements (e.g., YJCode, Japanese-language content).
 
 <!DOCTYPE html>
