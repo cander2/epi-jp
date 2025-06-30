@@ -1,0 +1,2715 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://info.pmda.go.jp/namespace/prescription_drugs/package_insert/1.0"
+           xmlns="http://info.pmda.go.jp/namespace/prescription_drugs/package_insert/1.0">
+
+  <!--xml:langを宣言したスキーマ文書をインポート-->
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="PMDA-xml-lang.xsd"/>
+
+  <!-- 添付文書 -->
+  <xs:element name="PackIns">
+    <xs:complexType>
+      <xs:sequence>
+        <!--添付文書番号-->
+        <xs:element ref="PackageInsertNo"/>
+        <!--企業コード-->
+        <xs:element ref="CompanyIdentifier"/>
+        <!-- ア.作成又は改訂年月 -->
+        <xs:element ref="DateOfPreparationOrRevision"/>
+        <!-- イ.日本標準商品分類番号 -->
+        <xs:element ref="Sccj"/>
+        <!-- オ.薬効分類名 -->
+        <xs:element minOccurs="0" ref="TherapeuticClassification"/>
+        <!-- 承認等 -->
+        <xs:element minOccurs="0" ref="ApprovalEtc"/>
+        <!-- キ.一般的名称 -->
+        <xs:element ref="GenericName"/>
+        <!-- ワクチン株の補足情報 -->
+        <xs:element minOccurs="0" ref="SupplementaryInformaitonOfVaccineStrain"/>
+        <!-- 特殊記載項目（※  当該欄は行政が指示した内容のみ記載すること） -->
+        <xs:element minOccurs="0" ref="SpeciallyDescribedItems"/>
+        <!-- １.警告 -->
+        <xs:element minOccurs="0" ref="Warnings"/>
+        <!-- ２.禁忌（次の患者には投与しないこと） -->
+        <xs:element minOccurs="0" ref="ContraIndications"/>
+        <!-- ３.組成・性状-->
+        <xs:element minOccurs="0" ref="CompositionAndProperty"/>
+        <!-- ４.効能又は効果-->
+        <xs:element minOccurs="0" ref="IndicationsOrEfficacy"/>
+        <!-- ５.効能又は効果に関連する注意 -->
+        <xs:element minOccurs="0" ref="EfficacyRelatedPrecautions"/>
+        <!-- ６.用法及び用量 -->
+        <xs:element minOccurs="0" ref="InfoDoseAdmin"/>
+        <!-- ７.用法及び用量に関連する注意 -->
+        <xs:element minOccurs="0" ref="InfoPrecautionsDosage"/>
+        <!-- ８.重要な基本的注意 -->
+        <xs:element minOccurs="0" ref="ImportantPrecautions"/>
+        <!-- ９.特定の背景を有する患者に関する注意 -->
+        <xs:element minOccurs="0" ref="UseInSpecificPopulations"/>
+        <!-- １０.相互作用 -->
+        <xs:element minOccurs="0" ref="Interactions"/>
+        <!-- １１.副作用 -->
+        <xs:element minOccurs="0" ref="AdverseEvents"/>
+        <!-- １２.臨床検査結果に及ぼす影響 -->
+        <xs:element minOccurs="0" ref="InfluenceOnLaboratoryValues"/>
+        <!-- １３.過量投与 -->
+        <xs:element minOccurs="0" ref="OverDosage"/>
+        <!-- １４.適用上の注意 -->
+        <xs:element minOccurs="0" ref="PrecautionsForApplication"/>
+        <!-- １５.その他の注意 -->
+        <xs:element minOccurs="0" ref="OtherPrecautions"/>
+        <!-- １６.薬物動態 -->
+        <xs:element minOccurs="0" ref="Pharmacokinetics"/>
+        <!-- １７.臨床成績 -->
+        <xs:element minOccurs="0" ref="ResultsOfClinicalTrials"/>
+        <!-- １８.薬効薬理 -->
+        <xs:element minOccurs="0" ref="EfficacyPharmacology"/>
+        <!-- １９.有効成分に関する理化学的知見 -->
+        <xs:element minOccurs="0" ref="PhyschemOfActIngredients"/>
+        <!-- ２０.取扱い上の注意 -->
+        <xs:element minOccurs="0" ref="PrecautionsForHandling"/>
+        <!-- ２１.承認条件 -->
+        <xs:element minOccurs="0" ref="ConditionsOfApproval"/>
+        <!-- ２２.包装 -->
+        <xs:element minOccurs="0" ref="Package"/>
+        <!-- ２３.主要文献 -->
+        <xs:element minOccurs="0" ref="MainLiterature"/>
+        <!-- ２４.文献請求先及び問い合わせ先 -->
+        <xs:element minOccurs="0" ref="AddresseeOfLiteratureRequest"/>
+        <!-- ２５.保険給付上の注意 -->
+        <xs:element minOccurs="0" ref="AttentionOfInsurance"/>
+        <!-- ２６.製造販売業者等 -->
+        <xs:element ref="NameAddressManufact"/>
+        <!-- （参考情報） -->
+        <xs:element minOccurs="0" ref="ReferenceInformation"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+      <!--スキーマ・バージョン-->
+      <xs:attribute name="version" type="xs:string" use="required"/>
+      <!--XML文書種別-->
+      <xs:attribute name="xmlKind" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <!-- 添付文書 -->
+            <xs:enumeration value="Packins"/>
+            <!-- 使用上の注意の照合元データ -->
+            <xs:enumeration value="ReferenceOfPrecautionsForUse"/>
+            <!-- 取扱い上の注意の照合元データ -->
+            <xs:enumeration value="ReferenceOfPrecautionsForHandling"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <!--添付文書形式-->
+      <xs:attribute name="drugType">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <!-- 医療用医薬品 -->
+            <xs:enumeration value="Medicine"/>
+            <!-- ワクチン類及びトキソイド類 -->
+            <xs:enumeration value="Vaccine"/>
+            <!-- 抗毒素及び検査に用いる生物学的製剤 -->
+            <xs:enumeration value="Antitoxin"/>
+            <!-- 全血製剤、血液成分製剤 -->
+            <xs:enumeration value="BloodProduct"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <!--使用上の注意の照合元データID-->
+      <xs:attribute name="referenceOfPrecautionsForUse" type="xs:string"/>
+      <!--取扱い上の注意の照合元データID-->
+      <xs:attribute name="referenceOfPrecautionsForHandling" type="xs:string"/>
+      <!-- 対応言語 -->
+      <xs:attribute name="containedLang" type="xs:NMTOKENS"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 添付文書番号 -->
+  <xs:element name="PackageInsertNo" type="cdata.contentBaseWithXMLLANGoptional-TYPE"/>
+
+  <!-- 企業コード -->
+  <xs:element name="CompanyIdentifier" type="cdata.contentBaseWithXMLLANGoptional-TYPE"/>
+
+  <!-- ア.作成又は改訂年月 -->
+  <xs:element name="DateOfPreparationOrRevision">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="2" ref="PreparationOrRevision"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 改訂情報 -->
+  <xs:element name="PreparationOrRevision">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="YearMonth"/>
+        <xs:element minOccurs="0" ref="Version"/>
+        <xs:element minOccurs="0" ref="ReasonForRevision"/>
+      </xs:sequence>
+      <!-- 改訂回識別子 -->
+      <xs:attribute name="id" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:ID">
+            <xs:enumeration value="今回"/>
+            <xs:enumeration value="前回"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="created" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 年月 -->
+  <xs:element name="YearMonth">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="Date-gYearMonth">
+          <xs:attribute name="id" type="xs:ID"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- [型定義]：「年月日」型あるいは「年月」型のいずれか -->
+  <xs:simpleType name="Date-gYearMonth">
+    <xs:union memberTypes="xs:date gYearMonth-Null"/>
+  </xs:simpleType>
+
+  <!-- 版数 -->
+  <xs:element name="Version" type="cdata.content-TYPE"/>
+
+  <!-- 改訂理由 -->
+  <xs:element name="ReasonForRevision" type="cdata.content-TYPE"/>
+
+  <!-- イ.日本標準商品分類番号 -->
+  <xs:element name="Sccj">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="SccjNo"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 日本標準商品分類番号 -->
+  <xs:element name="SccjNo">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cdata.contentBaseWithXMLLANGoptional-TYPE">
+          <xs:attribute name="modified" type="xs:IDREFS"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- オ.薬効分類名 -->
+  <xs:element name="TherapeuticClassification" type="Repeated-Details-TYPE"/>
+
+  <!-- 承認等 -->
+  <xs:element name="ApprovalEtc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="DetailBrandName"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 販売名毎の明細 -->
+  <xs:element name="DetailBrandName">
+    <xs:complexType>
+      <xs:sequence>
+        <!-- 販売名 -->
+        <xs:element ref="ApprovalBrandName"/>
+        <!-- 販売名コード -->
+        <xs:element ref="BrandCode"/>
+        <!-- 販売名英字表記 -->
+        <xs:element minOccurs="0" ref="TrademarkInEnglish"/>
+        <!-- 販売名ひらがな -->
+        <xs:element minOccurs="0" ref="BrandNameInHiragana"/>
+        <!-- ウ.承認番号 -->
+        <xs:element minOccurs="0" ref="ApprovalAndLicenseNo"/>
+        <!-- ウ.販売開始年月 -->
+        <xs:element minOccurs="0" ref="StartingDateOfMarketing"/>
+        <!-- エ.貯法、有効期間 -->
+        <xs:element minOccurs="0" ref="Storage"/>
+        <!-- キ.基準名 -->
+        <xs:element minOccurs="0" ref="StandardName"/>
+        <!-- カ.規制区分 -->
+        <xs:element minOccurs="0" ref="RegulatoryClassification"/>
+        <!-- 製品の補足情報 -->
+        <xs:element minOccurs="0" ref="SupplementaryInformationOfProduct"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 販売名 -->
+  <xs:element name="ApprovalBrandName" type="cdata.content-TYPE"/>
+
+  <!-- 販売名コード -->
+  <xs:element name="BrandCode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" ref="YJCode"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="Code"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ＹＪ（医情研）コード -->
+  <xs:element name="YJCode">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cdata.contentBaseWithXMLLANGoptional-TYPE">
+          <xs:attribute name="modified" type="xs:IDREFS"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 一般コード -->
+  <xs:element name="Code">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="CodeName"/>
+        <xs:element minOccurs="0" ref="CodeVersion"/>
+        <xs:element ref="CodeValue"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- コード名称 -->
+  <xs:element name="CodeName" type="cdata.contentBaseWithXMLLANGoptional-TYPE"/>
+
+  <!-- コード体系のバージョン -->
+  <xs:element name="CodeVersion">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="id" type="xs:ID"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- コード値 -->
+  <xs:element name="CodeValue">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="id" type="xs:ID"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 販売名英字表記 -->
+  <xs:element name="TrademarkInEnglish">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="TrademarkName"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 個別販売名英字表記 -->
+  <xs:element name="TrademarkName">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cdata.contentBaseWithXMLLANGoptional-TYPE">
+          <xs:attribute name="modified" type="xs:IDREFS"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 販売名ひらがな -->
+  <xs:element name="BrandNameInHiragana">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="NameInHiragana"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ひらがな名称 -->
+  <xs:element name="NameInHiragana">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cdata.contentBaseWithXMLLANGoptional-TYPE">
+          <xs:attribute name="modified" type="xs:IDREFS"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ウ.承認番号 -->
+  <xs:element name="ApprovalAndLicenseNo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="ApprovalNo"/>
+        <xs:element minOccurs="0" ref="LicenseNo"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 承認番号 -->
+  <xs:element name="ApprovalNo">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cdata.contentBaseWithXMLLANGoptional-TYPE">
+          <xs:attribute name="modified" type="xs:IDREFS"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 許可番号 -->
+  <xs:element name="LicenseNo">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cdata.contentBaseWithXMLLANGoptional-TYPE">
+          <xs:attribute name="modified" type="xs:IDREFS"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ウ.販売開始年月 -->
+  <xs:element name="StartingDateOfMarketing">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="gYearMonth-Null">
+          <xs:attribute name="id" type="xs:ID"/>
+          <xs:attribute name="modified" type="xs:IDREFS"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- [型定義]：「年月」型（NULL値も許容） -->
+  <xs:simpleType name="gYearMonth-Null">
+    <xs:union memberTypes="xs:gYearMonth">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value=""/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
+
+  <!-- エ.貯法、有効期間 -->
+  <xs:element name="Storage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="StorageMethod"/>
+        <xs:element minOccurs="0" ref="ShelfLife"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="OtherInformation"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 貯法 -->
+  <xs:element name="StorageMethod" type="cdata.content-TYPE"/>
+
+  <!-- 有効期間 -->
+  <xs:element name="ShelfLife" type="cdata.content-TYPE"/>
+
+  <!-- その他の項目 -->
+  <xs:element name="OtherInformation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" ref="Header"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="Detail"/>
+          <xs:element ref="OrderedList"/>
+          <xs:element ref="UnorderedList"/>
+          <xs:element ref="SimpleList"/>
+          <xs:element ref="TblBlock"/>
+          <xs:element ref="Graphic"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+      <xs:attribute name="heading" type="xs:string" fixed="free" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- キ.基準名 -->
+  <xs:element name="StandardName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="4" ref="StandardNameCategory"/>
+        <xs:element minOccurs="0" ref="OtherStandardName"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+      <xs:attribute name="modified" type="xs:IDREFS"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 基準名種別コードと脚注を参照する添え字 -->
+  <xs:element name="StandardNameCategory">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="StandardNameCategoryCode"/>
+        <xs:element ref="StandardNameDetail"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 基準名種別コード -->
+  <xs:element name="StandardNameCategoryCode">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="4"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+
+  <!-- 基準名詳細 -->
+  <xs:element name="StandardNameDetail" type="cdata.content-TYPE"/>
+
+  <!-- その他基準名 -->
+  <xs:element name="OtherStandardName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="OtherStandardNameCategory"/>
+        <xs:element ref="StandardNameDetail"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- その他基準名種別 -->
+  <xs:element name="OtherStandardNameCategory" type="cdata.content-TYPE"/>
+
+  <!-- カ.規制区分 -->
+  <xs:element name="RegulatoryClassification">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="19" ref="RegulatoryClassificationCodeAndNote"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="OtherRegulatoryClassification"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+      <xs:attribute name="modified" type="xs:IDREFS"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 規制区分コードと脚注を参照する添え字 -->
+  <xs:element name="RegulatoryClassificationCodeAndNote">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="RegulatoryClassificationCode"/>
+        <xs:element minOccurs="0" ref="RegulatoryClassificationComment"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 規制区分コード -->
+  <xs:element name="RegulatoryClassificationCode">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="1"/>
+        <xs:maxInclusive value="19"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+
+  <!-- 規制区分の注釈 -->
+  <xs:element name="RegulatoryClassificationComment" type="cdata.content-TYPE"/>
+
+  <!-- その他規制区分 -->
+  <xs:element name="OtherRegulatoryClassification" type="cdata.content-TYPE"/>
+
+  <!-- 製品の補足情報 -->
+  <xs:element name="SupplementaryInformationOfProduct" type="VariousForms-TYPE"/>
+
+  <!-- キ.一般的名称 -->
+  <xs:element name="GenericName" type="Repeated-Details-TYPE"/>
+
+  <!-- ワクチン株の補足情報 -->
+  <xs:element name="SupplementaryInformaitonOfVaccineStrain" type="VariousForms-TYPE"/>
+
+  <!-- 特殊記載項目（※  当該欄は行政が指示した内容のみ記載すること） -->
+  <xs:element name="SpeciallyDescribedItems" type="Repeated-Details-Max2-TYPE"/>
+
+  <!-- １.警告 -->
+  <xs:element name="Warnings">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_Warnings"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ２.禁忌 -->
+  <xs:element name="ContraIndications">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_ContraIndications"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ３.組成・性状 -->
+  <xs:element name="CompositionAndProperty">
+    <xs:complexType>
+      <xs:sequence>
+        <!-- 製法の概要 -->
+        <xs:element minOccurs="0" ref="OverviewOfRecipe"/>
+        <!-- ３.１ 組成 -->
+        <xs:element minOccurs="0" ref="Composition"/>
+        <!-- ３.２ 製剤の性状 -->
+        <xs:element minOccurs="0" ref="Property"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:ID">
+            <xs:enumeration value="HDR_CompositionAndProperty"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 製法の概要 -->
+  <xs:element name="OverviewOfRecipe">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cdata.contentWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_OverviewOfRecipe"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ３.１ 組成 -->
+  <xs:element name="Composition">
+    <xs:complexType>
+      <xs:sequence>
+        <!-- 組成の概要 -->
+        <xs:element minOccurs="0" ref="OverviewOfComposition"/>
+        <!-- 薬品毎の組成 -->
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="CompositionForBrand"/>
+        <!-- 組成に関する注釈 -->
+        <xs:element minOccurs="0" ref="CompositionComments"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:ID">
+            <xs:enumeration value="HDR_Composition"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 組成の概要 -->
+  <xs:element name="OverviewOfComposition" type="cdata.content-TYPE"/>
+
+  <!-- 薬品毎の組成 -->
+  <xs:element name="CompositionForBrand">
+    <xs:complexType>
+      <xs:sequence>
+        <!-- 構成毎の組成 -->
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="CompositionForConstituentUnits"/>
+      </xs:sequence>
+      <!-- DetailBrandNameのidへの参照 -->
+      <xs:attribute name="ref" type="xs:IDREF"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 構成毎の組成 -->
+  <xs:element name="CompositionForConstituentUnits">
+    <xs:complexType>
+      <xs:sequence>
+        <!-- 構成 -->
+        <xs:element minOccurs="0" ref="ConstituentUnits"/>
+        <!-- 組成テーブル -->
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="CompositionTable"/>
+        <!-- 構成ごとの注釈 -->
+        <xs:element minOccurs="0" ref="CommentsForConstituentUnits"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 構成 -->
+  <xs:element name="ConstituentUnits" type="cdata.content-TYPE"/>
+
+  <!-- 組成テーブル -->
+  <xs:element name="CompositionTable">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="CompositionAndPropertyTblTitle"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ContainedAmount"/>
+        <xs:element minOccurs="0" ref="Additives"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="OtherComposition"/>
+        <xs:element minOccurs="0" ref="CompositionAndPropertyTblFoot"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 組成・性状テーブルのタイトル -->
+  <xs:element name="CompositionAndPropertyTblTitle" type="cdata.content-TYPE"/>
+
+  <!-- 有効成分 -->
+  <xs:element name="ContainedAmount">
+    <xs:complexType>
+      <xs:sequence>
+        <!-- 有効成分名 -->
+        <xs:element minOccurs="0" ref="ActiveIngredientName"/>
+        <!-- 含有量 -->
+        <xs:element minOccurs="0" ref="ValueAndUnit"/>
+        <!-- 有効成分の追加情報 -->
+        <xs:element minOccurs="0" ref="ActiveIngredientAdditionalInfo"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 有効成分名 -->
+  <xs:element name="ActiveIngredientName" type="cdata.content-TYPE"/>
+
+  <!-- 含有量 -->
+  <xs:element name="ValueAndUnit" type="cdata.content-TYPE"/>
+
+  <!-- 有効成分の追加情報 -->
+  <xs:element name="ActiveIngredientAdditionalInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ActiveIngredientName"/>
+        <xs:element minOccurs="0" ref="ValueAndUnit"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 添加剤 -->
+  <xs:element name="Additives">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice>
+          <xs:element ref="ListOfAdditives"/>
+          <xs:element ref="IndividualAdditives"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 添加剤リスト -->
+  <xs:element name="ListOfAdditives" type="cdata.content-TYPE"/>
+
+  <!-- 個別添加剤情報(繰り返し) -->
+  <xs:element name="IndividualAdditives">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="InfoIndividualAdditive"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 個別添加剤情報 -->
+  <xs:element name="InfoIndividualAdditive">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="IndividualAdditive"/>
+        <xs:element minOccurs="0" ref="ValueAndUnit"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 個別添加剤 -->
+  <xs:element name="IndividualAdditive" type="cdata.content-TYPE"/>
+
+  <!-- 組成の自由項目 -->
+  <xs:element name="OtherComposition">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" ref="CategoryName"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="Content"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 自由項目の分類名 -->
+  <xs:element name="CategoryName" type="cdata.content-TYPE"/>
+
+  <!-- 自由項目の内容 -->
+  <xs:element name="Content">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="ContentTitle"/>
+        <xs:element minOccurs="0" ref="ContentDetail"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- タイトル -->
+  <xs:element name="ContentTitle" type="cdata.content-TYPE"/>
+
+  <!-- 内容 -->
+  <xs:element name="ContentDetail" type="cdata.content-TYPE"/>
+
+  <!-- 組成・性状テーブルのフッタ -->
+  <xs:element name="CompositionAndPropertyTblFoot">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cdata.content-TYPE">
+          <!-- 横方向の揃え -->
+          <xs:attribute name="align" default="left">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:enumeration value="left"/>
+                <xs:enumeration value="center"/>
+                <xs:enumeration value="right"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 構成ごとの注釈 -->
+  <xs:element name="CommentsForConstituentUnits" type="cdata.content-TYPE"/>
+
+  <!-- 組成に関する注釈 -->
+  <xs:element name="CompositionComments" type="cdata.content-TYPE"/>
+
+  <!-- ３.２ 製剤の性状 -->
+  <xs:element name="Property">
+    <xs:complexType>
+      <xs:sequence>
+        <!-- 製剤の性状の概要 -->
+        <xs:element minOccurs="0" ref="OverviewOfProperty"/>
+        <!-- 薬品毎の性状 -->
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="PropertyForBrand"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:ID">
+            <xs:enumeration value="HDR_Property"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 製剤の性状の概要 -->
+  <xs:element name="OverviewOfProperty" type="cdata.content-TYPE"/>
+
+  <!-- 薬品毎の性状 -->
+  <xs:element name="PropertyForBrand">
+    <xs:complexType>
+      <xs:sequence>
+        <!-- 構成毎の性状 -->
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="PropertyForConstituentUnits"/>
+      </xs:sequence>
+      <!-- DetailBrandNameのidへの参照 -->
+      <xs:attribute name="ref" type="xs:IDREF"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 構成毎の性状 -->
+  <xs:element name="PropertyForConstituentUnits">
+    <xs:complexType>
+      <xs:sequence>
+        <!-- 構成 -->
+        <xs:element minOccurs="0" ref="ConstituentUnits"/>
+        <!-- 性状テーブル -->
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="PropertyTable"/>
+        <!-- 構成ごとの注釈 -->
+        <xs:element minOccurs="0" ref="CommentsForConstituentUnits"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 性状テーブル -->
+  <xs:element name="PropertyTable">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="CompositionAndPropertyTblTitle"/>
+        <xs:element minOccurs="0" ref="Formulation"/>
+        <xs:element minOccurs="0" ref="ColorTone"/>
+        <xs:element minOccurs="0" ref="Shape"/>
+        <xs:element minOccurs="0" ref="Size"/>
+        <xs:element minOccurs="0" ref="SizeNumber"/>
+        <xs:element minOccurs="0" ref="Weight"/>
+        <xs:element minOccurs="0" ref="IdCode"/>
+        <xs:element minOccurs="0" ref="pH"/>
+        <xs:element minOccurs="0" ref="OsmoticRatio"/>
+        <xs:element minOccurs="0" ref="Odor"/>
+        <xs:element minOccurs="0" ref="Taste"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="OtherProperty"/>
+        <xs:element minOccurs="0" ref="CompositionAndPropertyTblFoot"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 剤形 -->
+  <xs:element name="Formulation" type="cdata.content-TYPE"/>
+
+  <!-- 色調 -->
+  <xs:element name="ColorTone" type="cdata.content-TYPE"/>
+
+  <!-- 外形 -->
+  <xs:element name="Shape">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="ShapeFront"/>
+        <xs:element minOccurs="0" ref="ShapeBack"/>
+        <xs:element minOccurs="0" ref="ShapeSide"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="OtherShape"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 外形（表面） -->
+  <xs:element name="ShapeFront" type="cdata.content-TYPE"/>
+
+  <!-- 外形（裏面） -->
+  <xs:element name="ShapeBack" type="cdata.content-TYPE"/>
+
+  <!-- 外形（側面） -->
+  <xs:element name="ShapeSide" type="cdata.content-TYPE"/>
+
+  <!-- 外形（その他） -->
+  <xs:element name="OtherShape">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="ShapeTitle"/>
+        <xs:element minOccurs="0" ref="ShapeDetail"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- その他の外形タイトル -->
+  <xs:element name="ShapeTitle" type="cdata.content-TYPE"/>
+
+  <!-- その他の外形内容 -->
+  <xs:element name="ShapeDetail" type="cdata.content-TYPE"/>
+
+  <!-- 大きさ -->
+  <xs:element name="Size">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="SizeDiameter"/>
+        <xs:element minOccurs="0" ref="SizeLongDiameter"/>
+        <xs:element minOccurs="0" ref="SizeShortDiameter"/>
+        <xs:element minOccurs="0" ref="SizeTotalLength"/>
+        <xs:element minOccurs="0" ref="SizeThickness"/>
+        <xs:element minOccurs="0" ref="SizeArea"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="OtherSize"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 大きさ（直径） -->
+  <xs:element name="SizeDiameter" type="cdata.content-TYPE"/>
+
+  <!-- 大きさ（長径） -->
+  <xs:element name="SizeLongDiameter" type="cdata.content-TYPE"/>
+
+  <!-- 大きさ（短径） -->
+  <xs:element name="SizeShortDiameter" type="cdata.content-TYPE"/>
+
+  <!-- 大きさ（全長） -->
+  <xs:element name="SizeTotalLength" type="cdata.content-TYPE"/>
+
+  <!-- 大きさ（厚さ） -->
+  <xs:element name="SizeThickness" type="cdata.content-TYPE"/>
+
+  <!-- 大きさ（面積） -->
+  <xs:element name="SizeArea" type="cdata.content-TYPE"/>
+
+  <!-- 大きさ（その他） -->
+  <xs:element name="OtherSize">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="SizeTitle"/>
+        <xs:element minOccurs="0" ref="SizeDetail"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- その他の大きさタイトル -->
+  <xs:element name="SizeTitle" type="cdata.content-TYPE"/>
+
+  <!-- その他の大きさ内容 -->
+  <xs:element name="SizeDetail" type="cdata.content-TYPE"/>
+
+  <!-- 号数 -->
+  <xs:element name="SizeNumber" type="cdata.content-TYPE"/>
+
+  <!-- 質量 -->
+  <xs:element name="Weight" type="cdata.content-TYPE"/>
+
+  <!-- 識別コード -->
+  <xs:element name="IdCode" type="cdata.content-TYPE"/>
+
+  <!-- pH -->
+  <xs:element name="pH" type="cdata.content-TYPE"/>
+
+  <!-- 浸透圧比 -->
+  <xs:element name="OsmoticRatio" type="cdata.content-TYPE"/>
+
+  <!-- におい -->
+  <xs:element name="Odor" type="cdata.content-TYPE"/>
+
+  <!-- 味 -->
+  <xs:element name="Taste" type="cdata.content-TYPE"/>
+
+  <!-- 製剤の性状の自由項目 -->
+  <xs:element name="OtherProperty">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" ref="CategoryName"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="Content"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ４.効能又は効果 -->
+  <xs:element name="IndicationsOrEfficacy">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="wordingPatternOfIndications" type="wordingPatternOfIndicationsType" default="1"/>
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_IndicationsOrEfficacy"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 効能又は効果の文言のパターン番号 -->
+  <xs:simpleType name="wordingPatternOfIndicationsType">
+    <xs:restriction base="xs:integer">
+      <!-- 効能又は効果 -->
+      <xs:enumeration value="1"/>
+      <!-- 効能効果 -->
+      <xs:enumeration value="2"/>
+      <!-- 効能・効果 -->
+      <xs:enumeration value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- ５.効能又は効果に関連する注意 -->
+  <xs:element name="EfficacyRelatedPrecautions">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="wordingPatternOfEfficacyRelatedPrecautions" type="wordingPatternOfEfficacyRelatedPrecautionsType" default="1"/>
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_EfficacyRelatedPrecautions"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 効能又は効果に関連する注意の文言のパターン番号 -->
+  <xs:simpleType name="wordingPatternOfEfficacyRelatedPrecautionsType">
+    <xs:restriction base="xs:integer">
+      <!-- 効能又は効果に関連する注意 -->
+      <xs:enumeration value="1"/>
+      <!-- 効能効果に関連する注意 -->
+      <xs:enumeration value="2"/>
+      <!-- 効能・効果に関連する注意 -->
+      <xs:enumeration value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- ６.用法及び用量 -->
+  <xs:element name="InfoDoseAdmin">
+    <xs:complexType>
+      <xs:sequence>
+        <!-- 用法及び用量 -->
+        <xs:element minOccurs="0" ref="DoseAdmin"/>
+        <!-- 用法及び用量に関する説明 -->
+        <xs:element minOccurs="0" ref="OtherRelatedMatters"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:ID">
+            <xs:enumeration value="HDR_InfoDoseAdmin"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="wordingPatternOfDoseAdmin" type="wordingPatternOfDoseAdminType" default="1"/>
+      <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 用法及び用量  -->
+  <xs:element name="DoseAdmin">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousForms-TYPE">
+          <xs:attribute name="ref" type="xs:IDREF"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 用法及び用量に関する説明 -->
+  <xs:element name="OtherRelatedMatters" type="VariousForms-TYPE"/>
+
+  <!-- 用法及び用量の文言のパターン番号 -->
+  <xs:simpleType name="wordingPatternOfDoseAdminType">
+    <xs:restriction base="xs:integer">
+      <!-- 用法及び用量 -->
+      <xs:enumeration value="1"/>
+      <!-- 用法用量 -->
+      <xs:enumeration value="2"/>
+      <!-- 用法・用量 -->
+      <xs:enumeration value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- ７.用法及び用量に関連する注意 -->
+  <xs:element name="InfoPrecautionsDosage">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="wordingPatternOfInfoPrecautionsDosage" type="wordingPatternOfInfoPrecautionsDosageType" default="1"/>
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_InfoPrecautionsDosage"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 用法及び用量に関連する注意の文言のパターン番号 -->
+  <xs:simpleType name="wordingPatternOfInfoPrecautionsDosageType">
+    <xs:restriction base="xs:integer">
+      <!-- 用法及び用量に関連する注意 -->
+      <xs:enumeration value="1"/>
+      <!-- 用法用量に関連する注意 -->
+      <xs:enumeration value="2"/>
+      <!-- 用法・用量に関連する注意 -->
+      <xs:enumeration value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- ８.重要な基本的注意 -->
+  <xs:element name="ImportantPrecautions">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_ImportantPrecautions"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ９.特定の背景を有する患者に関する注意-->
+  <xs:element name="UseInSpecificPopulations">
+    <xs:complexType>
+      <xs:sequence>
+        <!-- ９.１ 合併症・既往歴等のある患者 -->
+        <xs:element minOccurs="0" ref="UseInPatientsWithComplicationsOrHistoryOfDiseasesEtc"/>
+        <!-- ９.２ 腎機能障害患者 -->
+        <xs:element minOccurs="0" ref="PatientsWithRenalImpairment"/>
+        <!-- ９.３ 肝機能障害患者 -->
+        <xs:element minOccurs="0" ref="PatientsWithHepaticImpairment"/>
+        <!-- ９.４ 生殖能を有する者 -->
+        <xs:element minOccurs="0" ref="MalesAndFemalesOfReproductivePotential"/>
+        <!-- ９.５ 妊婦 -->
+        <xs:element minOccurs="0" ref="UseInPregnant"/>
+        <!-- ９.６ 授乳婦 -->
+        <xs:element minOccurs="0" ref="UseInNursing"/>
+        <!-- ９.７ 小児等 -->
+        <xs:element minOccurs="0" ref="PediatricUse"/>
+        <!-- ９.８ 高齢者 -->
+        <xs:element minOccurs="0" ref="UseInTheElderly"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:ID">
+            <xs:enumeration value="HDR_UseInSpecificPopulations"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ９.１ 合併症・既往歴等のある患者 -->
+  <xs:element name="UseInPatientsWithComplicationsOrHistoryOfDiseasesEtc">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_UseInPatientsWithComplicationsOrHistoryOfDiseasesEtc"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ９.２ 腎機能障害患者 -->
+  <xs:element name="PatientsWithRenalImpairment">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_PatientsWithRenalImpairment"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ９.３ 肝機能障害患者 -->
+  <xs:element name="PatientsWithHepaticImpairment">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_PatientsWithHepaticImpairment"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ９.４ 生殖能を有する者 -->
+  <xs:element name="MalesAndFemalesOfReproductivePotential">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_MalesAndFemalesOfReproductivePotential"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ９.５ 妊婦 -->
+  <xs:element name="UseInPregnant">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_UseInPregnant"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ９.６ 授乳婦 -->
+  <xs:element name="UseInNursing">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_UseInNursing"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ９.７ 小児等 -->
+  <xs:element name="PediatricUse">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_PediatricUse"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ９.８ 高齢者 -->
+  <xs:element name="UseInTheElderly">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_UseInTheElderly"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+
+  <!-- １０.相互作用 -->
+  <xs:element name="Interactions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="SummaryOfCombination"/>
+        <xs:element minOccurs="0" ref="ContraIndicatedCombinations"/>
+        <xs:element minOccurs="0" ref="PrecautionsForCombinations"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:ID">
+            <xs:enumeration value="HDR_Interactions"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+
+  <!-- 相互作用の概略 -->
+  <xs:element name="SummaryOfCombination" type="Header-Detail-List-TYPE"/>
+
+  <!-- １０.１ 併用禁忌（併用しないこと） -->
+  <xs:element name="ContraIndicatedCombinations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ContraIndicatedCombination"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:ID">
+            <xs:enumeration value="HDR_ContraIndicatedCombinations"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 併用禁忌(繰り返し) -->
+  <xs:element name="ContraIndicatedCombination">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="Instructions"/>
+        <xs:element minOccurs="0" ref="ContraIndication"/>
+        <xs:element minOccurs="0" ref="ExplanatoryNotesForContraIndication"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+
+  <!-- 併用禁忌 -->
+  <xs:element name="ContraIndication">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="WidthDefinition"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="Drug"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 薬品 -->
+  <xs:element name="Drug">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="DrugName"/>
+        <xs:element minOccurs="0" ref="ClinSymptomsAndMeasures"/>
+        <xs:element minOccurs="0" ref="MechanismAndRiskFactors"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 薬剤名等 -->
+  <xs:element name="DrugName" type="VariousForms-TYPE"/>
+
+  <!-- 臨床症状・措置方法 -->
+  <xs:element name="ClinSymptomsAndMeasures" type="VariousForms-TYPE"/>
+
+  <!-- 機序・危険因子 -->
+  <xs:element name="MechanismAndRiskFactors" type="VariousForms-TYPE"/>
+
+  <!-- 併用禁忌の注釈 -->
+  <xs:element name="ExplanatoryNotesForContraIndication" type="cdata.content-TYPE"/>
+
+  <!-- １０.２ 併用注意（併用に注意すること） -->
+  <xs:element name="PrecautionsForCombinations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="PrecautionsForCombination"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:ID">
+            <xs:enumeration value="HDR_PrecautionsForCombinations"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 併用注意(繰り返し) -->
+  <xs:element name="PrecautionsForCombination">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="Instructions"/>
+        <xs:element minOccurs="0" ref="PrecautionsForCombi"/>
+        <xs:element minOccurs="0" ref="ExplanatoryNotesForPrecautions"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+
+  <!-- 併用注意 -->
+  <xs:element name="PrecautionsForCombi">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="WidthDefinition"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="Drug"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 併用注意の注釈 -->
+  <xs:element name="ExplanatoryNotesForPrecautions" type="cdata.content-TYPE"/>
+
+  <!-- １１.副作用 -->
+  <xs:element name="AdverseEvents">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="CommonPrecautionsForAdverse"/>
+        <xs:element minOccurs="0" ref="SeriousAdverseEvents"/>
+        <xs:element minOccurs="0" ref="OtherAdverseEvents"/>
+        <xs:element minOccurs="0" ref="CommonExplanatoryNotesForAdverse"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:ID">
+            <xs:enumeration value="HDR_AdverseEvents"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 副作用の共通の注意 -->
+  <xs:element name="CommonPrecautionsForAdverse" type="cdata.content-TYPE"/>
+
+  <!-- １１.１ 重大な副作用 -->
+  <xs:element name="SeriousAdverseEvents">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="Instructions"/>
+        <xs:element minOccurs="0" ref="SeriousAdverse"/>
+        <xs:element minOccurs="0" ref="ExplanatoryNotesForSeriousAdverse"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:ID">
+            <xs:enumeration value="HDR_SeriousAdverseEvents"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 指示文 -->
+  <xs:element name="Instructions" type="VariousForms-TYPE"/>
+
+  <!-- 重大な副作用 -->
+  <xs:element name="SeriousAdverse" type="VariousForms-TYPE"/>
+
+  <!-- 重大な副作用の注釈 -->
+  <xs:element name="ExplanatoryNotesForSeriousAdverse" type="cdata.content-TYPE"/>
+
+  <!-- １１.２ その他の副作用 -->
+  <xs:element name="OtherAdverseEvents">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="OtherAdverseEvent"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:ID">
+            <xs:enumeration value="HDR_OtherAdverseEvents"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- その他の副作用(繰り返し) -->
+  <xs:element name="OtherAdverseEvent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="Instructions"/>
+        <xs:element minOccurs="0" ref="OtherAdverse"/>
+        <xs:element minOccurs="0" ref="ExplanatoryNotesForOtherAdverse"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- その他の副作用 -->
+  <xs:element name="OtherAdverse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="WidthDefinition"/>
+        <xs:element ref="CategoryDefinition"/>
+        <xs:element ref="FrequencyDefinition"/>
+        <xs:element ref="AdverseReactions"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- その他の副作用の種類の定義 -->
+  <xs:element name="CategoryDefinition">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="Category"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- その他の副作用の種類 -->
+  <xs:element name="Category" type="VariousFormsWithIDrequired-TYPE"/>
+
+  <!-- その他の副作用の頻度の定義 -->
+  <xs:element name="FrequencyDefinition">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="Frequency"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- その他の副作用の頻度 -->
+  <xs:element name="Frequency" type="VariousFormsWithIDrequired-TYPE"/>
+
+  <!-- その他の副作用の説明群 -->
+  <xs:element name="AdverseReactions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="AdverseReactionDescription"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- その他の副作用の説明 -->
+  <xs:element name="AdverseReactionDescription">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousForms-TYPE">
+          <!-- 定義した種類への参照 -->
+          <xs:attribute name="categoryRef" type="xs:IDREF" use="required"/>
+          <!-- 定義した頻度への参照 -->
+          <xs:attribute name="frequencyRef" type="xs:IDREF" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- その他の副作用の注釈 -->
+  <xs:element name="ExplanatoryNotesForOtherAdverse" type="cdata.content-TYPE"/>
+
+  <!-- 副作用の共通の注釈 -->
+  <xs:element name="CommonExplanatoryNotesForAdverse" type="cdata.content-TYPE"/>
+
+  <!-- １２.臨床検査結果に及ぼす影響 -->
+  <xs:element name="InfluenceOnLaboratoryValues">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_InfluenceOnLaboratoryValues"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- １３.過量投与 -->
+  <xs:element name="OverDosage">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_OverDosage"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- １４.適用上の注意 -->
+  <xs:element name="PrecautionsForApplication">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="OtherInformation"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:ID">
+            <xs:enumeration value="HDR_PrecautionsForApplication"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- １５.その他の注意 -->
+  <xs:element name="OtherPrecautions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="InformationBasedOnClinicalUse"/>
+        <xs:element minOccurs="0" ref="InformationBasedOnNonclinicalStudies"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="OtherInformation"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:ID">
+            <xs:enumeration value="HDR_OtherPrecautions"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- １５.１ 臨床使用に基づく情報 -->
+  <xs:element name="InformationBasedOnClinicalUse">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_InformationBasedOnClinicalUse"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- １５.２ 非臨床試験に基づく情報 -->
+  <xs:element name="InformationBasedOnNonclinicalStudies">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_InformationBasedOnNonclinicalStudies"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- １６.薬物動態 -->
+  <xs:element name="Pharmacokinetics">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="BloodLevel"/>
+        <xs:element minOccurs="0" ref="Absorption"/>
+        <xs:element minOccurs="0" ref="Distribution"/>
+        <xs:element minOccurs="0" ref="Metabolism"/>
+        <xs:element minOccurs="0" ref="Excretion"/>
+        <xs:element minOccurs="0" ref="SpecificPopulation"/>
+        <xs:element minOccurs="0" ref="DrugAndDrugInteractions"/>
+        <xs:element minOccurs="0" ref="PharmacokineticsEtc"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:ID">
+            <xs:enumeration value="HDR_Pharmacokinetics"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- １６.１ 血中濃度 -->
+  <xs:element name="BloodLevel">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_BloodLevel"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- １６.２ 吸収 -->
+  <xs:element name="Absorption">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_Absorption"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- １６.３ 分布 -->
+  <xs:element name="Distribution">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_Distribution"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- １６.４ 代謝 -->
+  <xs:element name="Metabolism">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_Metabolism"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- １６.５ 排泄 -->
+  <xs:element name="Excretion">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_Excretion"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- １６.６ 特定の背景を有する患者 -->
+  <xs:element name="SpecificPopulation">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_SpecificPopulation"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- １６.７ 薬物相互作用 -->
+  <xs:element name="DrugAndDrugInteractions">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_DrugAndDrugInteractions"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- １６.８ その他 -->
+  <xs:element name="PharmacokineticsEtc">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_PharmacokineticsEtc"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- １７.臨床成績 -->
+  <xs:element name="ResultsOfClinicalTrials">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="EfficacyAndSafety"/>
+        <xs:element minOccurs="0" ref="PostMarketingSurveylancesEtc"/>
+        <xs:element minOccurs="0" ref="ResultsOfClinicalTrialsEtc"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:ID">
+            <xs:enumeration value="HDR_ResultsOfClinicalTrials"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- １７.１ 有効性及び安全性に関する試験 -->
+  <xs:element name="EfficacyAndSafety">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_EfficacyAndSafety"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- １７.２ 製造販売後調査等 -->
+  <xs:element name="PostMarketingSurveylancesEtc">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_PostMarketingSurveylancesEtc"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- １７.３ その他 -->
+  <xs:element name="ResultsOfClinicalTrialsEtc">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_ResultsOfClinicalTrialsEtc"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- １８.薬効薬理 -->
+  <xs:element name="EfficacyPharmacology">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice minOccurs="1" maxOccurs="1">
+          <xs:element minOccurs="0" ref="MechanismOfAction"/>
+          <xs:element minOccurs="0" ref="MeasurementMethod"/>
+        </xs:choice>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="OtherInformation"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:ID">
+            <xs:enumeration value="HDR_EfficacyPharmacology"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- １８.１ 作用機序 -->
+  <xs:element name="MechanismOfAction">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_MechanismOfAction"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- １８.１ 測定法 -->
+  <xs:element name="MeasurementMethod">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_MeasurementMethod"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- １９.有効成分に関する理化学的知見 -->
+  <xs:element name="PhyschemOfActIngredients">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="PhyschemOfActIngredientsSection"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:ID">
+            <xs:enumeration value="HDR_PhyschemOfActIngredients"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 有効成分に関する理化学的知見のセクション -->
+  <xs:element name="PhyschemOfActIngredientsSection">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="PhyschemOfActIngredientsSectionTitle"/>
+        <xs:element minOccurs="0" ref="GeneralName"/>
+        <xs:element minOccurs="0" ref="ChemicalName"/>
+        <xs:element minOccurs="0" ref="MolecularFormula"/>
+        <xs:element minOccurs="0" ref="MolecularWeight"/>
+        <xs:element minOccurs="0" ref="DescriptionOfActiveIngredients"/>
+        <xs:element minOccurs="0" ref="StructuralFormula"/>
+        <xs:element minOccurs="0" ref="MeltingPoint"/>
+        <xs:element minOccurs="0" ref="PartitionCoefficient"/>
+        <xs:element minOccurs="0" ref="Nature"/>
+        <xs:element minOccurs="0" ref="NucleophysicalProperties"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="OtherInformation"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 有効成分に関する理化学的知見のセクションのタイトル -->
+  <xs:element name="PhyschemOfActIngredientsSectionTitle" type="cdata.content-TYPE"/>
+
+  <!-- 一般的名称 -->
+  <xs:element name="GeneralName" type="VariousForms-TYPE"/>
+
+  <!-- 化学名 -->
+  <xs:element name="ChemicalName" type="VariousForms-TYPE"/>
+
+  <!-- 分子式 -->
+  <xs:element name="MolecularFormula" type="VariousForms-TYPE"/>
+
+  <!-- 分子量 -->
+  <xs:element name="MolecularWeight" type="VariousForms-TYPE"/>
+
+  <!-- 性状 -->
+  <xs:element name="DescriptionOfActiveIngredients" type="VariousForms-TYPE"/>
+
+  <!-- 化学構造式 -->
+  <xs:element name="StructuralFormula" type="VariousForms-TYPE"/>
+
+  <!-- 融点 -->
+  <xs:element name="MeltingPoint" type="VariousForms-TYPE"/>
+
+  <!-- 分配係数 -->
+  <xs:element name="PartitionCoefficient" type="VariousForms-TYPE"/>
+
+  <!-- 本質 -->
+  <xs:element name="Nature" type="VariousForms-TYPE"/>
+
+  <!-- 核物理学的特性 -->
+  <xs:element name="NucleophysicalProperties" type="VariousForms-TYPE"/>
+
+  <!-- ２０.取扱い上の注意 -->
+  <xs:element name="PrecautionsForHandling">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_PrecautionsForHandling"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ２１.承認条件 -->
+  <xs:element name="ConditionsOfApproval">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_ConditionsOfApproval"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ２２.包装 -->
+  <xs:element name="Package">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousFormsWithoutID-TYPE">
+          <xs:attribute name="id" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:ID">
+                <xs:enumeration value="HDR_Package"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ２３.主要文献 -->
+  <xs:element name="MainLiterature">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="Reference"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:ID">
+            <xs:enumeration value="HDR_MainLiterature"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 文献 -->
+  <xs:element name="Reference" type="cdata.content-TYPE"/>
+
+  <!-- ２４.文献請求先及び問い合わせ先 -->
+  <xs:element name="AddresseeOfLiteratureRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="AddresseeInfo"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:ID">
+            <xs:enumeration value="HDR_AddresseeOfLiteratureRequest"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 文献請求先及び問い合わせ先の情報 -->
+  <xs:element name="AddresseeInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="Detail"/>
+        <xs:element minOccurs="0" ref="AddresseeOfInquiry"/>
+        <xs:element minOccurs="0" ref="Address"/>
+        <xs:element minOccurs="0" ref="ContactInformation"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 問い合わせ先 -->
+  <xs:element name="AddresseeOfInquiry" type="cdata.content-TYPE"/>
+
+  <!-- 住所 -->
+  <xs:element name="Address" type="cdata.content-TYPE"/>
+
+  <!-- 連絡先 -->
+  <xs:element name="ContactInformation" type="VariousForms-TYPE"/>
+
+  <!-- ２５.保険給付上の注意 -->
+  <xs:element name="AttentionOfInsurance">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="ContentOfAttentionOfInsurance"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:ID">
+            <xs:enumeration value="HDR_AttentionOfInsurance"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 保険給付上の注意 -->
+  <xs:element name="ContentOfAttentionOfInsurance" type="VariousForms-TYPE"/>
+
+  <!-- ２６.製造販売業者等 -->
+  <xs:element name="NameAddressManufact">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="Manufacturer"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:ID">
+            <xs:enumeration value="HDR_NameAddressManufact"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="heading" type="xs:string" fixed="fixing" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 製造業者 -->
+  <xs:element name="Manufacturer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="TypeOfIndustry"/>
+        <xs:element ref="Name"/>
+        <xs:element minOccurs="0" ref="Address"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 製造販売業者等の氏名又は名称及び住所の業種別 -->
+  <xs:element name="TypeOfIndustry" type="cdata.content-TYPE"/>
+
+  <!-- 名称 -->
+  <xs:element name="Name" type="cdata.content-TYPE"/>
+
+  <!-- （参考情報） -->
+  <xs:element name="ReferenceInformation" type="VariousForms-TYPE"/>
+
+
+<!-- ***************文字レベルの要素モデル******************** -->
+
+  <!-- データ型：cdata.content-TYPE（末端要素のテキスト内モデル） -->
+  <xs:complexType name="cdata.content-TYPE">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="Lang"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID"/>
+    <!-- 今回・前回改訂箇所を含むことを表す属性 -->
+    <xs:attribute name="modified" type="xs:IDREFS"/>
+  </xs:complexType>
+
+  <!-- データ型：cdata.contentWithIDrequired-TYPE（ID必須の末端要素のテキスト内モデル） -->
+  <xs:complexType name="cdata.contentWithIDrequired-TYPE">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="Lang"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID" use="required"/>
+    <!-- 今回・前回改訂箇所を含むことを表す属性 -->
+    <xs:attribute name="modified" type="xs:IDREFS"/>
+  </xs:complexType>
+
+  <!-- データ型：cdata.contentWithoutID-TYPE（末端要素のテキスト内モデル） -->
+  <xs:complexType name="cdata.contentWithoutID-TYPE">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="Lang"/>
+    </xs:sequence>
+    <!-- 今回・前回改訂箇所を含むことを表す属性 -->
+    <xs:attribute name="modified" type="xs:IDREFS"/>
+  </xs:complexType>
+
+  <!-- データ型：cdata.contentBase-TYPE "cdata.content○○○-TYPE"の基底の要素モデル -->
+  <xs:complexType name="cdata.contentBase-TYPE" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="Italic"/>
+      <xs:element ref="Sup"/>
+      <xs:element ref="Sub"/>
+      <xs:element ref="InlineGraphic"/>
+      <xs:element ref="ApprovalBrandNameRef"/>
+      <xs:element ref="ReferenceBookRef"/>
+      <xs:element ref="EmbeddingText"/>
+      <xs:element ref="CommentRef"/>
+      <xs:element ref="Comment"/>
+      <xs:element ref="HeaderRef"/>
+      <xs:element ref="Link"/>
+    </xs:choice>
+    <xs:attribute name="id" type="xs:ID"/>
+  </xs:complexType>
+
+  <!-- 文字列の言語指定用要素 -->
+  <xs:element name="Lang">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cdata.contentBase-TYPE">
+          <xs:attribute ref="xml:lang" use="required"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- データ型：cdata.contentBaseWithXMLLANGoptional-TYPE（cdata.contentBase-TYPEから派生して、xml:langをオプションとして追加した） -->
+  <xs:complexType name="cdata.contentBaseWithXMLLANGoptional-TYPE" mixed="true">
+    <xs:complexContent>
+      <xs:extension base="cdata.contentBase-TYPE">
+        <xs:attribute ref="xml:lang"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!-- 一文字単位での文字スタイル -->
+
+  <!-- イタリック -->
+  <xs:element name="Italic" type="cdata.contentBaseWithXMLLANGoptional-TYPE"/>
+
+  <!-- 上付き文字 -->
+  <xs:element name="Sup" type="cdata.contentBaseWithXMLLANGoptional-TYPE"/>
+
+  <!-- 下付き文字 -->
+  <xs:element name="Sub" type="cdata.contentBaseWithXMLLANGoptional-TYPE"/>
+
+  <!-- インライン・グラフィック -->
+  <xs:element name="InlineGraphic">
+    <xs:complexType>
+      <!-- グラフィックデータファイル名  -->
+      <xs:attribute name="gfname" type="xs:string" use="required"/>
+      <!-- 縮尺指定（%） -->
+      <xs:attribute name="scale" type="xs:nonNegativeInteger" use="optional"/>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 販売名参照 -->
+  <xs:element name="ApprovalBrandNameRef">
+    <xs:complexType>
+      <!-- DetailBrandName（販売名毎の明細）への参照 -->
+      <xs:attribute name="ref" type="xs:IDREF"/>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 文献参照 -->
+  <xs:element name="ReferenceBookRef">
+    <xs:complexType>
+      <!-- Reference（文献）への参照 -->
+      <xs:attribute name="ref" type="xs:IDREF" use="required"/>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- テキスト埋め込み -->
+  <xs:element name="EmbeddingText">
+    <xs:complexType>
+      <!-- 主にCompositionAndProperty（組成・性状）内の要素への参照 （※主にTblBlockForCompositionAndProperty（組成・性状の表）の中で使われる） -->
+      <xs:attribute name="ref" type="xs:IDREF" use="required"/>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 注釈参照 -->
+  <xs:element name="CommentRef">
+    <xs:complexType>
+      <!-- Comment（注釈コメント）への参照 -->
+      <xs:attribute name="ref" type="xs:IDREF" use="required"/>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 注釈コメント -->
+  <xs:element name="Comment" type="cdata.contentWithIDrequired-TYPE"/>
+
+  <!-- 見出し参照 -->
+  <xs:element name="HeaderRef">
+    <xs:complexType>
+      <!-- 項目要素への参照 -->
+      <xs:attribute name="ref" type="xs:IDREF" use="required"/>
+      <xs:attribute name="id" type="xs:ID"/>
+      <!-- コメント -->
+      <xs:attribute name="remarks" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- リンク(アンカータグ) -->
+  <xs:element name="Link">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cdata.contentBase-TYPE">
+          <xs:attribute name="url" type="xs:string"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+
+  <!-- ***************段落レベルの要素モデル******************** -->
+
+  <!-- データ型：Header-Detail-List-TYPE（見出しと説明の対のモデル) -->
+  <xs:complexType name="Header-Detail-List-TYPE">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="Item"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID"/>
+  </xs:complexType>
+
+  <xs:complexType name="List-Contents-TYPE">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="Item"/>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID"/>
+  </xs:complexType>
+
+  <!-- データ型：VariousForms-TYPE（汎用的な段落モデル) -->
+  <xs:complexType name="VariousForms-TYPE">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="Detail"/>
+        <xs:element ref="OrderedList"/>
+        <xs:element ref="UnorderedList"/>
+        <xs:element ref="SimpleList"/>
+        <xs:element ref="TblBlock"/>
+        <xs:element ref="Graphic"/>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID"/>
+  </xs:complexType>
+
+  <!-- データ型：VariousFormsWithIDrequired-TYPE（ID必須の汎用的な段落モデル) -->
+  <xs:complexType name="VariousFormsWithIDrequired-TYPE">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="Detail"/>
+        <xs:element ref="OrderedList"/>
+        <xs:element ref="UnorderedList"/>
+        <xs:element ref="SimpleList"/>
+        <xs:element ref="TblBlock"/>
+        <xs:element ref="Graphic"/>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID" use="required"/>
+  </xs:complexType>
+
+  <!-- データ型：VariousFormsWithoutID-TYPE（汎用的な段落モデル) -->
+  <xs:complexType name="VariousFormsWithoutID-TYPE">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="Detail"/>
+        <xs:element ref="OrderedList"/>
+        <xs:element ref="UnorderedList"/>
+        <xs:element ref="SimpleList"/>
+        <xs:element ref="TblBlock"/>
+        <xs:element ref="Graphic"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- 項目 -->
+  <xs:element name="Item">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="Header"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded" >
+          <xs:element ref="Detail"/>
+          <xs:element ref="OrderedList"/>
+          <xs:element ref="UnorderedList"/>
+          <xs:element ref="SimpleList"/>
+          <xs:element ref="TblBlock"/>
+          <xs:element ref="Graphic"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+      <xs:attribute name="heading" type="xs:string" fixed="free"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 項目の中身（データ） -->
+  <xs:element name="Detail" type="cdata.content-TYPE"/>
+
+  <!-- 見出し -->
+  <xs:element name="Header" type="cdata.content-TYPE"/>
+
+  <!-- 順序付きリスト -->
+  <xs:element name="OrderedList">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="List-Contents-TYPE">
+          <xs:attribute name="numberContinued" type="xs:boolean" default="false"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 順序なしリスト -->
+  <xs:element name="UnorderedList" type="List-Contents-TYPE"/>
+
+  <!-- 単純リスト -->
+  <xs:element name="SimpleList" type="List-Contents-TYPE"/>
+
+  <!-- グラフィック -->
+  <xs:element name="Graphic">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="GraphicCaption"/>
+        <xs:element ref="GraphicBody"/>
+        <xs:element minOccurs="0" ref="GraphicCaption"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- グラフィック本体 -->
+  <xs:element name="GraphicBody">
+    <xs:complexType>
+      <!-- グラフィックデータファイル名  -->
+      <xs:attribute name="gfname" type="xs:string" use="required"/>
+      <!-- 縮尺指定（%） -->
+      <xs:attribute name="scale" type="xs:nonNegativeInteger" use="optional"/>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- グラフィック見出し -->
+  <xs:element name="GraphicCaption" type="cdata.content-TYPE"/>
+
+  <!-- データ型：Repeated-Details-TYPE（Detailの繰り返し) -->
+  <xs:complexType name="Repeated-Details-TYPE">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="Detail"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID"/>
+  </xs:complexType>
+
+  <!-- データ型：Repeated-Details-Max2-TYPE（Detailの繰り返し(2つまで)) -->
+  <xs:complexType name="Repeated-Details-Max2-TYPE">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="2" ref="Detail"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID"/>
+  </xs:complexType>
+
+  <!-- データ型：TblBlocks-TYPE（TblBlockの繰り返し) -->
+  <xs:complexType name="TblBlocks-TYPE">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="TblBlock"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- *********************** table subset ********************** -->
+
+  <!-- 表全体 -->
+  <xs:element name="TblBlock">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="TblCaption"/>
+          <xs:element minOccurs="0" ref="WidthDefinition"/>
+          <xs:element minOccurs="0" ref="SimpTblHead"/>
+          <xs:element ref="SimpleTable"/>
+          <xs:element minOccurs="0" ref="SimpTblFoot"/>
+          <xs:element minOccurs="0" ref="TblCaption"/>
+        </xs:sequence>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 表の見出し -->
+  <xs:element name="TblCaption">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="cdata.content-TYPE">
+          <!-- 表示位置(上部/下部) -->
+          <xs:attribute name="align" default="top">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:enumeration value="top"/>
+                <xs:enumeration value="bottom"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 表の幅定義 -->
+  <xs:element name="WidthDefinition">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="Col"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+      <!-- 表の全体幅指定  -->
+      <xs:attribute name="totalWidth" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 表の各列の幅定義 -->
+  <xs:element name="Col">
+    <xs:complexType>
+      <xs:attribute name="id" type="xs:ID"/>
+      <!-- 列の幅指定  -->
+      <xs:attribute name="width" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 表のヘッダー -->
+  <xs:element name="SimpTblHead">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="Detail"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 表の本体 -->
+  <xs:element name="SimpleTable">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="SimpTblRow"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 表の行 -->
+  <xs:element name="SimpTblRow">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="SimpTblCell"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 表のセル -->
+  <xs:element name="SimpTblCell">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VariousForms-TYPE">
+          <!-- 縦方向のセル結合 -->
+          <xs:attribute name="rspan" type="xs:nonNegativeInteger"/>
+          <!-- 横方向のセル結合 -->
+          <xs:attribute name="cspan" type="xs:nonNegativeInteger"/>
+          <!-- 横方向の揃え -->
+          <xs:attribute name="align" default="left">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:enumeration value="left"/>
+                <xs:enumeration value="right"/>
+                <xs:enumeration value="center"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <!-- 縦方向の揃え -->
+          <xs:attribute name="valign" default="middle">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:enumeration value="top"/>
+                <xs:enumeration value="middle"/>
+                <xs:enumeration value="bottom"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- 表のフッター -->
+  <xs:element name="SimpTblFoot">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="Detail"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+      <!-- 横方向の揃え -->
+      <xs:attribute name="align" default="left">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="left"/>
+            <xs:enumeration value="right"/>
+            <xs:enumeration value="center"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
