@@ -24,6 +24,8 @@ pages:
       title: Use Cases
   epi-components.md:
       title: ePI Components
+  mapping.md:
+      title: Mapping to ePI
   build-overview.md:
       title: Overview
   gettingstarted.md:
@@ -41,6 +43,7 @@ menu:
   Getting Started: gettingstarted.html
   ePI Components: epi-components.html
   Use Cases: usecases.html
+  Mapping to ePI: mapping.html
   Overview: build-overview.html
   Technical Style Guide: tech-style-guide.html
   Terminology: terminology.html
