@@ -1,0 +1,1006 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PackIns version="1.0" xmlKind="Packins" drugType="Medicine" xmlns="http://info.pmda.go.jp/namespace/prescription_drugs/package_insert/1.0">
+  <PackageInsertNo>4291012F1022_4_02</PackageInsertNo>
+  <CompanyIdentifier>672212</CompanyIdentifier>
+  <!--ア.作成又は改訂年月-->
+  <DateOfPreparationOrRevision>
+    <PreparationOrRevision id="今回">
+      <YearMonth>2022-02</YearMonth>
+      <Version>
+        <Lang xml:lang="ja">第1版</Lang>
+      </Version>
+    </PreparationOrRevision>
+  </DateOfPreparationOrRevision>
+  <!--イ.日本標準商品分類番号-->
+  <Sccj>
+    <SccjNo>874291</SccjNo>
+  </Sccj>
+  <!--オ.薬効分類名-->
+  <TherapeuticClassification>
+    <Detail>
+      <Lang xml:lang="ja">アロマターゼ阻害剤／閉経後乳癌治療剤</Lang>
+    </Detail>
+  </TherapeuticClassification>
+  <ApprovalEtc>
+    <DetailBrandName id="BRD_Drug1">
+      <ApprovalBrandName>
+        <Lang xml:lang="ja">アロマシン錠25mg</Lang>
+      </ApprovalBrandName>
+      <BrandCode>
+        <YJCode>4291012F1022</YJCode>
+      </BrandCode>
+      <TrademarkInEnglish>
+        <TrademarkName>Aromasin Tablets 25mg</TrademarkName>
+      </TrademarkInEnglish>
+      <BrandNameInHiragana>
+        <NameInHiragana>あろましんじょう25mg</NameInHiragana>
+      </BrandNameInHiragana>
+      <!--ウ.承認番号-->
+      <ApprovalAndLicenseNo>
+        <ApprovalNo>21400AMY00186</ApprovalNo>
+      </ApprovalAndLicenseNo>
+      <!--ウ.販売開始年月-->
+      <StartingDateOfMarketing>2002-08</StartingDateOfMarketing>
+      <!--エ.貯法、有効期間-->
+      <Storage>
+        <StorageMethod>
+          <Lang xml:lang="ja">室温保存</Lang>
+        </StorageMethod>
+        <ShelfLife>
+          <Lang xml:lang="ja">3年</Lang>
+        </ShelfLife>
+      </Storage>
+      <!--カ.規制区分-->
+      <RegulatoryClassification>
+        <RegulatoryClassificationCodeAndNote>
+          <RegulatoryClassificationCode>12</RegulatoryClassificationCode>
+        </RegulatoryClassificationCodeAndNote>
+      </RegulatoryClassification>
+    </DetailBrandName>
+  </ApprovalEtc>
+  <!--キ.一般的名称-->
+  <GenericName>
+    <Detail>
+      <Lang xml:lang="ja">エキセメスタン</Lang>
+    </Detail>
+  </GenericName>
+  <!--２.禁忌（次の患者には投与しないこと）-->
+  <ContraIndications id="HDR_ContraIndications" heading="fixing">
+    <OrderedList numberContinued="false">
+      <Item id="HDR_ContraIndications_1" heading="free">
+        <Detail>
+          <Lang xml:lang="ja">妊婦又は妊娠している可能性のある女性<HeaderRef ref="HDR_UseInPregnant" /></Lang>
+        </Detail>
+      </Item>
+      <Item id="HDR_ContraIndications_2" heading="free">
+        <Detail>
+          <Lang xml:lang="ja">授乳婦<HeaderRef ref="HDR_UseInNursing" /></Lang>
+        </Detail>
+      </Item>
+      <Item id="HDR_ContraIndications_3" heading="free">
+        <Detail>
+          <Lang xml:lang="ja">本剤の成分に対し過敏症の既往歴のある患者</Lang>
+        </Detail>
+      </Item>
+    </OrderedList>
+  </ContraIndications>
+  <!--３.組成・性状-->
+  <CompositionAndProperty id="HDR_CompositionAndProperty" heading="fixing">
+    <!--３.１ 組成-->
+    <Composition id="HDR_Composition" heading="fixing">
+      <CompositionForBrand ref="BRD_Drug1">
+        <CompositionForConstituentUnits>
+          <CompositionTable>
+            <ContainedAmount>
+              <ActiveIngredientName>
+                <Lang xml:lang="ja">1錠中 エキセメスタン</Lang>
+              </ActiveIngredientName>
+              <ValueAndUnit>
+                <Lang xml:lang="ja">25.000mg</Lang>
+              </ValueAndUnit>
+            </ContainedAmount>
+            <Additives>
+              <ListOfAdditives>
+                <Lang xml:lang="ja">カルナウバロウ、デンプングリコール酸ナトリウム、クロスポビドン、軽質無水ケイ酸、結晶セルロース、合成ワックス、酸化チタン、シリコン消泡剤、ステアリン酸マグネシウム、精製白糖、タルク、炭酸マグネシウム、パラオキシ安息香酸メチル、ヒプロメロース、ポリソルベート80、ポリビニルアルコール（部分けん化物）、ポリエチレングリコール6000NF、D-マンニトール</Lang>
+              </ListOfAdditives>
+            </Additives>
+          </CompositionTable>
+        </CompositionForConstituentUnits>
+      </CompositionForBrand>
+    </Composition>
+    <!--３.２ 製剤の性状-->
+    <Property id="HDR_Property" heading="fixing">
+      <PropertyForBrand ref="BRD_Drug1">
+        <PropertyForConstituentUnits>
+          <PropertyTable>
+            <Shape>
+              <OtherShape>
+                <ShapeTitle>
+                  <Lang xml:lang="ja">上面</Lang>
+                </ShapeTitle>
+                <ShapeDetail>
+                  <Lang xml:lang="ja">
+                    <InlineGraphic gfname="672212_4291012F1022_4_02_fig01.gif" />
+                  </Lang>
+                </ShapeDetail>
+              </OtherShape>
+              <OtherShape>
+                <ShapeTitle>
+                  <Lang xml:lang="ja">下面</Lang>
+                </ShapeTitle>
+                <ShapeDetail>
+                  <Lang xml:lang="ja">
+                    <InlineGraphic gfname="672212_4291012F1022_4_02_fig02.gif" />
+                  </Lang>
+                </ShapeDetail>
+              </OtherShape>
+              <OtherShape>
+                <ShapeTitle>
+                  <Lang xml:lang="ja">側面</Lang>
+                </ShapeTitle>
+                <ShapeDetail>
+                  <Lang xml:lang="ja">
+                    <InlineGraphic gfname="672212_4291012F1022_4_02_fig03.gif" />
+                  </Lang>
+                </ShapeDetail>
+              </OtherShape>
+              <OtherShape>
+                <ShapeTitle>
+                  <Lang xml:lang="ja">直径</Lang>
+                </ShapeTitle>
+                <ShapeDetail>
+                  <Lang xml:lang="ja">6.0mm</Lang>
+                </ShapeDetail>
+              </OtherShape>
+              <OtherShape>
+                <ShapeTitle>
+                  <Lang xml:lang="ja">厚さ</Lang>
+                </ShapeTitle>
+                <ShapeDetail>
+                  <Lang xml:lang="ja">4.0mm</Lang>
+                </ShapeDetail>
+              </OtherShape>
+              <OtherShape>
+                <ShapeTitle>
+                  <Lang xml:lang="ja">重量</Lang>
+                </ShapeTitle>
+                <ShapeDetail>
+                  <Lang xml:lang="ja">100mg</Lang>
+                </ShapeDetail>
+              </OtherShape>
+            </Shape>
+            <IdCode>
+              <Lang xml:lang="ja">7663</Lang>
+            </IdCode>
+            <OtherProperty>
+              <CategoryName>
+                <Lang xml:lang="ja">色調等</Lang>
+              </CategoryName>
+              <Content>
+                <ContentDetail>
+                  <Lang xml:lang="ja">白色～微灰白色<?enter?>糖衣錠</Lang>
+                </ContentDetail>
+              </Content>
+            </OtherProperty>
+          </PropertyTable>
+        </PropertyForConstituentUnits>
+      </PropertyForBrand>
+    </Property>
+  </CompositionAndProperty>
+  <!--４.効能又は効果-->
+  <IndicationsOrEfficacy wordingPatternOfIndications="1" id="HDR_IndicationsOrEfficacy" heading="fixing">
+    <Detail>
+      <Lang xml:lang="ja">閉経後乳癌</Lang>
+    </Detail>
+  </IndicationsOrEfficacy>
+  <!--６.用法及び用量-->
+  <InfoDoseAdmin wordingPatternOfDoseAdmin="1" id="HDR_InfoDoseAdmin" heading="fixing">
+    <DoseAdmin>
+      <Detail>
+        <Lang xml:lang="ja">通常、成人にはエキセメスタンとして1日1回25mgを食後に経口投与する。</Lang>
+      </Detail>
+    </DoseAdmin>
+  </InfoDoseAdmin>
+  <!--８.重要な基本的注意-->
+  <ImportantPrecautions id="HDR_ImportantPrecautions" heading="fixing">
+    <OrderedList numberContinued="false">
+      <Item id="HDR_ImportantPrecautions_1" heading="free">
+        <Detail>
+          <Lang xml:lang="ja">本剤はホルモン療法剤であり、がんに対する薬物療法について十分な知識・経験を持つ医師のもとで、本剤による治療が適切と判断される患者についてのみ使用すること。</Lang>
+        </Detail>
+      </Item>
+      <Item id="HDR_ImportantPrecautions_2" heading="free">
+        <Detail>
+          <Lang xml:lang="ja">本剤は末梢アロマターゼを阻害することにより治療効果を発揮するものであり、活発な卵巣機能を有する閉経前の患者ではアロマターゼを阻害する効果は不十分であると予想されること、並びに閉経前の患者では使用経験がないことを考慮して、閉経前患者に対し使用しないこと。</Lang>
+        </Detail>
+      </Item>
+      <Item id="HDR_ImportantPrecautions_3" heading="free">
+        <Detail>
+          <Lang xml:lang="ja">本剤の投与によって、骨粗鬆症、骨折が起こりやすくなるので、骨密度等の骨状態を定期的に観察することが望ましい。</Lang>
+        </Detail>
+      </Item>
+      <Item id="HDR_ImportantPrecautions_4" heading="free">
+        <Detail>
+          <Lang xml:lang="ja">本剤の使用による嗜眠、傾眠、無力（症）及びめまいが報告されており、このような症状がある場合、機械操作や自動車の運転はさせないよう十分注意すること。</Lang>
+        </Detail>
+      </Item>
+    </OrderedList>
+  </ImportantPrecautions>
+  <!--９.特定の背景を有する患者に関する注意-->
+  <UseInSpecificPopulations id="HDR_UseInSpecificPopulations" heading="fixing">
+    <!--９.２ 腎機能障害患者-->
+    <PatientsWithRenalImpairment id="HDR_PatientsWithRenalImpairment" heading="fixing">
+      <OrderedList numberContinued="false">
+        <Item id="HDR_PatientsWithRenalImpairment_1" heading="free">
+          <Header>
+            <Lang xml:lang="ja">重度の腎障害のある患者</Lang>
+          </Header>
+          <Detail>
+            <Lang xml:lang="ja">本剤の重度の腎障害患者における長期安全性を指標とした臨床試験は実施していない。</Lang>
+          </Detail>
+        </Item>
+      </OrderedList>
+    </PatientsWithRenalImpairment>
+    <!--９.３ 肝機能障害患者-->
+    <PatientsWithHepaticImpairment id="HDR_PatientsWithHepaticImpairment" heading="fixing">
+      <OrderedList numberContinued="false">
+        <Item id="HDR_PatientsWithHepaticImpairment_1" heading="free">
+          <Header>
+            <Lang xml:lang="ja">重度の肝障害のある患者</Lang>
+          </Header>
+          <Detail>
+            <Lang xml:lang="ja">本剤の重度の肝障害患者における長期安全性を指標とした臨床試験は実施していない。</Lang>
+          </Detail>
+        </Item>
+      </OrderedList>
+    </PatientsWithHepaticImpairment>
+    <!--９.５ 妊婦-->
+    <UseInPregnant id="HDR_UseInPregnant" heading="fixing">
+      <Detail>
+        <Lang xml:lang="ja">妊婦又は妊娠している可能性のある女性には投与しないこと。本剤は、閉経後の患者を対象とするため、妊婦に対する投与は想定されていないが、妊婦への投与の安全性については次の知見がある。動物実験（ラット）で、分娩障害、妊娠期間の延長、吸収胚数の増加及び生存胎児数の減少が認められている。また動物実験（ウサギ）で、流産、吸収胚数の増加及び胎児体重の低下が認められている。しかし両種による動物実験で、催奇形性は認められてはいない。本剤の妊婦又は妊娠している可能性のある女性における臨床使用経験はない。<HeaderRef ref="HDR_ContraIndications_1" /></Lang>
+      </Detail>
+    </UseInPregnant>
+    <!--９.６ 授乳婦-->
+    <UseInNursing id="HDR_UseInNursing" heading="fixing">
+      <Detail>
+        <Lang xml:lang="ja">投与しないこと。本剤は、閉経後の患者を対象とするため、授乳婦に対する投与は想定されていないが、授乳婦への投与の安全性については次の知見がある。動物実験（ラット）で乳汁中への移行が認められている。本剤の授乳中の女性における臨床使用経験はない。<HeaderRef ref="HDR_ContraIndications_2" /></Lang>
+      </Detail>
+    </UseInNursing>
+  </UseInSpecificPopulations>
+  <!--１０.相互作用-->
+  <Interactions id="HDR_Interactions" heading="fixing">
+    <!--１０.２ 併用注意（併用に注意すること）-->
+    <PrecautionsForCombinations id="HDR_PrecautionsForCombinations" heading="fixing">
+      <PrecautionsForCombination>
+        <PrecautionsForCombi>
+          <WidthDefinition totalWidth="100%">
+            <Col width="23.96%" />
+            <Col width="33.12%" />
+            <Col width="41.41%" />
+          </WidthDefinition>
+          <Drug>
+            <DrugName>
+              <Detail>
+                <Lang xml:lang="ja">エストロゲン含有製剤</Lang>
+              </Detail>
+            </DrugName>
+            <ClinSymptomsAndMeasures>
+              <Detail>
+                <Lang xml:lang="ja">本剤の効果を減弱させる可能性がある。</Lang>
+              </Detail>
+            </ClinSymptomsAndMeasures>
+            <MechanismAndRiskFactors>
+              <Detail>
+                <Lang xml:lang="ja">本剤の薬理作用はエストロゲン合成阻害によるものであるため。</Lang>
+              </Detail>
+            </MechanismAndRiskFactors>
+          </Drug>
+        </PrecautionsForCombi>
+      </PrecautionsForCombination>
+    </PrecautionsForCombinations>
+  </Interactions>
+  <!--１１.副作用-->
+  <AdverseEvents id="HDR_AdverseEvents" heading="fixing">
+    <CommonPrecautionsForAdverse>
+      <Lang xml:lang="ja">次の副作用があらわれることがあるので、観察を十分に行い、異常が認められた場合には投与を中止するなど適切な処置を行うこと。</Lang>
+    </CommonPrecautionsForAdverse>
+    <!--１１.１ 重大な副作用-->
+    <SeriousAdverseEvents id="HDR_SeriousAdverseEvents" heading="fixing">
+      <SeriousAdverse>
+        <OrderedList numberContinued="false">
+          <Item id="HDR_SeriousAdverse_1" heading="free">
+            <Header>
+              <Lang xml:lang="ja">肝炎（頻度不明）、肝機能障害（頻度不明）、黄疸（頻度不明）</Lang>
+            </Header>
+            <Detail>
+              <Lang xml:lang="ja">肝炎、AST、ALT、Al-P、γ-GTP等の上昇を伴う肝機能障害、黄疸があらわれることがある。</Lang>
+            </Detail>
+          </Item>
+        </OrderedList>
+      </SeriousAdverse>
+    </SeriousAdverseEvents>
+    <!--１１.２ その他の副作用-->
+    <OtherAdverseEvents id="HDR_OtherAdverseEvents" heading="fixing">
+      <OtherAdverseEvent>
+        <OtherAdverse>
+          <WidthDefinition totalWidth="100%">
+            <Col width="12.13%" />
+            <Col width="16.67%" />
+            <Col width="45.97%" />
+            <Col width="23.52%" />
+          </WidthDefinition>
+          <CategoryDefinition>
+            <Category id="OTHER1_TYPE1">
+              <Detail>
+                <Lang xml:lang="ja">精神神経系</Lang>
+              </Detail>
+            </Category>
+            <Category id="OTHER1_TYPE2">
+              <Detail>
+                <Lang xml:lang="ja">消化器</Lang>
+              </Detail>
+            </Category>
+            <Category id="OTHER1_TYPE3">
+              <Detail>
+                <Lang xml:lang="ja">肝臓</Lang>
+              </Detail>
+            </Category>
+            <Category id="OTHER1_TYPE4">
+              <Detail>
+                <Lang xml:lang="ja">皮膚</Lang>
+              </Detail>
+            </Category>
+            <Category id="OTHER1_TYPE5">
+              <Detail modified="今回">
+                <Lang xml:lang="ja">筋骨格系</Lang>
+              </Detail>
+            </Category>
+            <Category id="OTHER1_TYPE6">
+              <Detail>
+                <Lang xml:lang="ja">循環器</Lang>
+              </Detail>
+            </Category>
+            <Category id="OTHER1_TYPE7">
+              <Detail>
+                <Lang xml:lang="ja">呼吸器</Lang>
+              </Detail>
+            </Category>
+            <Category id="OTHER1_TYPE8">
+              <Detail>
+                <Lang xml:lang="ja">泌尿器</Lang>
+              </Detail>
+            </Category>
+            <Category id="OTHER1_TYPE9">
+              <Detail>
+                <Lang xml:lang="ja">生殖器</Lang>
+              </Detail>
+            </Category>
+            <Category id="OTHER1_TYPE10">
+              <Detail modified="今回">
+                <Lang xml:lang="ja">その他</Lang>
+              </Detail>
+            </Category>
+          </CategoryDefinition>
+          <FrequencyDefinition>
+            <Frequency id="OTHER1_FRQ1">
+              <Detail>
+                <Lang xml:lang="ja">5%以上</Lang>
+              </Detail>
+            </Frequency>
+            <Frequency id="OTHER1_FRQ2">
+              <Detail>
+                <Lang xml:lang="ja">0.1～5%未満</Lang>
+              </Detail>
+            </Frequency>
+            <Frequency id="OTHER1_FRQ3">
+              <Detail>
+                <Lang xml:lang="ja">頻度不明</Lang>
+              </Detail>
+            </Frequency>
+          </FrequencyDefinition>
+          <AdverseReactions>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE1" frequencyRef="OTHER1_FRQ1">
+              <Detail>
+                <Lang xml:lang="ja">多汗、めまい</Lang>
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE1" frequencyRef="OTHER1_FRQ2">
+              <Detail>
+                <Lang xml:lang="ja">しびれ（感）、頭痛、知覚障害、ふらつき（感）、不眠（症）、抑うつ、不安、手根管症候群</Lang>
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE1" frequencyRef="OTHER1_FRQ3">
+              <Detail>
+                <Lang xml:lang="ja">傾眠</Lang>
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE2" frequencyRef="OTHER1_FRQ1">
+              <Detail>
+                <Lang xml:lang="ja">悪心</Lang>
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE2" frequencyRef="OTHER1_FRQ2">
+              <Detail>
+                <Lang xml:lang="ja">食欲不振、腹痛、嘔吐、腸管閉塞、のどの通過障害感、胃もたれ感、心窩部痛（心窩部の疼痛）、下痢</Lang>
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE2" frequencyRef="OTHER1_FRQ3">
+              <Detail>
+                <Lang xml:lang="ja" />
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE3" frequencyRef="OTHER1_FRQ1">
+              <Detail>
+                <Lang xml:lang="ja" />
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE3" frequencyRef="OTHER1_FRQ2">
+              <Detail>
+                <Lang xml:lang="ja" />
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE3" frequencyRef="OTHER1_FRQ3">
+              <Detail>
+                <Lang xml:lang="ja">肝機能異常、Al-P上昇</Lang>
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE4" frequencyRef="OTHER1_FRQ1">
+              <Detail>
+                <Lang xml:lang="ja" />
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE4" frequencyRef="OTHER1_FRQ2">
+              <Detail>
+                <Lang xml:lang="ja">発疹、脱毛（症）、爪の変化</Lang>
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE4" frequencyRef="OTHER1_FRQ3">
+              <Detail>
+                <Lang xml:lang="ja">蕁麻疹、そう痒症</Lang>
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE5" frequencyRef="OTHER1_FRQ1">
+              <Detail>
+                <Lang xml:lang="ja" />
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE5" frequencyRef="OTHER1_FRQ2">
+              <Detail>
+                <Lang xml:lang="ja">関節痛、筋骨格痛</Lang>
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE5" frequencyRef="OTHER1_FRQ3">
+              <Detail>
+                <Lang xml:lang="ja">骨折、骨粗鬆症、弾発指、狭窄性腱鞘炎</Lang>
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE6" frequencyRef="OTHER1_FRQ1">
+              <Detail>
+                <Lang xml:lang="ja">高血圧</Lang>
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE6" frequencyRef="OTHER1_FRQ2">
+              <Detail>
+                <Lang xml:lang="ja">動悸、低血圧</Lang>
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE6" frequencyRef="OTHER1_FRQ3">
+              <Detail>
+                <Lang xml:lang="ja" />
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE7" frequencyRef="OTHER1_FRQ1">
+              <Detail>
+                <Lang xml:lang="ja" />
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE7" frequencyRef="OTHER1_FRQ2">
+              <Detail>
+                <Lang xml:lang="ja">鼻出血、かぜ症候群、肺炎</Lang>
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE7" frequencyRef="OTHER1_FRQ3">
+              <Detail>
+                <Lang xml:lang="ja" />
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE8" frequencyRef="OTHER1_FRQ1">
+              <Detail>
+                <Lang xml:lang="ja" />
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE8" frequencyRef="OTHER1_FRQ2">
+              <Detail>
+                <Lang xml:lang="ja">膀胱炎、尿検査異常</Lang>
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE8" frequencyRef="OTHER1_FRQ3">
+              <Detail>
+                <Lang xml:lang="ja" />
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE9" frequencyRef="OTHER1_FRQ1">
+              <Detail>
+                <Lang xml:lang="ja" />
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE9" frequencyRef="OTHER1_FRQ2">
+              <Detail>
+                <Lang xml:lang="ja">不正（子宮）出血、帯下</Lang>
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE9" frequencyRef="OTHER1_FRQ3">
+              <Detail>
+                <Lang xml:lang="ja" />
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE10" frequencyRef="OTHER1_FRQ1">
+              <Detail>
+                <Lang xml:lang="ja">ほてり、疲労</Lang>
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE10" frequencyRef="OTHER1_FRQ2">
+              <Detail>
+                <Lang xml:lang="ja">疼痛、体重減少、倦怠（感）、体臭、浮腫、味覚異常、嗅覚障害</Lang>
+              </Detail>
+            </AdverseReactionDescription>
+            <AdverseReactionDescription categoryRef="OTHER1_TYPE10" frequencyRef="OTHER1_FRQ3">
+              <Detail>
+                <Lang xml:lang="ja">過敏症</Lang>
+              </Detail>
+            </AdverseReactionDescription>
+          </AdverseReactions>
+        </OtherAdverse>
+      </OtherAdverseEvent>
+    </OtherAdverseEvents>
+  </AdverseEvents>
+  <!--１４.適用上の注意-->
+  <PrecautionsForApplication id="HDR_PrecautionsForApplication" heading="fixing">
+    <OtherInformation id="HDR_PrecautionsForApplication_OtherInformation_1" heading="free">
+      <Header>
+        <Lang xml:lang="ja">薬剤交付時の注意</Lang>
+      </Header>
+      <Detail>
+        <Lang xml:lang="ja">PTP包装の薬剤はPTPシートから取り出して服用するよう指導すること。PTPシートの誤飲により、硬い鋭角部が食道粘膜へ刺入し、更には穿孔をおこして縦隔洞炎等の重篤な合併症を併発することがある。</Lang>
+      </Detail>
+    </OtherInformation>
+  </PrecautionsForApplication>
+  <!--１５.その他の注意-->
+  <OtherPrecautions id="HDR_OtherPrecautions" heading="fixing">
+    <!--１５.２ 非臨床試験に基づく情報-->
+    <InformationBasedOnNonclinicalStudies id="HDR_InformationBasedOnNonclinicalStudies" heading="fixing">
+      <Detail>
+        <Lang xml:lang="ja">24ヵ月間のマウスがん原性試験において、中用量（150mg/kg/日）、高用量（450mg/kg/日）で雌雄において肝細胞腺腫及び肝細胞癌の発生率の上昇が認められた。また、雄の高用量群で腎腺腫の発生の上昇がみられた。これらの腫瘍はマウス特有なものである可能性が高くヒトにおける臨床的な安全性との関連は低いと考えられる<ReferenceBookRef ref="DOC_01" />。</Lang>
+      </Detail>
+    </InformationBasedOnNonclinicalStudies>
+  </OtherPrecautions>
+  <!--１６.薬物動態-->
+  <Pharmacokinetics id="HDR_Pharmacokinetics" heading="fixing">
+    <!--１６.１ 血中濃度-->
+    <BloodLevel id="HDR_BloodLevel" heading="fixing">
+      <Detail>
+        <Lang xml:lang="ja">日本人の閉経後進行乳癌患者にエキセメスタン25mgを1日1回反復投与したとき、t<Sub>max</Sub>は2.01±1.35時間、C<Sub>max</Sub>は27.4±16.6ng/mL、AUCは115±76ng・h/mL、終末相のt<Sub>1/2</Sub>は20.2±11.7時間であった。血漿中エキセメスタン濃度推移を下図に示す。</Lang>
+      </Detail>
+      <Graphic>
+        <GraphicBody gfname="672212_4291012F1022_4_02_fig04.gif" />
+        <GraphicCaption>
+          <Lang xml:lang="ja">図 日本人閉経後進行乳癌患者にエキセメスタン25mgを1日1回29日間反復投与した後の血漿中エキセメスタン濃度推移（n=15～16、平均値±標準偏差）</Lang>
+        </GraphicCaption>
+      </Graphic>
+      <Detail>
+        <Lang xml:lang="ja">日本人の閉経後健康成人女性に単回及び反復経口投与（0.5～50mg）後のエキセメスタンのC<Sub>max</Sub>及びAUCは用量比例的であった<ReferenceBookRef ref="DOC_02" /><Sup>,</Sup><ReferenceBookRef ref="DOC_03" /><Sup>,</Sup><ReferenceBookRef ref="DOC_04" />。</Lang>
+      </Detail>
+    </BloodLevel>
+    <!--１６.２ 吸収-->
+    <Absorption id="HDR_Absorption" heading="fixing">
+      <OrderedList numberContinued="false">
+        <Item id="HDR_Absorption_1" heading="free">
+          <Header>
+            <Lang xml:lang="ja">食事の影響</Lang>
+          </Header>
+          <Detail>
+            <Lang xml:lang="ja">エキセメスタン25mgを閉経後健康女性（欧米人）に高脂肪食摂取直後に投与した時、C<Sub>max</Sub>及びAUCの平均値は空腹投与時に比べそれぞれ25%及び39%上昇した<ReferenceBookRef ref="DOC_02" />。</Lang>
+          </Detail>
+        </Item>
+      </OrderedList>
+    </Absorption>
+    <!--１６.３ 分布-->
+    <Distribution id="HDR_Distribution" heading="fixing">
+      <OrderedList numberContinued="false">
+        <Item id="HDR_Distribution_1" heading="free">
+          <Header>
+            <Lang xml:lang="ja">組織内濃度</Lang>
+          </Header>
+          <Detail>
+            <Lang xml:lang="ja">雌性ラットに<Sup>14</Sup>C-エキセメスタン1mg/kgを単回経口投与した後、放射能は組織中に広範囲に分布し、大部分の組織で投与後1あるいは6時間に最高放射能濃度を示した。肝臓、腎臓及び皮膚を除いた他の組織からの放射能の消失は速やかであった<ReferenceBookRef ref="DOC_05" />。</Lang>
+          </Detail>
+        </Item>
+        <Item id="HDR_Distribution_2" heading="free">
+          <Header>
+            <Lang xml:lang="ja">胎児・胎盤移行性</Lang>
+          </Header>
+          <Detail>
+            <Lang xml:lang="ja">妊娠ラットに<Sup>14</Sup>C-エキセメスタンを経口投与した後の放射能は、胎盤を通過し胎児に分布した<ReferenceBookRef ref="DOC_05" />。</Lang>
+          </Detail>
+        </Item>
+        <Item id="HDR_Distribution_3" heading="free">
+          <Header>
+            <Lang xml:lang="ja">蛋白結合率</Lang>
+          </Header>
+          <Detail>
+            <Lang xml:lang="ja">健康成人女性の血漿を用いた<Italic>in vitro</Italic>におけるエキセメスタンの蛋白結合率は約96%であった。結合蛋白質はヒト血清アルブミン及びα<Sub>1</Sub>-酸性糖蛋白質と考えられた<ReferenceBookRef ref="DOC_06" />。</Lang>
+          </Detail>
+        </Item>
+      </OrderedList>
+    </Distribution>
+    <!--１６.４ 代謝-->
+    <Metabolism id="HDR_Metabolism" heading="fixing">
+      <Detail>
+        <Lang xml:lang="ja">本剤の主要代謝経路はCYP3A4による6位のメチレン基の酸化もしくはアルド-ケト還元酵素による17位のオキソの還元であり、その後加水分解又は抱合反応により代謝される。<?enter?>CYP3A4阻害剤であるケトコナゾール（経口剤は国内未承認）との併用投与（欧米人閉経後健康女性対象）において、エキセメスタンの薬物動態に影響は認められず、CYP3A誘導剤であるリファンピシンとの併用投与（欧米人閉経後健康女性対象）において、エキセメスタンのC<Sub>max</Sub>及びAUCは有意に低下したが、血漿中エストロゲン（エストロンスルフェート）濃度の低下率には変動は認められなかった<ReferenceBookRef ref="DOC_07" />。</Lang>
+      </Detail>
+    </Metabolism>
+    <!--１６.５ 排泄-->
+    <Excretion id="HDR_Excretion" heading="fixing">
+      <OrderedList numberContinued="false">
+        <Item id="HDR_Excretion_1" heading="free">
+          <Detail>
+            <Lang xml:lang="ja">
+              <Sup>14</Sup>C標識したエキセメスタンを閉経後の外国人健康女性に投与後、168時間までの放射能の尿中及び糞中の累積排泄量はそれぞれ42±3%及び42±6%であった。尿中に未変化体として排泄された量は、投与量の1%未満であった<ReferenceBookRef ref="DOC_08" />。</Lang>
+          </Detail>
+        </Item>
+        <Item id="HDR_Excretion_2" heading="free">
+          <Detail>
+            <Lang xml:lang="ja">分娩後の哺育中ラットに<Sup>14</Sup>C-エキセメスタン1mg/kgを経口投与した後の乳汁中放射能濃度は投与後6時間で最高濃度を示した。同時に測定した血漿中濃度と比較すると、6時間以降では乳汁中濃度の方が高濃度を示すものの、同様な推移で減少した<ReferenceBookRef ref="DOC_05" />。</Lang>
+          </Detail>
+        </Item>
+      </OrderedList>
+    </Excretion>
+    <!--１６.６ 特定の背景を有する患者-->
+    <SpecificPopulation id="HDR_SpecificPopulation" heading="fixing">
+      <OrderedList numberContinued="false">
+        <Item id="HDR_SpecificPopulation_1" heading="free">
+          <Header>
+            <Lang xml:lang="ja">腎機能障害患者における体内動態</Lang>
+          </Header>
+          <Detail>
+            <Lang xml:lang="ja">中等度又は重度の腎機能障害患者（欧米人の閉経後女性、クレアチニンクリアランス＜60mL/min/1.73m<Sup>2</Sup>）にエキセメスタン25mgを単回経口投与した後のAUCは、欧米人の閉経後健康女性におけるAUCの約2～3倍であった<ReferenceBookRef ref="DOC_09" />。</Lang>
+          </Detail>
+        </Item>
+        <Item id="HDR_SpecificPopulation_2" heading="free">
+          <Header>
+            <Lang xml:lang="ja">肝機能障害患者における体内動態</Lang>
+          </Header>
+          <Detail>
+            <Lang xml:lang="ja">中等度又は重度の肝機能障害患者（欧米人の閉経後女性、Child-Pugh分類でB又はC）にエキセメスタン25mgを単回経口投与した後のAUCは、欧米人の閉経後健康女性におけるAUCの約2～3倍であった<ReferenceBookRef ref="DOC_09" />。</Lang>
+          </Detail>
+        </Item>
+      </OrderedList>
+    </SpecificPopulation>
+  </Pharmacokinetics>
+  <!--１７.臨床成績-->
+  <ResultsOfClinicalTrials id="HDR_ResultsOfClinicalTrials" heading="fixing">
+    <!--１７.１ 有効性及び安全性に関する試験-->
+    <EfficacyAndSafety id="HDR_EfficacyAndSafety" heading="fixing">
+      <OrderedList numberContinued="false">
+        <Item id="HDR_EfficacyAndSafety_1" heading="free">
+          <Header>
+            <Lang xml:lang="ja">国内臨床試験</Lang>
+          </Header>
+          <Detail>
+            <Lang xml:lang="ja">第Ⅰ相試験において、閉経後健康女性（単回14例、反復25例）を対象として、本剤の0.5～50mg/日までの用量における安全性及び薬力学的作用（血清中エストロゲン濃度抑制作用）を検討した結果、用量依存的な血清中エストロゲン濃度の低下が認められた。前期第Ⅱ相試験において、閉経後乳癌患者（10mg、25mg各36例）を対象として、本剤の有効性及び安全性を検討の上、臨床推奨用量の設定を試みた。奏効率において有意差はないものの25mgの方が10mgより優っていたことなどから、本剤の臨床推奨用量として25mg/日を選択した。ホルモン療法耐性例に対する25mg群の奏効率は26.1%（6/23）であった<ReferenceBookRef ref="DOC_03" /><Sup>,</Sup><ReferenceBookRef ref="DOC_04" /><Sup>,</Sup><ReferenceBookRef ref="DOC_10" />。</Lang>
+          </Detail>
+        </Item>
+        <Item id="HDR_EfficacyAndSafety_2" heading="free">
+          <Header>
+            <Lang xml:lang="ja">ブリッジング試験</Lang>
+          </Header>
+          <Detail>
+            <Lang xml:lang="ja">後期第Ⅱ相試験において、抗エストロゲン剤耐性の閉経後乳癌患者33例を対象として本剤の有効性及び安全性が検討された。なお、本試験は海外にて実施された同様の試験（No.120002及びNo.010）結果の再現性を確認することを目的として実施された<ReferenceBookRef ref="DOC_11" /><Sup>,</Sup><ReferenceBookRef ref="DOC_12" /><Sup>,</Sup><ReferenceBookRef ref="DOC_13" />。</Lang>
+          </Detail>
+          <TblBlock>
+            <WidthDefinition totalWidth="100%">
+              <Col />
+              <Col />
+              <Col />
+              <Col />
+            </WidthDefinition>
+            <SimpleTable>
+              <SimpTblRow>
+                <SimpTblCell align="center" valign="middle">
+                  <Detail>
+                    <Lang xml:lang="ja">実施国<?enter?>（試験番号）<?enter?>抗腫瘍効果</Lang>
+                  </Detail>
+                </SimpTblCell>
+                <SimpTblCell align="center" valign="middle">
+                  <Detail>
+                    <Lang xml:lang="ja">日本<?enter?>（No.042）</Lang>
+                  </Detail>
+                </SimpTblCell>
+                <SimpTblCell align="center" valign="middle">
+                  <Detail>
+                    <Lang xml:lang="ja">米国等<?enter?>（No.120002）</Lang>
+                  </Detail>
+                </SimpTblCell>
+                <SimpTblCell align="center" valign="middle">
+                  <Detail>
+                    <Lang xml:lang="ja">欧州等<?enter?>（No.010）</Lang>
+                  </Detail>
+                </SimpTblCell>
+              </SimpTblRow>
+              <SimpTblRow>
+                <SimpTblCell align="center" valign="middle">
+                  <Detail>
+                    <Lang xml:lang="ja">奏効率<?enter?>（奏効例/評価例）</Lang>
+                  </Detail>
+                </SimpTblCell>
+                <SimpTblCell align="center" valign="middle">
+                  <Detail>
+                    <Lang xml:lang="ja">24.2%<?enter?>（8/33）</Lang>
+                  </Detail>
+                </SimpTblCell>
+                <SimpTblCell align="center" valign="middle">
+                  <Detail>
+                    <Lang xml:lang="ja">28.1%<?enter?>（36/128）</Lang>
+                  </Detail>
+                </SimpTblCell>
+                <SimpTblCell align="center" valign="middle">
+                  <Detail>
+                    <Lang xml:lang="ja">23.4%<?enter?>（32/137）</Lang>
+                  </Detail>
+                </SimpTblCell>
+              </SimpTblRow>
+              <SimpTblRow>
+                <SimpTblCell align="center" valign="middle">
+                  <Detail>
+                    <Lang xml:lang="ja">長期NC<Sup>注1）</Sup>を含む有効率<?enter?>（奏効例＋長期NC例/評価例）</Lang>
+                  </Detail>
+                </SimpTblCell>
+                <SimpTblCell align="center" valign="middle">
+                  <Detail>
+                    <Lang xml:lang="ja">39.4%<?enter?>（13/33）</Lang>
+                  </Detail>
+                </SimpTblCell>
+                <SimpTblCell align="center" valign="middle">
+                  <Detail>
+                    <Lang xml:lang="ja">46.9%<?enter?>（60/128）</Lang>
+                  </Detail>
+                </SimpTblCell>
+                <SimpTblCell align="center" valign="middle">
+                  <Detail>
+                    <Lang xml:lang="ja">47.4%<?enter?>（65/137）</Lang>
+                  </Detail>
+                </SimpTblCell>
+              </SimpTblRow>
+            </SimpleTable>
+            <SimpTblFoot align="left">
+              <Detail>
+                <Lang xml:lang="ja">注1）長期NC：24週以上のNC持続</Lang>
+              </Detail>
+            </SimpTblFoot>
+          </TblBlock>
+        </Item>
+        <Item id="HDR_EfficacyAndSafety_3" heading="free">
+          <Header>
+            <Lang xml:lang="ja">海外臨床試験（第Ⅲ相試験）</Lang>
+          </Header>
+          <Detail>
+            <Lang xml:lang="ja">欧米19ヵ国が参加した多施設共同試験において、タモキシフェンに無効となった閉経後の進行乳癌に対する本剤の抗腫瘍効果及び安全性を、酢酸メゲストロール（160mg/日：国内未承認）を対照薬として検討した。抗腫瘍効果において、奏効率では群間に有意差は認められなかったものの、本剤の奏効率は15.0%（55/366）であり、酢酸メゲストロール群は12.4%（50/403）であった。長期NCを含む有効率はエキセメスタンで37.4%、酢酸メゲストロールで34.6%であった。さらに本剤の病勢進行までの期間、治療変更等までの期間及び生存期間は、酢酸メゲストロール群と比較し有意に延長した<ReferenceBookRef ref="DOC_14" /> 。</Lang>
+          </Detail>
+        </Item>
+        <Item id="HDR_EfficacyAndSafety_4" heading="free">
+          <Header>
+            <Lang xml:lang="ja">海外大規模比較試験（第Ⅲ相試験　術後補助療法）</Lang>
+          </Header>
+          <Detail>
+            <Lang xml:lang="ja">海外37ヵ国が参加した多施設共同二重盲検比較試験において、術後補助療法としてタモキシフェンを2～3年投与した閉経後乳癌患者（4,724例）を対象とし、タモキシフェン継続群（2,372例）と、本剤に切り替えた本剤投与群（2,352例）に割り付け、無病生存率及び安全性を検討した（両群とも術後補助療法としての投与期間：5年間）。その結果、追跡期間（中央値34.5ヵ月）における再発・対側乳癌・死亡発生数は本剤投与群213例、タモキシフェン継続群306例であり、無病生存率は本剤投与群90%（95%信頼区間89-92%）、タモキシフェン継続群86%（95%信頼区間85-88%）であった。また、無病生存期間のハザード比は0.69（95%信頼区間0.58-0.82、p=0.00003）であり、本剤投与群はタモキシフェン継続群と比較して乳癌再発リスクを31%低下させた。対側乳癌の発生リスクのハザード比は0.32（本剤投与群8例、タモキシフェン継続群25例、95%信頼区間0.15-0.72、p=0.0034）であり、本剤投与群は対側乳癌のリスクを68%低下させた<ReferenceBookRef ref="DOC_15" />。</Lang>
+          </Detail>
+        </Item>
+        <Item id="HDR_EfficacyAndSafety_5" heading="free">
+          <Header>
+            <Lang xml:lang="ja">海外比較試験（術後補助療法）</Lang>
+          </Header>
+          <Detail>
+            <Lang xml:lang="ja">海外で実施した多施設共同二重盲検比較試験において、再発リスクの低い乳癌又は腺管上皮内癌（147例）を、本剤投与群（73例）とプラセボ群（74例）に割り付け、骨密度（Bone Mineral Density）に与える影響及び有効性、安全性を検討した（投与期間：2年間、追跡期間最長：1年間）。投与2年後の本剤投与群の腰椎・大腿骨頸部における骨密度の年平均変化率はそれぞれ-2.17%、-2.72%であり、プラセボ群は-1.84%、-1.48%（p=0.568、p=0.024）であった。試験中に6例が再発し、1例は本剤投与群、5例がプラセボ群であった。また、HDL-コレステロールは本剤投与群（6-9%低下）は、プラセボ群（1-2%増加）に比較し、有意（p＜0.01）に低下したが、他の脂質パラメータ及び凝固系パラメータでは両群間に差は認められなかった<ReferenceBookRef ref="DOC_16" />。</Lang>
+          </Detail>
+        </Item>
+        <Item id="HDR_EfficacyAndSafety_6" heading="free">
+          <Header>
+            <Lang xml:lang="ja">非盲検無作為化比較試験（第Ⅱ/Ⅲ相試験　転移性乳癌に対する第一次ホルモン療法）</Lang>
+          </Header>
+          <Detail>
+            <Lang xml:lang="ja">日本を含む25ヵ国が参加した多施設共同非盲検無作為化比較試験において、閉経後の転移性乳癌患者382例を対象とし、本剤投与群（190例）とタモキシフェン投与群（192例）に割り付け、無増悪生存期間を比較検討した。その結果、本剤投与群の無増悪生存期間が（中央値9.86ヵ月、95%信頼区間8.74-11.47）タモキシフェン投与群（中央値5.82ヵ月、95%信頼区間5.32-8.08）に比べて長かったが、統計的に有意な差は認められなかった（log-rank検定p=0.1214）。また、全生存期間の中央値は、タモキシフェン群が43.3ヵ月（95%信頼区間34.00-51.55）、本剤投与群が37.2ヵ月（95%信頼区間29.80-45.47）であったが、統計的に有意な差は認められなかった（log-rank検定p=0.9198）。さらに副次的評価項目である安全性プロファイルから本剤の忍容性が確認された<ReferenceBookRef ref="DOC_17" />。</Lang>
+          </Detail>
+          <Graphic>
+            <GraphicBody gfname="672212_4291012F1022_4_02_fig05.gif" />
+          </Graphic>
+        </Item>
+      </OrderedList>
+    </EfficacyAndSafety>
+  </ResultsOfClinicalTrials>
+  <!--１８.薬効薬理-->
+  <EfficacyPharmacology id="HDR_EfficacyPharmacology" heading="fixing">
+    <!--１８.１ 作用機序-->
+    <MechanismOfAction id="HDR_MechanismOfAction" heading="fixing">
+      <OrderedList numberContinued="false">
+        <Item id="HDR_MechanismOfAction_1" heading="free">
+          <Header>
+            <Lang xml:lang="ja">アロマターゼ阻害作用</Lang>
+          </Header>
+          <Detail>
+            <Lang xml:lang="ja">エキセメスタンはアンドロゲンをエストロゲンに変換する酵素であるアロマターゼを非可逆的に阻害することにより、血中エストロゲン濃度を抑制し、エストロゲン依存性の乳癌の増殖を阻害する。</Lang>
+          </Detail>
+          <OrderedList numberContinued="false">
+            <Item id="HDR_MechanismOfAction_2" heading="free">
+              <Header>
+                <Lang xml:lang="ja">
+                  <Italic>in vivo</Italic>試験</Lang>
+              </Header>
+              <Detail>
+                <Lang xml:lang="ja">妊馬血清ゴナドトロピン刺激ラットにおいて、エキセメスタンの単回経口投与は卵巣アロマターゼ活性を用量依存的に減少させ、そのED<Sub>50</Sub>値は3.7mg/kgであった。</Lang>
+              </Detail>
+            </Item>
+            <Item id="HDR_MechanismOfAction_3" heading="free">
+              <Header>
+                <Lang xml:lang="ja">
+                  <Italic>in vitro</Italic>試験</Lang>
+              </Header>
+              <Detail>
+                <Lang xml:lang="ja">エキセメスタンは、他のステロイド合成系酵素にはほとんど影響を与えることなく、アロマターゼを選択的に不活性化した。</Lang>
+              </Detail>
+            </Item>
+          </OrderedList>
+        </Item>
+      </OrderedList>
+    </MechanismOfAction>
+    <OtherInformation id="HDR_EfficacyPharmacology_OtherInformation_1" heading="free">
+      <Header>
+        <Lang xml:lang="ja">抗腫瘍効果</Lang>
+      </Header>
+      <Detail>
+        <Lang xml:lang="ja">DMBA誘発ラット乳癌（閉経後モデル）に対しエキセメスタンを週6日、4週間経口投与した結果、1mg/kg/日以上の用量で腫瘍の増殖を有意に阻害した。</Lang>
+      </Detail>
+    </OtherInformation>
+    <OtherInformation id="HDR_EfficacyPharmacology_OtherInformation_2" heading="free">
+      <Header>
+        <Lang xml:lang="ja">エストロゲン抑制作用</Lang>
+      </Header>
+      <OrderedList numberContinued="false">
+        <Item id="HDR_EfficacyPharmacology_OtherInformation_2_1" heading="free">
+          <Detail>
+            <Lang xml:lang="ja">妊馬血清ゴナドトロピン刺激ラットにおいて、エキセメスタンの単回経口投与により血漿中エストラジオール濃度は用量依存的に低下し、そのED<Sub>50</Sub>値は3.8mg/kgであった。</Lang>
+          </Detail>
+        </Item>
+        <Item id="HDR_EfficacyPharmacology_OtherInformation_2_2" heading="free">
+          <Detail>
+            <Lang xml:lang="ja">閉経後乳癌患者にエキセメスタン25mgを連日経口投与することにより、血漿又は血清中エストロゲン（エストラジオール、エストロン及びエストロンスルフェート）濃度は81～95%低下した。</Lang>
+          </Detail>
+        </Item>
+      </OrderedList>
+    </OtherInformation>
+  </EfficacyPharmacology>
+  <!--１９.有効成分に関する理化学的知見-->
+  <PhyschemOfActIngredients id="HDR_PhyschemOfActIngredients" heading="fixing">
+    <PhyschemOfActIngredientsSection>
+      <GeneralName>
+        <Detail>
+          <Lang xml:lang="ja">エキセメスタン（Exemestane）</Lang>
+        </Detail>
+      </GeneralName>
+      <ChemicalName>
+        <Detail>
+          <Lang xml:lang="ja">（＋）-6-methyleneandrosta-1,4-diene-3,17-dione</Lang>
+        </Detail>
+      </ChemicalName>
+      <MolecularFormula>
+        <Detail>
+          <Lang xml:lang="ja">C<Sub>20</Sub>H<Sub>24</Sub>O<Sub>2</Sub></Lang>
+        </Detail>
+      </MolecularFormula>
+      <MolecularWeight>
+        <Detail>
+          <Lang xml:lang="ja">296.40</Lang>
+        </Detail>
+      </MolecularWeight>
+      <DescriptionOfActiveIngredients>
+        <Detail>
+          <Lang xml:lang="ja">白色～黄白色の粉末である。<Italic>N</Italic>,<Italic>N</Italic>-ジメチルホルムアミド及びテトラヒドロフランに溶けやすく、メタノール及びエタノール（95）にやや溶けやすく、アセトニトリルにやや溶けにくく、水にほとんど溶けない。</Lang>
+        </Detail>
+      </DescriptionOfActiveIngredients>
+      <StructuralFormula>
+        <Graphic>
+          <GraphicBody gfname="672212_4291012F1022_4_02_fig06.gif" />
+        </Graphic>
+      </StructuralFormula>
+    </PhyschemOfActIngredientsSection>
+  </PhyschemOfActIngredients>
+  <!--２２.包装-->
+  <Package id="HDR_Package" heading="fixing">
+    <Detail>
+      <Lang xml:lang="ja">28錠［14錠（PTP）×2］<?enter?>140錠［14錠（PTP）×10］</Lang>
+    </Detail>
+  </Package>
+  <!--２３.主要文献-->
+  <MainLiterature id="HDR_MainLiterature" heading="fixing">
+    <Reference id="DOC_01">
+      <Lang xml:lang="ja">社内資料：マウスにおける発癌性試験 ［L20050107111］</Lang>
+    </Reference>
+    <Reference id="DOC_02">
+      <Lang xml:lang="ja">社内資料：閉経後乳癌患者における薬物動態（2002年7月5日承認、申請資料概要ヘ.3.1.2、ヘ.3.2.1.ⅳ） ［L20070831006］</Lang>
+    </Reference>
+    <Reference id="DOC_03">
+      <Lang xml:lang="ja">三浦 重人ほか：癌と化学療法.2002；29（7）：1179-1187</Lang>
+    </Reference>
+    <Reference id="DOC_04">
+      <Lang xml:lang="ja">三浦 重人ほか：癌と化学療法.2002；29（7）：1189-1197</Lang>
+    </Reference>
+    <Reference id="DOC_05">
+      <Lang xml:lang="ja">社内資料：臓器・組織内濃度（単回投与）（2002年7月5日承認、申請資料概要ヘ.2.2.1.ⅰ、ヘ.2.2.3.ⅰ、ヘ.2.4.4） ［L20070831010］</Lang>
+    </Reference>
+    <Reference id="DOC_06">
+      <Lang xml:lang="ja">社内資料：蛋白結合率（2002年7月5日承認、申請資料概要ヘ.2.2.4） ［L20070831009］</Lang>
+    </Reference>
+    <Reference id="DOC_07">
+      <Lang xml:lang="ja">社内資料：代謝（2002年7月5日承認、申請資料概要ヘ.2.3、ヘ.3.2.1.ⅵ、ヘ.4） ［L20070831007］</Lang>
+    </Reference>
+    <Reference id="DOC_08">
+      <Lang xml:lang="ja">社内資料：健康人における薬物動態（海外データ）（2002年7月5日承認、申請資料概要ヘ.3.2.1.ⅰ） ［L20070831008］</Lang>
+    </Reference>
+    <Reference id="DOC_09">
+      <Lang xml:lang="ja">Jannuzzo Maria Gabriella et al.：Cancer Chemother Pharmacol.2004；53（6）：475-481</Lang>
+    </Reference>
+    <Reference id="DOC_10">
+      <Lang xml:lang="ja">田部井 敏夫ほか：癌と化学療法.2002；29（7）：1199-1209</Lang>
+    </Reference>
+    <Reference id="DOC_11">
+      <Lang xml:lang="ja">渡辺 亨ほか：癌と化学療法.2002；29（7）：1211-1221</Lang>
+    </Reference>
+    <Reference id="DOC_12">
+      <Lang xml:lang="ja">社内資料：第二次療法における第Ⅱ相試験（海外データ）（2002年7月5日承認、申請資料概要ト.1.3） ［L20070831011］</Lang>
+    </Reference>
+    <Reference id="DOC_13">
+      <Lang xml:lang="ja">Kvinnaland, S. et al.：Eur J Cancer.2000；36（8）：976-982</Lang>
+    </Reference>
+    <Reference id="DOC_14">
+      <Lang xml:lang="ja">Kaufmann, M. et al.：J Clin Oncol.2000；18（7）：1399-1411</Lang>
+    </Reference>
+    <Reference id="DOC_15">
+      <Lang xml:lang="ja">社内資料：術後補助療法としてタモキシフェンを2から3年間投与された閉経後原発乳癌患者を対象にエキセメスタン療法への切り替えとタモキシフェン療法継続とを比較する無作為化二重盲検試験 ［L20041214003］</Lang>
+    </Reference>
+    <Reference id="DOC_16">
+      <Lang xml:lang="ja">Lonning, P. E. et al.：J Clin Oncol.2005；23（22）：5126-5137</Lang>
+    </Reference>
+    <Reference id="DOC_17">
+      <Lang xml:lang="ja">社内資料：閉経後患者における転移性乳癌に対する第一次ホルモン療法としてのエキセメスタンおよびタモキシフェンを比較する無作為化第Ⅱ-Ⅲ相試験 ［L20060111037］</Lang>
+    </Reference>
+  </MainLiterature>
+  <!--２４.文献請求先及び問い合わせ先-->
+  <AddresseeOfLiteratureRequest id="HDR_AddresseeOfLiteratureRequest" heading="fixing">
+    <AddresseeInfo>
+      <AddresseeOfInquiry>
+        <Lang xml:lang="ja">ファイザー株式会社　製品情報センター</Lang>
+      </AddresseeOfInquiry>
+      <Address>
+        <Lang xml:lang="ja">〒151-8589　東京都渋谷区代々木3-22-7</Lang>
+      </Address>
+      <ContactInformation>
+        <Detail>
+          <Lang xml:lang="ja">学術情報ダイヤル　0120-664-467<?enter?>FAX　03-3379-3053</Lang>
+        </Detail>
+      </ContactInformation>
+    </AddresseeInfo>
+  </AddresseeOfLiteratureRequest>
+  <!--２６.製造販売業者等-->
+  <NameAddressManufact id="HDR_NameAddressManufact" heading="fixing">
+    <Manufacturer>
+      <TypeOfIndustry>
+        <Lang xml:lang="ja">製造販売元</Lang>
+      </TypeOfIndustry>
+      <Name>
+        <Lang xml:lang="ja">ファイザー株式会社</Lang>
+      </Name>
+      <Address>
+        <Lang xml:lang="ja">東京都渋谷区代々木3-22-7</Lang>
+      </Address>
+    </Manufacturer>
+  </NameAddressManufact>
+</PackIns>
