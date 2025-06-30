@@ -14,6 +14,33 @@
     <a href="index.html">Home</a>
   </li>
   <li>
+    <a href="background.html">Background</a>
+  </li>
+  <li>
+    <a href="gettingstarted.html">Getting Started</a>
+  </li>
+  <li>
+    <a href="epi-components.html">ePI Components</a>
+  </li>
+  <li>
+    <a href="usecases.html">Use Cases</a>
+  </li>
+  <li>
+    <a href="mapping.html">Mapping to ePI</a>
+  </li>
+  <li>
+    <a href="build-overview.html">Overview</a>
+  </li>
+  <li>
+    <a href="tech-style-guide.html">Technical Style Guide</a>
+  </li>
+  <li>
+    <a href="terminology.html">Terminology</a>
+  </li>
+  <li>
+    <a href="downloads.html">Downloads</a>
+  </li>
+  <li>
     <a href="artifacts.html">Artifacts</a>
   </li>
 </ul>

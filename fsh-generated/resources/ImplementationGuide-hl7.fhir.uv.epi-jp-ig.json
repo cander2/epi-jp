@@ -4,6 +4,7 @@
   "url": "http://hl7.org/fhir/uv/epi-jp-ig/ImplementationGuide/hl7.fhir.uv.epi-jp-ig",
   "version": "0.1.0",
   "name": "epijp",
+  "title": "Japanese Electronic Medicinal Product Information (ePI-JP) Implementation Guide",
   "status": "draft",
   "publisher": "Gravitate Health Project",
   "contact": [
@@ -17,9 +18,11 @@
       ]
     }
   ],
+  "description": "FHIR Implementation Guide representing how to create Electronic Medicinal Product Information (ePI) in alignment with Japanese PMDA requirements.",
   "packageId": "hl7.fhir.uv.epi-jp-ig",
+  "license": "CC0-1.0",
   "fhirVersion": [
-    "4.0.1"
+    "5.0.0"
   ],
   "definition": {
     "resource": [
@@ -29,7 +32,7 @@
         },
         "name": "MyPatient",
         "description": "An example profile of the Patient resource.",
-        "exampleBoolean": false
+        "isExample": false
       },
       {
         "reference": {
@@ -37,32 +40,100 @@
         },
         "name": "PatientExample",
         "description": "An example of a patient with a license to krill.",
-        "exampleCanonical": "http://hl7.org/fhir/uv/epi-jp-ig/StructureDefinition/MyPatient"
+        "isExample": true,
+        "profile": [
+          "http://hl7.org/fhir/uv/epi-jp-ig/StructureDefinition/MyPatient"
+        ]
       }
     ],
     "page": {
-      "nameUrl": "toc.html",
       "title": "Table of Contents",
       "generation": "html",
       "page": [
         {
-          "nameUrl": "index.html",
           "title": "Home",
-          "generation": "markdown"
+          "generation": "markdown",
+          "name": "index.html",
+          "sourceUrl": "index.html"
+        },
+        {
+          "title": "Background",
+          "generation": "markdown",
+          "name": "background.html",
+          "sourceUrl": "background.html"
+        },
+        {
+          "title": "Use Cases",
+          "generation": "markdown",
+          "name": "usecases.html",
+          "sourceUrl": "usecases.html"
+        },
+        {
+          "title": "ePI Components",
+          "generation": "markdown",
+          "name": "epi-components.html",
+          "sourceUrl": "epi-components.html"
+        },
+        {
+          "title": "Mapping to ePI",
+          "generation": "markdown",
+          "name": "mapping.html",
+          "sourceUrl": "mapping.html"
+        },
+        {
+          "title": "Overview",
+          "generation": "markdown",
+          "name": "build-overview.html",
+          "sourceUrl": "build-overview.html"
+        },
+        {
+          "title": "Getting Started",
+          "generation": "markdown",
+          "name": "gettingstarted.html",
+          "sourceUrl": "gettingstarted.html"
+        },
+        {
+          "title": "Technical Style Guide",
+          "generation": "markdown",
+          "name": "tech-style-guide.html",
+          "sourceUrl": "tech-style-guide.html"
+        },
+        {
+          "title": "Terminology",
+          "generation": "markdown",
+          "name": "terminology.html",
+          "sourceUrl": "terminology.html"
+        },
+        {
+          "title": "Downloads",
+          "generation": "markdown",
+          "name": "downloads.html",
+          "sourceUrl": "downloads.html"
         }
-      ]
+      ],
+      "name": "toc.html",
+      "sourceUrl": "toc.html"
     },
     "parameter": [
       {
-        "code": "copyrightyear",
+        "code": {
+          "code": "copyrightyear",
+          "system": "http://hl7.org/fhir/tools/CodeSystem/ig-parameters"
+        },
         "value": "2025+"
       },
       {
-        "code": "releaselabel",
+        "code": {
+          "code": "releaselabel",
+          "system": "http://hl7.org/fhir/tools/CodeSystem/ig-parameters"
+        },
         "value": "ci-build"
       },
       {
-        "code": "path-history",
+        "code": {
+          "code": "path-history",
+          "system": "http://hl7.org/fhir/tools/CodeSystem/ig-parameters"
+        },
         "value": "http://hl7.org/fhir/uv/epi-jp-ig/history.html"
       }
     ]
