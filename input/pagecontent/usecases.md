@@ -1,8 +1,8 @@
-# Use Cases for ePI Japan Implementation Guide
+### Use Cases for ePI Japan Implementation Guide
 
 This page outlines Japan-specific use cases for the Electronic Product Information (ePI) Japan Implementation Guide (IG), demonstrating how the transition from the Pharmaceuticals and Medical Devices Agency (PMDA)’s XML-based labeling format to the FHIR ePI standard benefits stakeholders in Japanese healthcare systems. These use cases leverage the structured, machine-readable nature of FHIR ePI while preserving Japan-specific requirements, such as section headings (e.g., 効能又は効果, 禁忌), styling (e.g., red borders for warnings), and metadata (e.g., revision symbols), as defined in PMDA’s XML schema and styling files (`package_insert-XML.xsd`, `preview.css`, `preview_ja.xsl`, `preview_en.xsl`).
 
-## 1. Pharmacovigilance Reporting and Monitoring
+### Pharmacovigilance Reporting and Monitoring
 
 **Description**: The PMDA mandates robust pharmacovigilance to monitor adverse drug reactions (ADRs) across Japan. FHIR ePI enables structured labeling data, such as adverse event information (e.g., `HDR_OtherAdverseEvents`), to be integrated with hospital and pharmacy systems, automating ADR reporting and improving post-market surveillance.
 
@@ -16,7 +16,7 @@ This page outlines Japan-specific use cases for the Electronic Product Informati
 - Enhances patient safety through real-time risk identification.
 - Preserves PMDA’s table structures and metadata for regulatory compliance.
 
-## 2. Clinical Decision Support in Japanese Hospitals
+### Clinical Decision Support in Japanese Hospitals
 
 **Description**: Japanese healthcare providers rely on precise labeling information to ensure safe prescribing. FHIR ePI’s structured data (e.g., `Bundle` and `Composition` resources) integrates with EHR systems to provide real-time clinical decision support, alerting providers to drug interactions or precautions (e.g., `HDR_Interactions`, `HDR_PrecautionsForCombinations`).
 
@@ -30,7 +30,7 @@ This page outlines Japan-specific use cases for the Electronic Product Informati
 - Supports PMDA’s section-specific styling (e.g., red borders for contraindications) in clinical workflows.
 - Enables seamless integration with Japan’s EHR systems.
 
-## 3. Regulatory Compliance and Revision Tracking
+### Regulatory Compliance and Revision Tracking
 
 **Description**: PMDA requires detailed tracking of labeling revisions to ensure regulatory compliance. FHIR ePI supports structured metadata (e.g., for `revisionPrevThis-editor`, `revisionThis-editor`) to document changes, enabling pharmaceutical companies and auditors to verify updates efficiently.
 
@@ -44,7 +44,7 @@ This page outlines Japan-specific use cases for the Electronic Product Informati
 - Preserves PMDA’s metadata requirements in a machine-readable format.
 - Reduces errors in regulatory documentation.
 
-## 4. Patient Education and Mobile Access
+### Patient Education and Mobile Access
 
 **Description**: Japanese patients increasingly use mobile apps to access health information. FHIR ePI’s structured data enables delivery of tailored labeling content (e.g., `HDR_IndicationsOrEfficacy`) to patient-facing apps, maintaining Japan-specific styling (e.g., red borders for warnings as per `preview.css`).
 
@@ -58,7 +58,7 @@ This page outlines Japan-specific use cases for the Electronic Product Informati
 - Preserves PMDA’s visual and structural requirements in digital formats.
 - Supports Japan’s digital health initiatives for patient engagement.
 
-## 5. Structured Product Details for Regulatory and Supply Chain Management
+### Structured Product Details for Regulatory and Supply Chain Management
 
 **Description**: Japanese regulatory and supply chain systems require detailed, structured product information, such as active ingredients, excipients, and packaging details (e.g., `HDR_Composition`, `HDR_Property`). FHIR ePI enables this data to be represented in a machine-readable format, facilitating regulatory submissions, inventory management, and quality control.
 
@@ -72,7 +72,7 @@ This page outlines Japan-specific use cases for the Electronic Product Informati
 - Enhances supply chain efficiency through machine-readable ingredient and packaging details.
 - Maintains PMDA’s formatting and metadata (e.g., table structures, revision symbols) in FHIR ePI.
 
-## Additional Notes
+### Additional Notes
 
 - **Japan-Specific Context**: These use cases address Japan’s unique regulatory environment (e.g., PMDA’s strict metadata and styling rules), healthcare infrastructure (e.g., EHR adoption), and supply chain needs (e.g., structured product data).
 - **FHIR Alignment**: Each use case leverages FHIR’s `Bundle` and `Composition` resources to ensure interoperability within Japanese healthcare systems, as outlined in the IG’s objectives.
@@ -85,11 +85,11 @@ For further details on implementing these use cases, refer to the [FHIR ePI Spec
 
 ----------------------------------------
 
-# ePI日本実装ガイドのユースケース
+### ePI日本実装ガイドのユースケース
 
 本ページでは、電子製品情報（ePI）日本実装ガイド（IG）の日本特有のユースケースを概説し、医薬品医療機器総合機構（PMDA）のXMLベースの添付文書フォーマットからFHIR ePI標準への移行が日本の医療システムの関係者にどのように利益をもたらすかを示します。これらのユースケースは、FHIR ePIの構造化された機械可読性を活用し、日本固有の要件（例：セクション見出し（効能又は効果、禁忌など）、スタイル（警告の赤枠など）、メタデータ（改訂記号など））を保持します。これらはPMDAのXMLスキーマおよびスタイルファイル（`package_insert-XML.xsd`、`preview.css`、`preview_ja.xsl`、`preview_en.xsl`）に定義されています。
 
-## 1. ファーマコビジランス報告およびモニタリング
+### ファーマコビジランス報告およびモニタリング
 
 **説明**：PMDAは、日本全国での副作用（ADR）の監視を義務付ける強固なファーマコビジランスを要求します。FHIR ePIは、副作用情報（例：`HDR_OtherAdverseEvents`）などの構造化された添付文書データを病院や薬局のシステムと統合し、ADR報告の自動化と市販後監視の向上を可能にします。
 
@@ -103,7 +103,7 @@ For further details on implementing these use cases, refer to the [FHIR ePI Spec
 - リアルタイムのリスク特定により患者の安全性を向上。
 - PMDAのテーブル構造とメタデータを規制順守のために保持。
 
-## 2. 日本の病院での臨床意思決定支援
+### 日本の病院での臨床意思決定支援
 
 **説明**：日本の医療提供者は、安全な処方のために正確な添付文書情報に依存します。FHIR ePIの構造化データ（例：`Bundle`および`Composition`リソース）は、EHRシステムと統合され、薬物相互作用や注意事項（例：`HDR_Interactions`、`HDR_PrecautionsForCombinations`）に関するリアルタイムの臨床意思決定支援を提供します。
 
@@ -117,7 +117,7 @@ For further details on implementing these use cases, refer to the [FHIR ePI Spec
 - PMDAのセクション固有のスタイル（例：禁忌の赤枠）を臨床ワークフローに反映。
 - 日本のEHRシステムとのシームレスな統合を可能に。
 
-## 3. 規制順守および改訂追跡
+### 規制順守および改訂追跡
 
 **説明**：PMDAは、規制順守を確保するために添付文書の改訂の詳細な追跡を要求します。FHIR ePIは、変更を文書化するための構造化メタデータ（例：`revisionPrevThis-editor`、`revisionThis-editor`）をサポートし、製薬会社や監査者が更新を効率的に検証できるようにします。
 
@@ -131,7 +131,7 @@ For further details on implementing these use cases, refer to the [FHIR ePI Spec
 - PMDAのメタデータ要件を機械可読フォーマットで保持。
 - 規制文書でのエラーを削減。
 
-## 4. 患者教育およびモバイルアクセス
+### 患者教育およびモバイルアクセス
 
 **説明**：日本の患者は、医療情報をモバイルアプリでアクセスする傾向が増しています。FHIR ePIの構造化データは、患者向けアプリにカスタマイズされた添付文書内容（例：`HDR_IndicationsOrEfficacy`）を配信し、日本固有のスタイル（例：`preview.css`に従った警告の赤枠）を保持します。
 
@@ -145,7 +145,7 @@ For further details on implementing these use cases, refer to the [FHIR ePI Spec
 - デジタル形式でPMDAの視覚的および構造的要件を保持。
 - 日本の患者エンゲージメントのためのデジタルヘルスイニシアチブをサポート。
 
-## 5. 規制およびサプライチェーン管理のための構造化製品詳細
+### 規制およびサプライチェーン管理のための構造化製品詳細
 
 **説明**：日本の規制およびサプライチェーンシステムは、有効成分、添加物、包装詳細（例：`HDR_Composition`、`HDR_Property`）などの詳細な構造化製品情報を要求します。FHIR ePIは、このデータを機械可読フォーマットで表現し、規制提出、インベントリ管理、品質管理を促進します。
 
@@ -159,7 +159,7 @@ For further details on implementing these use cases, refer to the [FHIR ePI Spec
 - 成分および包装詳細の機械可読性によりサプライチェーンの効率を向上。
 - FHIR ePIでPMDAの書式およびメタデータ（例：テーブル構造、改訂記号）を保持。
 
-## 補足事項
+### 補足事項
 
 - **日本特有のコンテキスト**：これらのユースケースは、PMDAの厳格なメタデータおよびスタイル規則、日本の医療インフラ（例：EHRの採用）、サプライチェーンのニーズ（例：構造化製品データ）など、日本の独自の規制環境に対応します。
 - **FHIRとの整合性**：各ユースケースは、IGの目標に沿って、日本の医療システム内での相互運用性を確保するためにFHIRの`Bundle`および`Composition`リソースを活用します。
