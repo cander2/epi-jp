@@ -1,46 +1,3 @@
-### Overview
-
-The Electronic Product Information (ePI) Japan Implementation Guide (IG) provides a standardized framework to transition from the Pharmaceuticals and Medical Devices Agency (PMDA)'s custom XML-based labeling format to the Fast Healthcare Interoperability Resources (FHIR) ePI standard. This IG is designed to support the Japanese pharmaceutical labeling ecosystem, ensuring that the structure, content, and regulatory requirements of Japanese package inserts (添付文書) are preserved in the FHIR-based ePI format.
-
-The PMDA's current XML schema, as defined in `package_insert-XML.xsd` and `package_insert-XML-Transitional.xsd`, supports detailed labeling information with specific section headings, metadata, and formatting rules tailored to Japanese regulatory needs. The accompanying XSL transformation files (`preview.xsl`, `preview_ja.xsl`, `preview_en.xsl`) and CSS (`preview.css`) define the presentation of these documents. This IG leverages these existing structures to map PMDA XML elements to FHIR resources, such as `Bundle` and `Composition`, ensuring continuity in content organization, regulatory compliance, and visual presentation.
-
-The ePI Japan IG aligns with the FHIR ePI standard, enabling interoperability within Japanese healthcare systems while accommodating Japan-specific requirements, such as multilingual support (Japanese and English), section-specific styling (e.g., contraindications, warnings), and metadata for revision tracking. By adopting FHIR, this IG aims to enhance accessibility, machine-readability, and integration of Japanese labeling data into Japanese healthcare systems.
-
-### Scope
-
-The scope of this Implementation Guide includes:
-
-- **Mapping PMDA XML to FHIR ePI**: Defining how elements in the PMDA XML schema (e.g., sections like `HDR_IndicationsOrEfficacy`, `HDR_ContraIndications`) are represented using FHIR resources, such as `Bundle` and `Composition`.
-- **Preservation of Japanese Labeling Template**: Ensuring that the Japanese labeling template, including section headings (e.g., 効能又は効果, 禁忌), metadata (e.g., revision symbols), and formatting (e.g., red borders for contraindications), is fully supported in the FHIR ePI output.
-- **Multilingual Support**: Accommodating both Japanese and English labeling content, as specified in `preview_ja.xsl` and `preview_en.xsl`, to meet regulatory and user needs.
-- **Regulatory Compliance**: Adhering to PMDA's metadata rules, such as those for tracking revisions (`revisionPrev-editor`, `revisionThis-editor`), and ensuring that regulatory information is accurately represented in FHIR.
-- **Interoperability**: Enabling integration with Japanese healthcare systems through FHIR, supporting use cases such as pharmacovigilance and clinical decision support within Japan.
-- **Tooling and Validation**: Providing guidance on tools, profiles, and validation processes to convert PMDA XML to FHIR ePI and validate the resulting FHIR resources against this IG.
-
-This IG does not cover changes to the PMDA's regulatory processes, approval workflows, or the content of labeling information, which remain under the jurisdiction of the PMDA.
-
-### Objectives
-
-The objectives of the ePI Japan Implementation Guide are:
-
-1. **Facilitate Transition to FHIR ePI**: Provide clear mappings and examples to convert PMDA XML-based package inserts to FHIR ePI, minimizing disruption to existing workflows.
-2. **Maintain Japan-Specific Requirements**: Ensure that the Japanese labeling template, including section headings, styling (e.g., as defined in `preview.css`), and metadata, is preserved in the FHIR representation.
-3. **Enhance Interoperability**: Enable Japanese labeling data to be shared and integrated within Japanese healthcare systems through FHIR, supporting use cases such as pharmacovigilance and clinical decision support.
-4. **Support Multilingual Accessibility**: Ensure that both Japanese and English versions of package inserts are accurately represented and styled in FHIR ePI outputs, as per `preview_ja.xsl` and `preview_en.xsl`.
-5. **Promote Machine-Readability**: Structure labeling data in FHIR resources to enable automated processing, searchability, and analysis, improving usability for healthcare professionals and systems in Japan.
-6. **Provide Implementation Guidance**: Offer detailed profiles, examples, and validation tools to assist implementers in adopting the FHIR ePI standard for Japanese labeling.
-
-### Additional Notes
-
-- **Alignment with PMDA Standards**: The IG respects the PMDA's XML structure, which includes specialized tables (e.g., `ContraIndication_table`, `CompositionAndProperty_table`) and styling (e.g., red borders for warnings, specific font families). These are mapped to FHIR resources with appropriate extensions to maintain fidelity.
-- **Revision Tracking**: The PMDA XML includes revision symbols (e.g., `revisionPrevThis-editor`) for tracking changes. This IG will define how such metadata is captured in FHIR, potentially using extensions or annotations.
-- **Styling and Presentation**: The `preview.css` file specifies detailed styling, such as margins, fonts, and borders. This IG will provide guidance on how to preserve these in FHIR ePI, possibly through CSS or narrative text in `Composition` resources.
-- **Future Extensibility**: While focused on the current PMDA XML schema, the IG is designed to be extensible to accommodate future updates to PMDA requirements or FHIR ePI standards.
-
-For further details, refer to the HL7 Vulcan's [Global ePI Specification](https://build.fhir.org/ig/HL7/emedicinal-product-info/index.html) and the [PMDA Labeling Guidelines](https://www.pmda.go.jp/). Contributions and feedback are welcome via the [GitHub repository](https://github.com/cander2/epi-jp).
-
-
-----------------------------------------
 # 電子製品情報（ePI）日本実装ガイド
 
 ## 概要
@@ -83,3 +40,46 @@ ePI日本実装ガイドの目的は以下の通りです：
 - **将来の拡張性**：現在のPMDA XMLスキーマに焦点を当てていますが、本IGはPMDAの要件やFHIR ePI標準の将来の更新に対応できるように拡張可能に設計されています。
 
 詳細については、[FHIR ePI仕様](https://www.hl7.org/fhir/)および[PMDA添付文書ガイドライン](https://www.pmda.go.jp/)を参照してください。貢献やフィードバックは[GitHubリポジトリ](https://github.com/cander2/epi-jp)にて歓迎します。
+
+
+---
+### Overview
+
+The Electronic Product Information (ePI) Japan Implementation Guide (IG) provides a standardized framework to transition from the Pharmaceuticals and Medical Devices Agency (PMDA)'s custom XML-based labeling format to the Fast Healthcare Interoperability Resources (FHIR) ePI standard. This IG is designed to support the Japanese pharmaceutical labeling ecosystem, ensuring that the structure, content, and regulatory requirements of Japanese package inserts (添付文書) are preserved in the FHIR-based ePI format.
+
+The PMDA's current XML schema, as defined in `package_insert-XML.xsd` and `package_insert-XML-Transitional.xsd`, supports detailed labeling information with specific section headings, metadata, and formatting rules tailored to Japanese regulatory needs. The accompanying XSL transformation files (`preview.xsl`, `preview_ja.xsl`, `preview_en.xsl`) and CSS (`preview.css`) define the presentation of these documents. This IG leverages these existing structures to map PMDA XML elements to FHIR resources, such as `Bundle` and `Composition`, ensuring continuity in content organization, regulatory compliance, and visual presentation.
+
+The ePI Japan IG aligns with the FHIR ePI standard, enabling interoperability within Japanese healthcare systems while accommodating Japan-specific requirements, such as multilingual support (Japanese and English), section-specific styling (e.g., contraindications, warnings), and metadata for revision tracking. By adopting FHIR, this IG aims to enhance accessibility, machine-readability, and integration of Japanese labeling data into Japanese healthcare systems.
+
+### Scope
+
+The scope of this Implementation Guide includes:
+
+- **Mapping PMDA XML to FHIR ePI**: Defining how elements in the PMDA XML schema (e.g., sections like `HDR_IndicationsOrEfficacy`, `HDR_ContraIndications`) are represented using FHIR resources, such as `Bundle` and `Composition`.
+- **Preservation of Japanese Labeling Template**: Ensuring that the Japanese labeling template, including section headings (e.g., 効能又は効果, 禁忌), metadata (e.g., revision symbols), and formatting (e.g., red borders for contraindications), is fully supported in the FHIR ePI output.
+- **Multilingual Support**: Accommodating both Japanese and English labeling content, as specified in `preview_ja.xsl` and `preview_en.xsl`, to meet regulatory and user needs.
+- **Regulatory Compliance**: Adhering to PMDA's metadata rules, such as those for tracking revisions (`revisionPrev-editor`, `revisionThis-editor`), and ensuring that regulatory information is accurately represented in FHIR.
+- **Interoperability**: Enabling integration with Japanese healthcare systems through FHIR, supporting use cases such as pharmacovigilance and clinical decision support within Japan.
+- **Tooling and Validation**: Providing guidance on tools, profiles, and validation processes to convert PMDA XML to FHIR ePI and validate the resulting FHIR resources against this IG.
+
+This IG does not cover changes to the PMDA's regulatory processes, approval workflows, or the content of labeling information, which remain under the jurisdiction of the PMDA.
+
+### Objectives
+
+The objectives of the ePI Japan Implementation Guide are:
+
+1. **Facilitate Transition to FHIR ePI**: Provide clear mappings and examples to convert PMDA XML-based package inserts to FHIR ePI, minimizing disruption to existing workflows.
+2. **Maintain Japan-Specific Requirements**: Ensure that the Japanese labeling template, including section headings, styling (e.g., as defined in `preview.css`), and metadata, is preserved in the FHIR representation.
+3. **Enhance Interoperability**: Enable Japanese labeling data to be shared and integrated within Japanese healthcare systems through FHIR, supporting use cases such as pharmacovigilance and clinical decision support.
+4. **Support Multilingual Accessibility**: Ensure that both Japanese and English versions of package inserts are accurately represented and styled in FHIR ePI outputs, as per `preview_ja.xsl` and `preview_en.xsl`.
+5. **Promote Machine-Readability**: Structure labeling data in FHIR resources to enable automated processing, searchability, and analysis, improving usability for healthcare professionals and systems in Japan.
+6. **Provide Implementation Guidance**: Offer detailed profiles, examples, and validation tools to assist implementers in adopting the FHIR ePI standard for Japanese labeling.
+
+### Additional Notes
+
+- **Alignment with PMDA Standards**: The IG respects the PMDA's XML structure, which includes specialized tables (e.g., `ContraIndication_table`, `CompositionAndProperty_table`) and styling (e.g., red borders for warnings, specific font families). These are mapped to FHIR resources with appropriate extensions to maintain fidelity.
+- **Revision Tracking**: The PMDA XML includes revision symbols (e.g., `revisionPrevThis-editor`) for tracking changes. This IG will define how such metadata is captured in FHIR, potentially using extensions or annotations.
+- **Styling and Presentation**: The `preview.css` file specifies detailed styling, such as margins, fonts, and borders. This IG will provide guidance on how to preserve these in FHIR ePI, possibly through CSS or narrative text in `Composition` resources.
+- **Future Extensibility**: While focused on the current PMDA XML schema, the IG is designed to be extensible to accommodate future updates to PMDA requirements or FHIR ePI standards.
+
+For further details, refer to the HL7 Vulcan's [Global ePI Specification](https://build.fhir.org/ig/HL7/emedicinal-product-info/index.html) and the [PMDA Labeling Guidelines](https://www.pmda.go.jp/). Contributions and feedback are welcome via the [GitHub repository](https://github.com/cander2/epi-jp).

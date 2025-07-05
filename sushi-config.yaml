@@ -1,8 +1,8 @@
 id: hl7.fhir.uv.epi-jp-ig
 canonical: http://hl7.org/fhir/uv/epi-jp-ig
 name: epi-jp
-title: Japanese Electronic Medicinal Product Information (ePI-JP) Implementation Guide
-description: FHIR Implementation Guide representing how to create Electronic Medicinal Product Information (ePI) in alignment with Japanese PMDA requirements.
+title: Japanese Electronic Medicinal Product Information (ePI-JP)
+description: FHIR実装ガイド：日本のPMDA要件に準拠した電子医薬品情報（ePI）の作成方法を示す。FHIR Implementation Guide representing how to create Electronic Medicinal Product Information (ePI) in alignment with Japanese PMDA requirements.
 status: draft # draft | active | retired | unknown
 version: 0.1.0
 fhirVersion: 5.0.0 # https://www.hl7.org/fhir/valueset-FHIR-version.html
