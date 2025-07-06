@@ -27,7 +27,7 @@ pages:
   mapping.md:
       title: Mapping to ePI
   build-overview.md:
-      title: Overview
+      title: How to Build an ePI-JP
   gettingstarted.md:
       title: Getting Started
   tech-style-guide.md:
