@@ -1,6 +1,6 @@
 In Japan, the electronicization of package insert information for ethical drugs (hereinafter referred to as package insert information) using the internet (pharmaceutical information provision system) was started in 1998 targeting healthcare professionals and patients (Principal Investigator: Takao Orii (MHLW Research: Working Group Chair)). This system is still operating centered on PMDA. This package insert information was originally constructed in SGML format, but has now been changed to XML format. Regarding the change in the electronic format of the current package inserts (from SGML to XML), administrative notifications dated November 22, 2018, were issued: "Regarding the Change in the Electronic Format of Package Insert Information Accompanying the Revision of the Description Guidelines for Package Inserts of Ethical Drugs, etc." and "Regarding the Operation of the Electronic Format (XML) of Package Insert Information Accompanying the Revision of the Description Guidelines for Package Inserts of Ethical Drugs, etc." Subsequently, due to the amendment of the Pharmaceuticals and Medical Devices Act, from August 1, 2021, the electronicization of package inserts for ethical drugs (electronic package inserts) became mandatory, abolishing the traditional paper package inserts attached (included) to products. Healthcare professionals shifted to a scheme where they are published on the PMDA website, and it became possible to read GS1 barcodes using the smartphone app "Package Insert Navi" to view the latest package inserts and patient medication guides published on the PMDA website. Although Japan was the first in the world to implement the electronicization of package inserts, its format is Japan's unique XML standard, which differs from FHIR, the standard decided to be introduced to electronic medical records, raising concerns that its utilization in the digital health field may be limited.
 
-## Expected Effects of Introducing FHIR to Pharmaceutical Information in Japan
+### Expected Effects of Introducing FHIR to Pharmaceutical Information in Japan
 
 By introducing FHIR, an international standard in e-labeling, it becomes possible to utilize widespread web technologies, making it easy to share via tablets or smartphones, and enabling easy linkage with other systems in a highly interoperable e-labeling format. In the future, by linking e-labeling, including electronic package inserts, with other health, medical, and care data, it will be possible to provide personalized information tailored to individual patients when healthcare professionals provide medication guidance or when patients themselves obtain e-labeling, leading to improvements in patients' own health management, medication adherence, and understanding of treatment. Additionally, in medical settings, managing e-labeling with standard specifications may allow for its use in automating dispensing, contributing to improved safety for drugs and patients.
 
@@ -8,17 +8,16 @@ By introducing international standard specifications in step with EMA and the US
 
 Moreover, currently, pharmaceutical regulatory-related business workflows are conducted in PDF, but if they can be constructed and exchanged using FHIR standards, new digitized business methods can be created, for example, leading to business reduction through content reuse in various fields such as package inserts, quality, clinical, etc.
 
-- 
-
-## Conclusion
+### Conclusion
 
 Although Japan was the first in the world to implement the electronicization of package inserts, the electronic format is Japan's unique XML. In Europe, the European Medicines Agency (EMA) has introduced e-labeling not in its own XML format but in a format compliant with HL7 FHIR, the international standard for data exchange in the healthcare field, starting a pilot in July 2023 and implementing it gradually from 2024. In the United States, the FDA has published a draft implementation guide for transitioning the current package insert format from XML to FHIR. Furthermore, HL7 International published a draft FHIR international implementation guide for e-labeling in July 2023 (version as of October 31, 2023, is Trial-use 1.0.0). Amid such global movements, in Japan, while the introduction of FHIR to electronic medical records has been decided, as of 2025, the transition of e-Labeling to FHIR has not been confirmed. As the utilization through exchange and integration of medical data progresses, if international harmonization on interoperability is not achieved, even e-labeling will be used in a limited scope. Therefore, to ensure the interoperability of electronicized pharmaceutical information, provide more accessible and understandable pharmaceutical information to healthcare professionals and patients, and further improve cost efficiency, scalability, and international cooperation for the pharmaceutical industry, regulatory authorities, and medical systems, we create an HL7 FHIR implementation guide for pharmaceutical package inserts in Japan.
 
 ---
+---
 
 日本では医療用医薬品添付文書情報（以下、添文情報）のインターネットを利用した電子化（医薬品情報提供システム）を医療従事者、患者を対象とし、1998年（本研究代表者：折井孝男（厚労科研：作業部会長））より開始した ）。このシステムは現在もPMDAを中心に稼働している。この添文情報の電子化はSGML書式によって構築したが、現在ではXML書式に変更された。現在の添付文書の電子書式の変更（SGMLからXML）においては、平成30年11月22日付行政通知として医療用医薬品の添付文書等に係る記載要領改訂に伴う添付文書情報の電子化書式の変更について  )及び医療用医薬品の添付文書等に係る記載要領改訂に伴う添付文書情報の電子化書式（XML）の運用について  )が発出された。その後、薬機法の改正により、2021年8月1日から医療用医薬品添付文書の電子化 (電子添文) が義務付けられ、従来、製品に添付（同梱）された添付文書（紙）が廃止され、医療従事者はPMDAウェブサイト ) で公開されるスキームに移行し、スマートフォンのアプリ「添文ナビ」でGS1バーコードを読み取り、PMDAウェブサイトに掲載されている最新の添付文書、患者向医薬品ガイド等を閲覧すること可能となった。日本は世界に先駆けて添付文書の電子化が実装されたが、そのフォーマットは日本独自規格のXMLであり、電子カルテに導入が決定された規格であるFHIRとは異なるため、デジタルへルス分野への活用においては限定的であることが懸念される。
 
-## 日本において医薬品情報にFHIRを導入することで期待される効果
+### 日本において医薬品情報にFHIRを導入することで期待される効果
 
 e-labelingにおいて国際標準規格であるFHIRを導入することにより、普及しているウェブ技術を活用し、タブレットやスマートフォンなどにより共有しやすく、相互運用性が高いe-labelingの形態で他のシステムと容易に連携が可能となる。将来は、電子添文を含めたe-labelingを他の健康医療介護のデータと連携させることにより、医療従事者が服薬指導する際あるいは患者自身がe-labelingを入手する際、個々の患者に合わせてパーソナライズされた情報提供が可能となり、患者自身の健康管理、服薬遵守、治療の理解の向上に繋がる。また、医療現場においては、e-labelingを標準規格で管理し、調剤の自動化に活用できる可能性があり、医薬品、患者の安全性向上に寄与させることができる。
 
@@ -28,6 +27,6 @@ e-labelingにおいて国際標準規格であるFHIRを導入することによ
 
 •	
 
-## 結論
+### 結論
 
 日本は添付文書の電子化を世界に先駆けて実施したにも関わらず、電子化の書式は日本独自のXMLである。欧州では欧州医薬品庁（European Medical Agency: EMA）がe-labelingを独自のXML形式ではなく、ヘルスケア領域のデータ交換の国際標準規格であるHL7 FHIRに準拠した形式を導入、2023年7月に試行開始、2024年から段階的に実施している。米国ではFDAが現行の添付文書書式をXMLからFHIRに移行するための実装ガイドの草案を公表した。そして、HL7 Internationalは2023年7月にe-labelingのFHIR国際実装ガイド案として公表した (2023/10/31時点の版はTrial-use 1.0.0)  。このような世界の動きの中で、日本では電子カルテへのFHIRの導入は決定されたものの、2025年時点で、e-LabelingのFHIRへの移行は確認されていない。医療データの交換、統合による利活用が進む中、相互運用性について国際調和がとれていなければ、e-labelingであっても限られた範囲での使用となる。そこで、電子化された医薬品情報の相互運用性を確保し、医療従事者、患者等からよりアクセス及び理解しやすい医薬品情報を提供し、さらに医薬品業界、規制当局、医療システムに対してコスト効率、スケーラビリティ、国際協力を更に向上させるために、日本における医薬品添付文書のHL7 FHIR実装ガイドを作成する。

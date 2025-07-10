@@ -92,6 +92,7 @@ Benefits:
 For details on implementing these use cases, please refer to the FHIR ePI specifications and PMDA package insert guidelines. Feedback and contributions are welcome on the GitHub repository.
 
 ---
+---
 
 ### ePI日本実装ガイドのユースケース
 

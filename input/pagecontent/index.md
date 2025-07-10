@@ -39,11 +39,8 @@ The purposes of the ePI Japan Implementation Guide are as follows:
 
 For details, please refer to the FHIR ePI specifications and PMDA package insert guidelines. Contributions and feedback are welcome on the GitHub repository.
 
-
-
----------
-
----------
+---
+---
 
 ### 概要
 
