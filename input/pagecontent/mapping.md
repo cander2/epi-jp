@@ -1,341 +1,266 @@
 This table maps elements from the PMDA's XML for Japanese Package Inserts (JPI) to FHIR resources compliant with the HL7 FHIR ePI Implementation Guide. It addresses Japan-specific requirements (e.g., YJCode, Japanese-language content).
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PMDA XML to FHIR Mapping</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin: 20px 0;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-            font-weight: bold;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-    </style>
-</head>
-<body>
-    <table>
-        <thead>
-            <tr>
-                <th>PMDA XML Element</th>
-                <th>FHIR Resource/Element</th>
-                <th>Notes</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><code>&lt;PackageInsert&gt;</code></td>
-                <td><code>Bundle</code></td>
-                <td>Maps to a <code>Bundle</code> of type <code>document</code>, encapsulating the ePI with a <code>Composition</code> as the entry point.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;ApprovalNumber&gt;</code></td>
-                <td><code>RegulatedAuthorization.identifier</code></td>
-                <td>Maps to <code>identifier</code> with system <code>http://pmda.go.jp/approval</code>. Example: <code>874291</code>. Requires Japan-specific extension if not standard.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;RevisionDate&gt;</code></td>
-                <td><code>Composition.date</code></td>
-                <td>Maps to the document creation/revision date. Example: <code>2022-02</code>.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Edition&gt;</code></td>
-                <td><code>Composition.version</code></td>
-                <td>Maps to the version of the JPI. Example: <code>第1版</code>.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;YJCode&gt;</code></td>
-                <td><code>MedicinalProductDefinition.identifier</code></td>
-                <td>Maps to <code>identifier</code> with system <code>http://pmda.go.jp/yjcode</code>. Example: <code>4291012F1022</code>.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;TherapeuticCategory&gt;</code></td>
-                <td><code>MedicinalProductDefinition.classification</code></td>
-                <td>Maps to a coded classification. Use SNOMED CT (e.g., <code>386908000</code> for antineoplastic) or Japan-specific code for “アロマターゼ阻害剤”.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Brand&gt;</code></td>
-                <td><code>MedicinalProductDefinition.name</code></td>
-                <td>Container for brand name details.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Brand/BrandName&gt;</code></td>
-                <td><code>MedicinalProductDefinition.name.productName</code></td>
-                <td>Primary name in Japanese. Example: <code>アロマシン錠25mg</code>. Set <code>language="ja"</code>.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Brand/Code&gt;</code></td>
-                <td><code>MedicinalProductDefinition.identifier</code></td>
-                <td>Maps to <code>identifier</code> for the brand code. Example: <code>4291012F1022</code>. Reuse YJCode if identical.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Brand/BrandNameInEnglish&gt;</code></td>
-                <td><code>MedicinalProductDefinition.name.productName</code></td>
-                <td>English name as an additional <code>name</code> entry. Example: <code>Aromasin Tablets 25mg</code>. Set <code>language="en"</code>.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Brand/Kana&gt;</code></td>
-                <td><code>MedicinalProductDefinition.name.productName</code></td>
-                <td>Kana name as an additional <code>name</code> entry. Example: <code>あろましんじょう25mg</code>. Set <code>language="ja-kana"</code>.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Brand/JAN&gt;</code></td>
-                <td><code>PackagedProductDefinition.identifier</code></td>
-                <td>Maps to GS1 barcode identifier. Example: <code>21400AMY00186</code>. Use system <code>http://gs1.org</code>.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Brand/ApprovalDate&gt;</code></td>
-                <td><code>RegulatedAuthorization.date</code></td>
-                <td>Maps to approval date. Example: <code>2002-08</code>. Format as ISO 8601 (<code>2002-08-01</code>).</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Brand/StorageCondition&gt;</code></td>
-                <td><code>PackagedProductDefinition.storage</code></td>
-                <td>Maps to storage instructions. Example: <code>室温保存</code>. Use coded storage conditions if available.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Brand/ShelfLife&gt;</code></td>
-                <td><code>PackagedProductDefinition.shelfLifeStorage</code></td>
-                <td>Maps to shelf life duration. Example: <code>3年</code>. Use FHIR <code>Duration</code> (e.g., <code>3 years</code>).</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Brand/HotCode&gt;</code></td>
-                <td><code>PackagedProductDefinition.identifier</code></td>
-                <td>Maps to an additional identifier for hot code. Example: <code>12</code>. Use PMDA-specific system URI.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;ActiveIngredients&gt;</code></td>
-                <td><code>Ingredient</code></td>
-                <td>Maps to <code>Ingredient</code> resource, referenced by <code>MedicinalProductDefinition</code>.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;ActiveIngredients/ActiveIngredient&gt;</code></td>
-                <td><code>Ingredient.substance.code</code></td>
-                <td>Maps to the active substance. Example: <code>エキセメスタン</code>. Use UNII or CAS code if available, else text.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;ContraIndications&gt;</code></td>
-                <td><code>ClinicalUseDefinition</code></td>
-                <td>Maps to <code>ClinicalUseDefinition</code> of type <code>contraindication</code>. Narrative text in <code>Composition.section</code>.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;ContraIndications/Item&gt;</code></td>
-                <td><code>ClinicalUseDefinition.contraindication</code></td>
-                <td>Each item (e.g., “妊婦又は妊娠している可能性のある女性”) maps to a <code>contraindication.disease</code> with text or SNOMED CT codes. Also in <code>Composition.section.text</code>.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Composition&gt;</code></td>
-                <td><code>Ingredient</code></td>
-                <td>Maps ingredients to <code>Ingredient</code> resources, distinguishing active and inactive ingredients.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Composition/Item/ActiveIngredient&gt;</code></td>
-                <td><code>Ingredient.substance.code</code></td>
-                <td>Maps to active ingredient with strength. Example: <code>エキセメスタン 25.000mg</code>. Reference <code>SubstanceDefinition</code> if detailed.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Composition/Item/Amount&gt;</code></td>
-                <td><code>Ingredient.strength</code></td>
-                <td>Maps to strength. Example: <code>25.000mg</code>. Use UCUM units (<code>mg</code>).</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Composition/Item/Excipients&gt;</code></td>
-                <td><code>Ingredient.substance.code</code></td>
-                <td>Maps to inactive ingredients as separate <code>Ingredient</code> resources with <code>role="excipient"</code>. Example: <code>カルナウバロウ</code>, etc.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Property&gt;</code></td>
-                <td><code>ManufacturedItemDefinition</code></td>
-                <td>Maps tablet characteristics to <code>ManufacturedItemDefinition</code>.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Property/Item/PropertyDetail&gt;</code></td>
-                <td><code>ManufacturedItemDefinition.property</code></td>
-                <td>Maps details like diameter (<code>6.0mm</code>), weight (<code>100mg</code>), color (<code>白色～微灰白色糖衣錠</code>). Use coded properties where possible.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Property/Item/Code&gt;</code></td>
-                <td><code>ManufacturedItemDefinition.identifier</code></td>
-                <td>Maps to tablet code. Example: <code>7663</code>. Use PMDA-specific system URI.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;IndicationsOrEfficacy&gt;</code></td>
-                <td><code>Composition.section</code></td>
-                <td>Maps to a <code>Composition.section</code> with <code>title="Indications"</code>. Example: <code>閉経後乳癌</code>. Reference <code>ClinicalUseDefinition</code> for coded indications (e.g., SNOMED CT <code>254837009</code>).</td>
-            </tr>
-            <tr>
-                <td><code>&lt;DosageAndAdministration&gt;</code></td>
-                <td><code>Composition.section</code></td>
-                <td>Maps to a <code>Composition.section</code> with <code>title="Dosage and Administration"</code>. Example: <code>通常、成人にはエキセメスタンとして1日1回25mgを食後に経口投与する。</code>. Optionally use <code>MedicationKnowledge.administrationGuidelines</code>.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Precautions&gt;</code></td>
-                <td><code>Composition.section</code></td>
-                <td>Maps to a <code>Composition.section</code> with <code>title="Precautions"</code>. Narrative text in <code>text.div</code>. Subsections as nested <code>section</code> elements.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;PrecautionsForSpecificPatientPopulations&gt;</code></td>
-                <td><code>Composition.section</code></td>
-                <td>Maps to a <code>Composition.section</code> with <code>title="Precautions for Specific Populations"</code>. Also reference <code>ClinicalUseDefinition</code> for coded precautions (e.g., renal/hepatic impairment).</td>
-            </tr>
-            <tr>
-                <td><code>&lt;PrecautionsForPregnant&gt;</code></td>
-                <td><code>Composition.section</code></td>
-                <td>Maps to a <code>Composition.section</code> with <code>title="Pregnancy Precautions"</code>. Link to <code>ClinicalUseDefinition.contraindication</code> for pregnancy warnings.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;PrecautionsForLactating&gt;</code></td>
-                <td><code>Composition.section</code></td>
-                <td>Maps to a <code>Composition.section</code> with <code>title="Lactation Precautions"</code>. Link to <code>ClinicalUseDefinition.contraindication</code>.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;ContraIndicatedCombinations&gt;</code></td>
-                <td><code>ClinicalUseDefinition</code></td>
-                <td>Maps to <code>ClinicalUseDefinition</code> of type <code>interaction</code>. Narrative in <code>Composition.section</code>. Example: <code>エストロゲン含有製剤</code>.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;SignificantAdverseEvents&gt;</code></td>
-                <td><code>Composition.section</code></td>
-                <td>Maps to a <code>Composition.section</code> with <code>title="Significant Adverse Events"</code>. Link to <code>ClinicalUseDefinition</code> for coded adverse reactions (e.g., <code>肝炎</code>).</td>
-            </tr>
-            <tr>
-                <td><code>&lt;OtherAdverseEvents&gt;</code></td>
-                <td><code>ClinicalUseDefinition</code></td>
-                <td>Maps structured adverse events (e.g., tables by system organ class) to <code>ClinicalUseDefinition</code> with SNOMED CT codes. Narrative in <code>Composition.section</code>.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;PrecautionsAtDelivery&gt;</code></td>
-                <td><code>Composition.section</code></td>
-                <td>Maps to a <code>Composition.section</code> with <code>title="Precautions at Delivery"</code>. Example: PTP sheet warnings.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Carcinogenicity&gt;</code></td>
-                <td><code>Composition.section</code></td>
-                <td>Maps to a <code>Composition.section</code> with <code>title="Carcinogenicity"</code>. Narrative text only, no structured resource unless coded risks are defined.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Pharmacokinetics&gt;</code></td>
-                <td><code>Composition.section</code></td>
-                <td>Maps to a <code>Composition.section</code> with <code>title="Pharmacokinetics"</code>. Tables/figures as <code>Binary</code> if multimedia; otherwise, narrative text.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;ClinicalStudies&gt;</code></td>
-                <td><code>Composition.section</code></td>
-                <td>Maps to a <code>Composition.section</code> with <code>title="Clinical Studies"</code>. Structured trial data may reference <code>Evidence</code> (out of scope) or remain narrative.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Pharmacology&gt;</code></td>
-                <td><code>Composition.section</code></td>
-                <td>Maps to a <code>Composition.section</code> with <code>title="Pharmacology"</code>. Narrative for mechanisms like aromatase inhibition.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;PhysicochemicalInformation&gt;</code></td>
-                <td><code>SubstanceDefinition</code></td>
-                <td>Maps to <code>SubstanceDefinition</code> for chemical properties (e.g., molecular formula <code>C20H24O2</code>, molecular weight <code>296.40</code>).</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Packaging&gt;</code></td>
-                <td><code>PackagedProductDefinition</code></td>
-                <td>Maps to <code>PackagedProductDefinition.package.quantity</code>. Example: <code>28錠［14錠（PTP）×2］</code>.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;References&gt;</code></td>
-                <td><code>Composition.section</code></td>
-                <td>Maps to a <code>Composition.section</code> with <code>title="References"</code>. List citations as narrative text or <code>Citation</code> resource (out of scope).</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Publisher&gt;</code></td>
-                <td><code>Organization</code></td>
-                <td>Maps to <code>Organization</code> for the MAH. Example: <code>ファイザー株式会社</code>. Referenced by <code>Composition.author</code> and <code>RegulatedAuthorization.holder</code>.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Publisher/Address&gt;</code></td>
-                <td><code>Organization.address</code></td>
-                <td>Maps to <code>address</code>. Example: <code>東京都渋谷区代々木3-22-7</code>. Use <code>country="JP"</code>.</td>
-            </tr>
-            <tr>
-                <td><code>&lt;Manufacturer&gt;</code></td>
-                <td><code>Organization</code></td>
-                <td>Maps to a separate <code>Organization</code> for the manufacturer, referenced by <code>ManufacturedItemDefinition.manufacturer</code>. Example: <code>ファイザー株式会社</code>.</td>
-            </tr>
-        </tbody>
-    </table>
-</body>
-</html>
-
-### Notes
-- **Terminology**: Use SNOMED CT (e.g., `386452003` for tablet, `254837009` for breast cancer), LOINC (e.g., `34390-3` for package insert), and UCUM (e.g., `mg` for strength). Japan-specific codes (e.g., YJCode, therapeutic categories) require custom value sets or extensions (e.g., `http://pmda.go.jp/fhir/extension/yjcode`).
-- **Extensions**: PMDA-specific elements like `<YJCode>`, `<ApprovalNumber>`, and `<HotCode>` require extensions:
-  ```json
-  {
-    "url": "http://pmda.go.jp/fhir/extension/yjcode",
-    "valueString": "4291012F1022"
-  }
-  ```
-- **Narrative Text**: Preserve Japanese narrative content in `Composition.section.text.div` with `language="ja"`. Use XHTML for formatting (e.g., tables in `<OtherAdverseEvents>`).
-- **Structured Data**: Map tables (e.g., adverse events, clinical studies) to `ClinicalUseDefinition` where possible, using SNOMED CT or MedDRA codes. Fallback to narrative if coding is infeasible.
-- **GS1 Barcode**: `<JAN>` maps to `PackagedProductDefinition.identifier` with `system="http://gs1.org"`, critical for PMDA’s e-labeling system.
-- **Language**: Primary content in Japanese (`language="ja"`). English translations (`<BrandNameInEnglish>`) use `language="en"`.
-- **Binary**: Use `Binary` for figures (e.g., pharmacokinetic graphs) referenced in `<Pharmacokinetics>`. Example: `<Composition.section.entry>` references a `Binary` resource.
-- **Unused Resources**: `MedicationKnowledge` and `AdministrableProductDefinition` have limited use unless structured administration or product form data is extracted. `SubstanceDefinition` is used only for `<PhysicochemicalInformation>`.
-- **Regulatory Compliance**: Ensure all mandatory JPI sections (e.g., `<IndicationsOrEfficacy>`, `<ContraIndications>`) are preserved. Validate against PMDA regulations and the Base ePI Profile.
-
-### Example FHIR Snippet
-For `<Brand>` and `<IndicationsOrEfficacy>`:
-```json
-{
-  "resourceType": "Bundle",
-  "type": "document",
-  "entry": [
-    {
-      "resource": {
-        "resourceType": "Composition",
-        "status": "final",
-        "type": {
-          "coding": [{ "system": "http://loinc.org", "code": "34390-3", "display": "Package Insert" }]
-        },
-        "date": "2022-02-01",
-        "title": "アロマシン錠25mg Package Insert",
-        "section": [
-          {
-            "title": "Indications",
-            "code": {
-              "coding": [{ "system": "http://snomed.info/sct", "code": "254837009", "display": "Breast cancer" }]
-            },
-            "text": { "status": "generated", "div": "<div xmlns='http://www.w3.org/1999/xhtml'>閉経後乳癌</div>" }
-          }
-        ]
-      }
-    },
-    {
-      "resource": {
-        "resourceType": "MedicinalProductDefinition",
-        "identifier": [
-          { "system": "http://pmda.go.jp/yjcode", "value": "4291012F1022" }
-        ],
-        "name": [
-          { "productName": "アロマシン錠25mg", "language": "ja" },
-          { "productName": "Aromasin Tablets 25mg", "language": "en" },
-          { "productName": "あろましんじょう25mg", "language": "ja-kana" }
-        ]
-      }
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
     }
-  ]
-}
-```
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>PMDA XML Element/Path</th>
+            <th>FHIR ePI Mapping</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>package_insert/@id</td>
+            <td>MedicinalProductDefinition.identifier</td>
+            <td>Maps to the unique identifier for the product in MedicinalProductDefinition.</td>
+        </tr>
+        <tr>
+            <td>package_insert/@code</td>
+            <td>MedicinalProductDefinition.identifier</td>
+            <td>PMDA code; could also map to PackagedProductDefinition.identifier for packaging specifics.</td>
+        </tr>
+        <tr>
+            <td>package_insert/revision_info/date</td>
+            <td>Composition.date or Composition.extension:revisionDate</td>
+            <td>Represents the revision date of the package insert document.</td>
+        </tr>
+        <tr>
+            <td>package_insert/revision_info/edition</td>
+            <td>Composition.version</td>
+            <td>Edition or version number of the document.</td>
+        </tr>
+        <tr>
+            <td>package_insert/pmda_code</td>
+            <td>MedicinalProductDefinition.identifier</td>
+            <td>PMDA-specific code for the medicinal product.</td>
+        </tr>
+        <tr>
+            <td>package_insert/therapeutic_category</td>
+            <td>MedicinalProductDefinition.classification</td>
+            <td>Maps to ATC code or therapeutic classification in MedicinalProductDefinition.</td>
+        </tr>
+        <tr>
+            <td>package_insert/brand/name</td>
+            <td>MedicinalProductDefinition.name.productName</td>
+            <td>Brand name of the product.</td>
+        </tr>
+        <tr>
+            <td>package_insert/brand/product_code</td>
+            <td>MedicinalProductDefinition.identifier</td>
+            <td>Product-specific code (YJ code or similar).</td>
+        </tr>
+        <tr>
+            <td>package_insert/brand/english_name</td>
+            <td>MedicinalProductDefinition.name.namePart (type: 'invented') with language extension</td>
+            <td>English brand name; use FHIR language extensions for multilingual support.</td>
+        </tr>
+        <tr>
+            <td>package_insert/brand/kana_name</td>
+            <td>MedicinalProductDefinition.name.namePart (type: 'invented') with language extension</td>
+            <td>Kana (phonetic) name; Japanese-specific, may require custom extension.</td>
+        </tr>
+        <tr>
+            <td>package_insert/brand/hot_code</td>
+            <td>MedicinalProductDefinition.identifier</td>
+            <td>HOT code for reimbursement or regulatory purposes.</td>
+        </tr>
+        <tr>
+            <td>package_insert/brand/approval_date</td>
+            <td>RegulatedAuthorization.validityPeriod.start</td>
+            <td>Approval date from PMDA.</td>
+        </tr>
+        <tr>
+            <td>package_insert/brand/storage</td>
+            <td>PackagedProductDefinition.shelfLifeStorage</td>
+            <td>Storage conditions (e.g., room temperature).</td>
+        </tr>
+        <tr>
+            <td>package_insert/brand/expiration</td>
+            <td>PackagedProductDefinition.shelfLifeStorage.periodDuration</td>
+            <td>Shelf life/expiration period.</td>
+        </tr>
+        <tr>
+            <td>package_insert/brand/pack_size</td>
+            <td>PackagedProductDefinition.package.packaging.quantity</td>
+            <td>Number of units per pack (e.g., 28 tablets).</td>
+        </tr>
+        <tr>
+            <td>package_insert/active_ingredient/name</td>
+            <td>MedicinalProductDefinition.ingredient.substance.name</td>
+            <td>Active ingredient name (e.g., Exemestane).</td>
+        </tr>
+        <tr>
+            <td>package_insert/contraindication/item</td>
+            <td>Composition.section (code: 'contraindication')</td>
+            <td>Section for contraindications; text in Composition.section.text.</td>
+        </tr>
+        <tr>
+            <td>package_insert/precaution/item</td>
+            <td>Composition.section (code: 'precaution')</td>
+            <td>Precautions for use; may nest under warnings.</td>
+        </tr>
+        <tr>
+            <td>package_insert/indication</td>
+            <td>Composition.section (code: 'indication') or MedicinalProductDefinition.indication</td>
+            <td>Disease or condition for which the product is indicated (e.g., postmenopausal breast cancer).</td>
+        </tr>
+        <tr>
+            <td>package_insert/dosage</td>
+            <td>Composition.section (code: 'dosage')</td>
+            <td>Dosage and administration instructions.</td>
+        </tr>
+        <tr>
+            <td>package_insert/warning/item</td>
+            <td>Composition.section (code: 'warning')</td>
+            <td>General warnings and precautions.</td>
+        </tr>
+        <tr>
+            <td>package_insert/interaction/item</td>
+            <td>Composition.section (code: 'interaction') or ClinicalUseDefinition.type='interaction'</td>
+            <td>Drug interactions; may reference Interaction resources.</td>
+        </tr>
+        <tr>
+            <td>package_insert/adverse_reaction/item</td>
+            <td>Composition.section (code: 'adverse-reaction') or ClinicalUseDefinition.type='undesirable-effect'</td>
+            <td>Adverse reactions, including frequencies.</td>
+        </tr>
+        <tr>
+            <td>package_insert/pharmacokinetics</td>
+            <td>Composition.section (code: 'pharmacokinetics')</td>
+            <td>PK data, including absorption, distribution, etc.</td>
+        </tr>
+        <tr>
+            <td>package_insert/clinical_study</td>
+            <td>Composition.section (code: 'clinical-study')</td>
+            <td>Summary of clinical trials.</td>
+        </tr>
+        <tr>
+            <td>package_insert/pharmacology</td>
+            <td>Composition.section (code: 'pharmacology')</td>
+            <td>Mechanism of action and pharmacodynamics.</td>
+        </tr>
+        <tr>
+            <td>package_insert/physicochemical/name</td>
+            <td>MedicinalProductDefinition.name (scientific) or Ingredient.substance.name</td>
+            <td>Chemical name.</td>
+        </tr>
+        <tr>
+            <td>package_insert/physicochemical/formula</td>
+            <td>Ingredient.substance.molecularFormula</td>
+            <td>Molecular formula (e.g., C20H24O2).</td>
+        </tr>
+        <tr>
+            <td>package_insert/physicochemical/weight</td>
+            <td>Ingredient.substance.molecularWeight</td>
+            <td>Molecular weight.</td>
+        </tr>
+        <tr>
+            <td>package_insert/physicochemical/description</td>
+            <td>Ingredient.substance.description</td>
+            <td>Physical description (e.g., white powder).</td>
+        </tr>
+        <tr>
+            <td>package_insert/physicochemical/structure</td>
+            <td>Ingredient.substance.structure</td>
+            <td>Chemical structure if represented.</td>
+        </tr>
+        <tr>
+            <td>package_insert/package</td>
+            <td>PackagedProductDefinition.package</td>
+            <td>Packaging details (e.g., 28 tablets PTP).</td>
+        </tr>
+        <tr>
+            <td>package_insert/reference/item</td>
+            <td>Composition.section (code: 'reference') or Citation</td>
+            <td>References to literature or studies.</td>
+        </tr>
+        <tr>
+            <td>package_insert/contact</td>
+            <td>Organization.contact (for manufacturer)</td>
+            <td>Contact information for inquiries.</td>
+        </tr>
+        <tr>
+            <td>package_insert/manufacturer</td>
+            <td>MedicinalProductDefinition.manufacturer or Organization</td>
+            <td>Manufacturer details.</td>
+        </tr>
+        <tr>
+            <td>package_insert/composition/item</td>
+            <td>MedicinalProductDefinition.ingredient</td>
+            <td>Composition including excipients (e.g., carnauba wax).</td>
+        </tr>
+        <tr>
+            <td>package_insert/property/item</td>
+            <td>ManufacturedItemDefinition.property</td>
+            <td>Tablet properties (e.g., size, color).</td>
+        </tr>
+        <tr>
+            <td>package_insert/non_clinical/toxicity</td>
+            <td>Composition.section (code: 'non-clinical')</td>
+            <td>Non-clinical data like toxicity studies.</td>
+        </tr>
+        <tr>
+            <td>package_insert/overdosage</td>
+            <td>Composition.section (code: 'overdosage')</td>
+            <td>Overdose information (not explicitly in sample, but schema supports).</td>
+        </tr>
+        <tr>
+            <td>package_insert/pediatric</td>
+            <td>Composition.section (code: 'pediatric-use')</td>
+            <td>Pediatric precautions (not in sample).</td>
+        </tr>
+        <tr>
+            <td>package_insert/geriatric</td>
+            <td>Composition.section (code: 'geriatric-use')</td>
+            <td>Elderly use precautions.</td>
+        </tr>
+        <tr>
+            <td>package_insert/pregnancy</td>
+            <td>Composition.section (code: 'pregnancy')</td>
+            <td>Pregnancy and lactation warnings.</td>
+        </tr>
+        <tr>
+            <td>package_insert/lactation</td>
+            <td>Composition.section (code: 'lactation')</td>
+            <td>Breastfeeding warnings.</td>
+        </tr>
+        <tr>
+            <td>package_insert/driving</td>
+            <td>Composition.section (code: 'driving')</td>
+            <td>Effects on ability to drive/operate machinery.</td>
+        </tr>
+        <tr>
+            <td>package_insert/excipient</td>
+            <td>MedicinalProductDefinition.ingredient (role: 'excipient')</td>
+            <td>List of excipients in composition.</td>
+        </tr>
+        <tr>
+            <td>package_insert/marketing_holder</td>
+            <td>RegulatedAuthorization.holder</td>
+            <td>Marketing authorization holder (e.g., Pfizer).</td>
+        </tr>
+    </tbody>
+</table>
