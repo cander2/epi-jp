@@ -9,34 +9,40 @@
   "experimental": true,
   "date": "2025-07-11",
   "publisher": "ePI-JP Project",
-  "description": "Profile for MedicinalProductDefinition resource tailored for Japanese ePI, mapping to elements like BrandName, GenericName, and ActiveIngredient from PMDA XML.",
+  "description": "Profile for MedicinalProductDefinition resource tailored for Japanese ePI, mapping to elements like BrandName, GenericName from PMDA XML.",
   "fhirVersion": "5.0.0",
   "kind": "resource",
   "abstract": false,
   "type": "MedicinalProductDefinition",
   "baseDefinition": "http://hl7.org/fhir/uv/emedicinal-product-info/StructureDefinition/MedicinalProductDefinition-uv-epi",
   "derivation": "constraint",
-"differential": {
-  "element": [
-    {
-      "id": "MedicinalProductDefinition.name",
-      "path": "MedicinalProductDefinition.name",
-      "short": "Product Names (Brand, Generic)",
-      "min": 1,
-      "mustSupport": true
-    },
-    {
-      "id": "MedicinalProductDefinition.name.productName",
-      "path": "MedicinalProductDefinition.name.productName",
-      "short": "Brand Name",
-      "min": 1,
-      "mustSupport": true
-    },
-    {
-      "id": "MedicinalProductDefinition.name.namePart",
-      "path": "MedicinalProductDefinition.name.namePart",
-      "short": "Parts like strength, form",
-      "mustSupport": true
-    }]
-    }
+  "differential": {
+    "element": [
+      {
+        "id": "MedicinalProductDefinition",
+        "path": "MedicinalProductDefinition",
+        "short": "Japanese Medicinal Product Definition"
+      },
+      {
+        "id": "MedicinalProductDefinition.name",
+        "path": "MedicinalProductDefinition.name",
+        "short": "Product Names (Brand, Generic)",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "MedicinalProductDefinition.name.productName",
+        "path": "MedicinalProductDefinition.name.productName",
+        "short": "Brand Name",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "MedicinalProductDefinition.name.namePart",
+        "path": "MedicinalProductDefinition.name.namePart",
+        "short": "Parts like strength, form",
+        "mustSupport": true
+      }
+    ]
+  }
 }

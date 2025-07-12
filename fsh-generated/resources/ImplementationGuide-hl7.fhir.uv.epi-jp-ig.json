@@ -126,7 +126,7 @@
         "reference": {
           "reference": "StructureDefinition/JP-ePI-MedicinalProductDefinition"
         },
-        "description": "Profile for MedicinalProductDefinition resource tailored for Japanese ePI, mapping to elements like BrandName, GenericName, and ActiveIngredient from PMDA XML.",
+        "description": "Profile for MedicinalProductDefinition resource tailored for Japanese ePI, mapping to elements like BrandName, GenericName from PMDA XML.",
         "name": "Japanese ePI MedicinalProductDefinition Profile",
         "isExample": false
       },
