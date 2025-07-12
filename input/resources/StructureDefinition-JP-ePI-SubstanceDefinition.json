@@ -1,0 +1,52 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "JP-ePI-SubstanceDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/JP-ePI-SubstanceDefinition",
+  "version": "0.1.0",
+  "name": "JPePISubstanceDefinition",
+  "title": "Japanese ePI SubstanceDefinition Profile",
+  "status": "draft",
+  "experimental": true,
+  "date": "2025-07-11",
+  "publisher": "ePI-JP Project",
+  "description": "Profile for SubstanceDefinition resource tailored for Japanese ePI, mapping to substance details like ActiveIngredient from PMDA XML.",
+  "fhirVersion": "5.0.0",
+  "kind": "resource",
+  "abstract": false,
+  "type": "SubstanceDefinition",
+  "baseDefinition": "http://hl7.org/fhir/uv/emedicinal-product-info/StructureDefinition/SubstanceDefinition-uv-epi",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "SubstanceDefinition",
+        "path": "SubstanceDefinition",
+        "short": "Japanese Substance Definition"
+      },
+      {
+        "id": "SubstanceDefinition.name",
+        "path": "SubstanceDefinition.name",
+        "short": "Substance name (e.g., generic name)",
+        "mustSupport": true
+      },
+      {
+        "id": "SubstanceDefinition.code",
+        "path": "SubstanceDefinition.code",
+        "short": "Codes for the substance (e.g., HOT Code)",
+        "mustSupport": true
+      },
+      {
+        "id": "SubstanceDefinition.molecularWeight",
+        "path": "SubstanceDefinition.molecularWeight",
+        "short": "Molecular weight details",
+        "mustSupport": true
+      },
+      {
+        "id": "SubstanceDefinition.structure",
+        "path": "SubstanceDefinition.structure",
+        "short": "Structural information",
+        "mustSupport": true
+      }
+    ]
+  }
+}
