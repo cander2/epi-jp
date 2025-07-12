@@ -28,6 +28,134 @@
     "resource": [
       {
         "reference": {
+          "reference": "StructureDefinition/JP-ePI-AdministrableProductDefinition"
+        },
+        "description": "Profile for AdministrableProductDefinition resource tailored for Japanese ePI, mapping to administration details from PMDA XML.",
+        "name": "Japanese ePI AdministrableProductDefinition Profile",
+        "isExample": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/JP-ePI-Binary"
+        },
+        "description": "Profile for Binary resource tailored for Japanese ePI, used for images or other binary content in package inserts.",
+        "name": "Japanese ePI Binary Profile",
+        "isExample": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/JP-ePI-Bundle"
+        },
+        "description": "Profile for Bundle resource tailored for Japanese electronic Product Information (ePI). This profile constrains the Bundle to contain the ePI Composition and related resources as per PMDA package insert requirements.",
+        "name": "Japanese ePI Bundle Profile",
+        "isExample": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/JP-ePI-ClinicalUseDefinition-Contraindication"
+        },
+        "description": "Profile for ClinicalUseDefinition (Contraindication subtype) tailored for Japanese ePI, mapping to ContraIndications from PMDA XML.",
+        "name": "Japanese ePI ClinicalUseDefinition Contraindication Profile",
+        "isExample": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/JP-ePI-ClinicalUseDefinition-Indication"
+        },
+        "description": "Profile for ClinicalUseDefinition (Indication subtype) tailored for Japanese ePI, mapping to Indications from PMDA XML.",
+        "name": "Japanese ePI ClinicalUseDefinition Indication Profile",
+        "isExample": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/JP-ePI-ClinicalUseDefinition-Interaction"
+        },
+        "description": "Profile for ClinicalUseDefinition (Interaction subtype) tailored for Japanese ePI, mapping to Interactions from PMDA XML.",
+        "name": "Japanese ePI ClinicalUseDefinition Interaction Profile",
+        "isExample": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/JP-ePI-ClinicalUseDefinition-UndesirableEffect"
+        },
+        "description": "Profile for ClinicalUseDefinition (UndesirableEffect subtype) tailored for Japanese ePI, mapping to AdverseReactions from PMDA XML.",
+        "name": "Japanese ePI ClinicalUseDefinition UndesirableEffect Profile",
+        "isExample": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/JP-ePI-Composition"
+        },
+        "description": "Profile for Composition resource tailored for Japanese electronic Product Information (ePI) based on PMDA package insert structure. This profile constrains the Composition to match key sections from the provided package_insert-XML.xsd and sample XML.",
+        "name": "Japanese ePI Composition Profile",
+        "isExample": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/JP-ePI-Ingredient"
+        },
+        "description": "Profile for Ingredient resource tailored for Japanese ePI, mapping to ActiveIngredient and additives from PMDA XML.",
+        "name": "Japanese ePI Ingredient Profile",
+        "isExample": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/JP-ePI-ManufacturedItemDefinition"
+        },
+        "description": "Profile for ManufacturedItemDefinition resource tailored for Japanese ePI, mapping to form and properties from PMDA XML.",
+        "name": "Japanese ePI ManufacturedItemDefinition Profile",
+        "isExample": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/JP-ePI-MedicationKnowledge"
+        },
+        "description": "Profile for MedicationKnowledge resource tailored for Japanese ePI, potentially mapping to additional knowledge aspects from PMDA XML.",
+        "name": "Japanese ePI MedicationKnowledge Profile",
+        "isExample": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/JP-ePI-MedicinalProductDefinition"
+        },
+        "description": "Profile for MedicinalProductDefinition resource tailored for Japanese ePI, mapping to elements like BrandName, GenericName, and ActiveIngredient from PMDA XML.",
+        "name": "Japanese ePI MedicinalProductDefinition Profile",
+        "isExample": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/JP-ePI-Organization"
+        },
+        "description": "Profile for Organization resource tailored for Japanese ePI, mapping to Manufacturer and Distributor from PMDA XML.",
+        "name": "Japanese ePI Organization Profile",
+        "isExample": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/JP-ePI-PackagedProductDefinition"
+        },
+        "description": "Profile for PackagedProductDefinition resource tailored for Japanese ePI, mapping to Packaging from PMDA XML.",
+        "name": "Japanese ePI PackagedProductDefinition Profile",
+        "isExample": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/JP-ePI-RegulatedAuthorization"
+        },
+        "description": "Profile for RegulatedAuthorization resource tailored for Japanese ePI, mapping to Approval and Reexamination from PMDA XML.",
+        "name": "Japanese ePI RegulatedAuthorization Profile",
+        "isExample": false
+      },
+      {
+        "reference": {
+          "reference": "StructureDefinition/JP-ePI-SubstanceDefinition"
+        },
+        "description": "Profile for SubstanceDefinition resource tailored for Japanese ePI, mapping to substance details like ActiveIngredient from PMDA XML.",
+        "name": "Japanese ePI SubstanceDefinition Profile",
+        "isExample": false
+      },
+      {
+        "reference": {
           "reference": "StructureDefinition/MyPatient"
         },
         "name": "MyPatient",

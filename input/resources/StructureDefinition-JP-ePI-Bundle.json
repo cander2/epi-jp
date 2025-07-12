@@ -56,6 +56,300 @@
             ]
           }
         ]
+      },
+      {
+        "id": "Bundle.entry:medicinalProductDefinition",
+        "path": "Bundle.entry",
+        "sliceName": "medicinalProductDefinition",
+        "short": "Medicinal Product Definition",
+        "min": 0,
+        "max": "*",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:medicinalProductDefinition.resource",
+        "path": "Bundle.entry.resource",
+        "type": [
+          {
+            "code": "MedicinalProductDefinition",
+            "profile": [
+              "http://example.org/fhir/StructureDefinition/JP-ePI-MedicinalProductDefinition"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Bundle.entry:ingredient",
+        "path": "Bundle.entry",
+        "sliceName": "ingredient",
+        "short": "Ingredient",
+        "min": 0,
+        "max": "*",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:ingredient.resource",
+        "path": "Bundle.entry.resource",
+        "type": [
+          {
+            "code": "Ingredient",
+            "profile": [
+              "http://example.org/fhir/StructureDefinition/JP-ePI-Ingredient"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Bundle.entry:manufacturedItemDefinition",
+        "path": "Bundle.entry",
+        "sliceName": "manufacturedItemDefinition",
+        "short": "Manufactured Item Definition",
+        "min": 0,
+        "max": "*",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:manufacturedItemDefinition.resource",
+        "path": "Bundle.entry.resource",
+        "type": [
+          {
+            "code": "ManufacturedItemDefinition",
+            "profile": [
+              "http://example.org/fhir/StructureDefinition/JP-ePI-ManufacturedItemDefinition"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Bundle.entry:administrableProductDefinition",
+        "path": "Bundle.entry",
+        "sliceName": "administrableProductDefinition",
+        "short": "Administrable Product Definition",
+        "min": 0,
+        "max": "*",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:administrableProductDefinition.resource",
+        "path": "Bundle.entry.resource",
+        "type": [
+          {
+            "code": "AdministrableProductDefinition",
+            "profile": [
+              "http://example.org/fhir/StructureDefinition/JP-ePI-AdministrableProductDefinition"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Bundle.entry:packagedProductDefinition",
+        "path": "Bundle.entry",
+        "sliceName": "packagedProductDefinition",
+        "short": "Packaged Product Definition",
+        "min": 0,
+        "max": "*",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:packagedProductDefinition.resource",
+        "path": "Bundle.entry.resource",
+        "type": [
+          {
+            "code": "PackagedProductDefinition",
+            "profile": [
+              "http://example.org/fhir/StructureDefinition/JP-ePI-PackagedProductDefinition"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Bundle.entry:regulatedAuthorization",
+        "path": "Bundle.entry",
+        "sliceName": "regulatedAuthorization",
+        "short": "Regulated Authorization",
+        "min": 0,
+        "max": "*",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:regulatedAuthorization.resource",
+        "path": "Bundle.entry.resource",
+        "type": [
+          {
+            "code": "RegulatedAuthorization",
+            "profile": [
+              "http://example.org/fhir/StructureDefinition/JP-ePI-RegulatedAuthorization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Bundle.entry:clinicalUseDefinitionIndication",
+        "path": "Bundle.entry",
+        "sliceName": "clinicalUseDefinitionIndication",
+        "short": "Clinical Use Definition - Indication",
+        "min": 0,
+        "max": "*",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:clinicalUseDefinitionIndication.resource",
+        "path": "Bundle.entry.resource",
+        "type": [
+          {
+            "code": "ClinicalUseDefinition",
+            "profile": [
+              "http://example.org/fhir/StructureDefinition/JP-ePI-ClinicalUseDefinition-Indication"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Bundle.entry:clinicalUseDefinitionContraindication",
+        "path": "Bundle.entry",
+        "sliceName": "clinicalUseDefinitionContraindication",
+        "short": "Clinical Use Definition - Contraindication",
+        "min": 0,
+        "max": "*",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:clinicalUseDefinitionContraindication.resource",
+        "path": "Bundle.entry.resource",
+        "type": [
+          {
+            "code": "ClinicalUseDefinition",
+            "profile": [
+              "http://example.org/fhir/StructureDefinition/JP-ePI-ClinicalUseDefinition-Contraindication"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Bundle.entry:clinicalUseDefinitionInteraction",
+        "path": "Bundle.entry",
+        "sliceName": "clinicalUseDefinitionInteraction",
+        "short": "Clinical Use Definition - Interaction",
+        "min": 0,
+        "max": "*",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:clinicalUseDefinitionInteraction.resource",
+        "path": "Bundle.entry.resource",
+        "type": [
+          {
+            "code": "ClinicalUseDefinition",
+            "profile": [
+              "http://example.org/fhir/StructureDefinition/JP-ePI-ClinicalUseDefinition-Interaction"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Bundle.entry:clinicalUseDefinitionUndesirableEffect",
+        "path": "Bundle.entry",
+        "sliceName": "clinicalUseDefinitionUndesirableEffect",
+        "short": "Clinical Use Definition - Undesirable Effect",
+        "min": 0,
+        "max": "*",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:clinicalUseDefinitionUndesirableEffect.resource",
+        "path": "Bundle.entry.resource",
+        "type": [
+          {
+            "code": "ClinicalUseDefinition",
+            "profile": [
+              "http://example.org/fhir/StructureDefinition/JP-ePI-ClinicalUseDefinition-UndesirableEffect"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Bundle.entry:medicationKnowledge",
+        "path": "Bundle.entry",
+        "sliceName": "medicationKnowledge",
+        "short": "Medication Knowledge",
+        "min": 0,
+        "max": "*",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:medicationKnowledge.resource",
+        "path": "Bundle.entry.resource",
+        "type": [
+          {
+            "code": "MedicationKnowledge",
+            "profile": [
+              "http://example.org/fhir/StructureDefinition/JP-ePI-MedicationKnowledge"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Bundle.entry:binary",
+        "path": "Bundle.entry",
+        "sliceName": "binary",
+        "short": "Binary (e.g., images)",
+        "min": 0,
+        "max": "*",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:binary.resource",
+        "path": "Bundle.entry.resource",
+        "type": [
+          {
+            "code": "Binary",
+            "profile": [
+              "http://example.org/fhir/StructureDefinition/JP-ePI-Binary"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Bundle.entry:organization",
+        "path": "Bundle.entry",
+        "sliceName": "organization",
+        "short": "Organization",
+        "min": 0,
+        "max": "*",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:organization.resource",
+        "path": "Bundle.entry.resource",
+        "type": [
+          {
+            "code": "Organization",
+            "profile": [
+              "http://example.org/fhir/StructureDefinition/JP-ePI-Organization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Bundle.entry:substanceDefinition",
+        "path": "Bundle.entry",
+        "sliceName": "substanceDefinition",
+        "short": "Substance Definition",
+        "min": 0,
+        "max": "*",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:substanceDefinition.resource",
+        "path": "Bundle.entry.resource",
+        "type": [
+          {
+            "code": "SubstanceDefinition",
+            "profile": [
+              "http://example.org/fhir/StructureDefinition/JP-ePI-SubstanceDefinition"
+            ]
+          }
+        ]
       }
     ]
   }
