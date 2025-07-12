@@ -42,20 +42,6 @@
         "path": "MedicinalProductDefinition.name.namePart",
         "short": "Parts like strength, form",
         "mustSupport": true
-      },
-      {
-        "id": "MedicinalProductDefinition.ingredient",
-        "path": "MedicinalProductDefinition.ingredient",
-        "short": "Reference to Ingredients",
-        "type": [
-          {
-            "code": "Reference",
-            "targetProfile": [
-              "http://example.org/fhir/StructureDefinition/JP-ePI-Ingredient"
-            ]
-          }
-        ],
-        "mustSupport": true
       }
     ]
   }
