@@ -1,0 +1,357 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "JP-ePI-Composition",
+  "url": "http://example.org/fhir/StructureDefinition/JP-ePI-Composition",
+  "version": "0.1.0",
+  "name": "JPePIComposition",
+  "title": "Japanese ePI Composition Profile",
+  "status": "draft",
+  "experimental": true,
+  "date": "2025-07-11",
+  "publisher": "ePI-JP Project",
+  "description": "Profile for Composition resource tailored for Japanese electronic Product Information (ePI) based on PMDA package insert structure. This profile constrains the Composition to match key sections from the provided package_insert-XML.xsd and sample XML.",
+  "fhirVersion": "5.0.0",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Composition",
+  "baseDefinition": "http://hl7.org/fhir/uv/emedicinal-product-info/StructureDefinition/Composition-uv-epi",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Composition",
+        "path": "Composition",
+        "short": "Japanese ePI Document",
+        "definition": "A Composition representing the structure of a Japanese package insert for medicinal products."
+      },
+      {
+        "id": "Composition.language",
+        "path": "Composition.language",
+        "short": "Language of the ePI",
+        "min": 1,
+        "fixedCode": "ja",
+        "mustSupport": true
+      },
+      {
+        "id": "Composition.identifier",
+        "path": "Composition.identifier",
+        "short": "Document Identifier",
+        "definition": "Maps to DocumentId in PMDA XML",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Composition.version",
+        "path": "Composition.version",
+        "short": "Version of the document",
+        "definition": "Maps to Version in PMDA XML",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Composition.title",
+        "path": "Composition.title",
+        "short": "Title of the package insert",
+        "definition": "Human-readable title, e.g., from BrandName or GenericName",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Composition.section",
+        "path": "Composition.section",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "code"
+            }
+          ],
+          "rules": "open",
+          "description": "Slices for required sections based on PMDA structure"
+        },
+        "short": "Sections of the package insert",
+        "min": 1,
+        "mustSupport": true
+      },
+      {
+        "id": "Composition.section:therapeuticCategory",
+        "path": "Composition.section",
+        "sliceName": "therapeuticCategory",
+        "short": "Therapeutic Category",
+        "definition": "Maps to TherapeuticCategory in PMDA XML",
+        "min": 0,
+        "max": "1"
+      },
+      {
+        "id": "Composition.section:therapeuticCategory.code",
+        "path": "Composition.section.code",
+        "short": "Code for Therapeutic Category",
+        "fixedCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://example.org/CodeSystem/pmda-sections",
+              "code": "therapeutic-category",
+              "display": "Therapeutic Category"
+            }
+          ]
+        }
+      },
+      {
+        "id": "Composition.section:brandName",
+        "path": "Composition.section",
+        "sliceName": "brandName",
+        "short": "Brand Name",
+        "definition": "Maps to BrandName in PMDA XML",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Composition.section:brandName.code",
+        "path": "Composition.section.code",
+        "fixedCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://example.org/CodeSystem/pmda-sections",
+              "code": "brand-name",
+              "display": "Brand Name"
+            }
+          ]
+        }
+      },
+      {
+        "id": "Composition.section:indications",
+        "path": "Composition.section",
+        "sliceName": "indications",
+        "short": "Indications",
+        "definition": "Maps to Indications in PMDA XML",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Composition.section:indications.code",
+        "path": "Composition.section.code",
+        "fixedCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://example.org/CodeSystem/pmda-sections",
+              "code": "indications",
+              "display": "Indications"
+            }
+          ]
+        }
+      },
+      {
+        "id": "Composition.section:dosageAndAdministration",
+        "path": "Composition.section",
+        "sliceName": "dosageAndAdministration",
+        "short": "Dosage and Administration",
+        "definition": "Maps to DosageAndAdministration in PMDA XML",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Composition.section:dosageAndAdministration.code",
+        "path": "Composition.section.code",
+        "fixedCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://example.org/CodeSystem/pmda-sections",
+              "code": "dosage-administration",
+              "display": "Dosage and Administration"
+            }
+          ]
+        }
+      },
+      {
+        "id": "Composition.section:precautions",
+        "path": "Composition.section",
+        "sliceName": "precautions",
+        "short": "Precautions",
+        "definition": "Maps to Precautions in PMDA XML",
+        "min": 0,
+        "max": "1"
+      },
+      {
+        "id": "Composition.section:precautions.code",
+        "path": "Composition.section.code",
+        "fixedCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://example.org/CodeSystem/pmda-sections",
+              "code": "precautions",
+              "display": "Precautions"
+            }
+          ]
+        }
+      },
+      {
+        "id": "Composition.section:adverseReactions",
+        "path": "Composition.section",
+        "sliceName": "adverseReactions",
+        "short": "Adverse Reactions",
+        "definition": "Maps to AdverseReactions in PMDA XML",
+        "min": 0,
+        "max": "1"
+      },
+      {
+        "id": "Composition.section:adverseReactions.code",
+        "path": "Composition.section.code",
+        "fixedCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://example.org/CodeSystem/pmda-sections",
+              "code": "adverse-reactions",
+              "display": "Adverse Reactions"
+            }
+          ]
+        }
+      },
+      {
+        "id": "Composition.section:pharmacokinetics",
+        "path": "Composition.section",
+        "sliceName": "pharmacokinetics",
+        "short": "Pharmacokinetics",
+        "definition": "Maps to Pharmacokinetics in PMDA XML",
+        "min": 0,
+        "max": "1"
+      },
+      {
+        "id": "Composition.section:pharmacokinetics.code",
+        "path": "Composition.section.code",
+        "fixedCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://example.org/CodeSystem/pmda-sections",
+              "code": "pharmacokinetics",
+              "display": "Pharmacokinetics"
+            }
+          ]
+        }
+      },
+      {
+        "id": "Composition.section:clinicalStudies",
+        "path": "Composition.section",
+        "sliceName": "clinicalStudies",
+        "short": "Clinical Studies",
+        "definition": "Maps to ClinicalStudies in PMDA XML",
+        "min": 0,
+        "max": "1"
+      },
+      {
+        "id": "Composition.section:clinicalStudies.code",
+        "path": "Composition.section.code",
+        "fixedCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://example.org/CodeSystem/pmda-sections",
+              "code": "clinical-studies",
+              "display": "Clinical Studies"
+            }
+          ]
+        }
+      },
+      {
+        "id": "Composition.section:pharmacology",
+        "path": "Composition.section",
+        "sliceName": "pharmacology",
+        "short": "Pharmacology",
+        "definition": "Maps to Pharmacology in PMDA XML",
+        "min": 0,
+        "max": "1"
+      },
+      {
+        "id": "Composition.section:pharmacology.code",
+        "path": "Composition.section.code",
+        "fixedCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://example.org/CodeSystem/pmda-sections",
+              "code": "pharmacology",
+              "display": "Pharmacology"
+            }
+          ]
+        }
+      },
+      {
+        "id": "Composition.section:physicochemicalProperties",
+        "path": "Composition.section",
+        "sliceName": "physicochemicalProperties",
+        "short": "Physicochemical Properties",
+        "definition": "Maps to PhysicochemicalProperties in PMDA XML",
+        "min": 0,
+        "max": "1"
+      },
+      {
+        "id": "Composition.section:physicochemicalProperties.code",
+        "path": "Composition.section.code",
+        "fixedCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://example.org/CodeSystem/pmda-sections",
+              "code": "physicochemical-properties",
+              "display": "Physicochemical Properties"
+            }
+          ]
+        }
+      },
+      {
+        "id": "Composition.section:packaging",
+        "path": "Composition.section",
+        "sliceName": "packaging",
+        "short": "Packaging",
+        "definition": "Maps to Packaging in PMDA XML",
+        "min": 0,
+        "max": "1"
+      },
+      {
+        "id": "Composition.section:packaging.code",
+        "path": "Composition.section.code",
+        "fixedCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://example.org/CodeSystem/pmda-sections",
+              "code": "packaging",
+              "display": "Packaging"
+            }
+          ]
+        }
+      },
+      {
+        "id": "Composition.section:references",
+        "path": "Composition.section",
+        "sliceName": "references",
+        "short": "References",
+        "definition": "Maps to References in PMDA XML",
+        "min": 0,
+        "max": "1"
+      },
+      {
+        "id": "Composition.section:references.code",
+        "path": "Composition.section.code",
+        "fixedCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://example.org/CodeSystem/pmda-sections",
+              "code": "references",
+              "display": "References"
+            }
+          ]
+        }
+      },
+      {
+        "id": "Composition.subject",
+        "path": "Composition.subject",
+        "short": "Reference to the medicinal product",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://example.org/fhir/StructureDefinition/JP-ePI-MedicinalProductDefinition"
+            ]
+          }
+        ],
+        "mustSupport": true
+      }
+    ]
+  }
+}

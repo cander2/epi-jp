@@ -1,0 +1,39 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "JP-ePI-ClinicalUseDefinition-Contraindication",
+  "url": "http://example.org/fhir/StructureDefinition/JP-ePI-ClinicalUseDefinition-Contraindication",
+  "version": "0.1.0",
+  "name": "JPePIClinicalUseDefinitionContraindication",
+  "title": "Japanese ePI ClinicalUseDefinition Contraindication Profile",
+  "status": "draft",
+  "experimental": true,
+  "date": "2025-07-11",
+  "publisher": "ePI-JP Project",
+  "description": "Profile for ClinicalUseDefinition (Contraindication subtype) tailored for Japanese ePI, mapping to ContraIndications from PMDA XML.",
+  "fhirVersion": "5.0.0",
+  "kind": "resource",
+  "abstract": false,
+  "type": "ClinicalUseDefinition",
+  "baseDefinition": "http://hl7.org/fhir/uv/emedicinal-product-info/StructureDefinition/ClinicalUseDefinition-contraindication-uv-epi",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "ClinicalUseDefinition",
+        "path": "ClinicalUseDefinition",
+        "short": "Japanese Contraindication Definition"
+      },
+      {
+        "id": "ClinicalUseDefinition.type",
+        "path": "ClinicalUseDefinition.type",
+        "fixedCode": "contraindication"
+      },
+      {
+        "id": "ClinicalUseDefinition.contraindication",
+        "path": "ClinicalUseDefinition.contraindication",
+        "short": "Contraindication details",
+        "mustSupport": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "JP-ePI-ManufacturedItemDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/JP-ePI-ManufacturedItemDefinition",
+  "version": "0.1.0",
+  "name": "JPePIManufacturedItemDefinition",
+  "title": "Japanese ePI ManufacturedItemDefinition Profile",
+  "status": "draft",
+  "experimental": true,
+  "date": "2025-07-11",
+  "publisher": "ePI-JP Project",
+  "description": "Profile for ManufacturedItemDefinition resource tailored for Japanese ePI, mapping to form and properties from PMDA XML.",
+  "fhirVersion": "5.0.0",
+  "kind": "resource",
+  "abstract": false,
+  "type": "ManufacturedItemDefinition",
+  "baseDefinition": "http://hl7.org/fhir/uv/emedicinal-product-info/StructureDefinition/ManufacturedItemDefinition-uv-epi",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "ManufacturedItemDefinition",
+        "path": "ManufacturedItemDefinition",
+        "short": "Japanese Manufactured Item Definition"
+      },
+      {
+        "id": "ManufacturedItemDefinition.manufacturedDoseForm",
+        "path": "ManufacturedItemDefinition.manufacturedDoseForm",
+        "short": "Dose form (e.g., tablet)",
+        "mustSupport": true
+      },
+      {
+        "id": "ManufacturedItemDefinition.property",
+        "path": "ManufacturedItemDefinition.property",
+        "short": "Properties like color, shape",
+        "mustSupport": true
+      }
+    ]
+  }
+}

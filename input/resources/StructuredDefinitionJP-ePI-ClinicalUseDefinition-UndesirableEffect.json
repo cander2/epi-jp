@@ -1,0 +1,39 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "JP-ePI-ClinicalUseDefinition-UndesirableEffect",
+  "url": "http://example.org/fhir/StructureDefinition/JP-ePI-ClinicalUseDefinition-UndesirableEffect",
+  "version": "0.1.0",
+  "name": "JPePIClinicalUseDefinitionUndesirableEffect",
+  "title": "Japanese ePI ClinicalUseDefinition UndesirableEffect Profile",
+  "status": "draft",
+  "experimental": true,
+  "date": "2025-07-11",
+  "publisher": "ePI-JP Project",
+  "description": "Profile for ClinicalUseDefinition (UndesirableEffect subtype) tailored for Japanese ePI, mapping to AdverseReactions from PMDA XML.",
+  "fhirVersion": "5.0.0",
+  "kind": "resource",
+  "abstract": false,
+  "type": "ClinicalUseDefinition",
+  "baseDefinition": "http://hl7.org/fhir/uv/emedicinal-product-info/StructureDefinition/ClinicalUseDefinition-undeffect-uv-epi",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "ClinicalUseDefinition",
+        "path": "ClinicalUseDefinition",
+        "short": "Japanese Undesirable Effect Definition"
+      },
+      {
+        "id": "ClinicalUseDefinition.type",
+        "path": "ClinicalUseDefinition.type",
+        "fixedCode": "undesirable-effect"
+      },
+      {
+        "id": "ClinicalUseDefinition.undesirableEffect",
+        "path": "ClinicalUseDefinition.undesirableEffect",
+        "short": "Undesirable effect details",
+        "mustSupport": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "JP-ePI-Ingredient",
+  "url": "http://example.org/fhir/StructureDefinition/JP-ePI-Ingredient",
+  "version": "0.1.0",
+  "name": "JPePIIngredient",
+  "title": "Japanese ePI Ingredient Profile",
+  "status": "draft",
+  "experimental": true,
+  "date": "2025-07-11",
+  "publisher": "ePI-JP Project",
+  "description": "Profile for Ingredient resource tailored for Japanese ePI, mapping to ActiveIngredient and additives from PMDA XML.",
+  "fhirVersion": "5.0.0",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Ingredient",
+  "baseDefinition": "http://hl7.org/fhir/uv/emedicinal-product-info/StructureDefinition/Ingredient-uv-epi",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Ingredient",
+        "path": "Ingredient",
+        "short": "Japanese Ingredient Definition"
+      },
+      {
+        "id": "Ingredient.substance",
+        "path": "Ingredient.substance",
+        "short": "Substance details",
+        "mustSupport": true
+      },
+      {
+        "id": "Ingredient.substance.code",
+        "path": "Ingredient.substance.code",
+        "short": "Substance code (e.g., from HOT Code)",
+        "mustSupport": true
+      },
+      {
+        "id": "Ingredient.substance.strength",
+        "path": "Ingredient.substance.strength",
+        "short": "Strength and quantity",
+        "mustSupport": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "JP-ePI-ClinicalUseDefinition-Interaction",
+  "url": "http://example.org/fhir/StructureDefinition/JP-ePI-ClinicalUseDefinition-Interaction",
+  "version": "0.1.0",
+  "name": "JPePIClinicalUseDefinitionInteraction",
+  "title": "Japanese ePI ClinicalUseDefinition Interaction Profile",
+  "status": "draft",
+  "experimental": true,
+  "date": "2025-07-11",
+  "publisher": "ePI-JP Project",
+  "description": "Profile for ClinicalUseDefinition (Interaction subtype) tailored for Japanese ePI, mapping to Interactions from PMDA XML.",
+  "fhirVersion": "5.0.0",
+  "kind": "resource",
+  "abstract": false,
+  "type": "ClinicalUseDefinition",
+  "baseDefinition": "http://hl7.org/fhir/uv/emedicinal-product-info/StructureDefinition/ClinicalUseDefinition-interaction-uv-epi",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "ClinicalUseDefinition",
+        "path": "ClinicalUseDefinition",
+        "short": "Japanese Interaction Definition"
+      },
+      {
+        "id": "ClinicalUseDefinition.type",
+        "path": "ClinicalUseDefinition.type",
+        "fixedCode": "interaction"
+      },
+      {
+        "id": "ClinicalUseDefinition.interaction",
+        "path": "ClinicalUseDefinition.interaction",
+        "short": "Interaction details",
+        "mustSupport": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "JP-ePI-MedicationKnowledge",
+  "url": "http://example.org/fhir/StructureDefinition/JP-ePI-MedicationKnowledge",
+  "version": "0.1.0",
+  "name": "JPePIMedicationKnowledge",
+  "title": "Japanese ePI MedicationKnowledge Profile",
+  "status": "draft",
+  "experimental": true,
+  "date": "2025-07-11",
+  "publisher": "ePI-JP Project",
+  "description": "Profile for MedicationKnowledge resource tailored for Japanese ePI, potentially mapping to additional knowledge aspects from PMDA XML.",
+  "fhirVersion": "5.0.0",
+  "kind": "resource",
+  "abstract": false,
+  "type": "MedicationKnowledge",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/MedicationKnowledge",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "MedicationKnowledge",
+        "path": "MedicationKnowledge",
+        "short": "Japanese Medication Knowledge"
+      },
+      {
+        "id": "MedicationKnowledge.code",
+        "path": "MedicationKnowledge.code",
+        "short": "Medication code",
+        "mustSupport": true
+      },
+      {
+        "id": "MedicationKnowledge.ingredient",
+        "path": "MedicationKnowledge.ingredient",
+        "short": "Ingredients",
+        "mustSupport": true
+      }
+    ]
+  }
+}

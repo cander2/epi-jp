@@ -4,7 +4,7 @@
   "url": "http://hl7.org/fhir/uv/epi-jp-ig/ImplementationGuide/hl7.fhir.uv.epi-jp-ig",
   "version": "0.1.0",
   "name": "epijp",
-  "title": "Japanese Electronic Medicinal Product Information (ePI-JP) Implementation Guide",
+  "title": "Japanese Electronic Medicinal Product Information (ePI-JP)",
   "status": "draft",
   "publisher": "Gravitate Health Project",
   "contact": [
@@ -18,7 +18,7 @@
       ]
     }
   ],
-  "description": "FHIR Implementation Guide representing how to create Electronic Medicinal Product Information (ePI) in alignment with Japanese PMDA requirements.",
+  "description": "FHIR実装ガイド：日本のPMDA要件に準拠した電子医薬品情報（ePI）の作成方法を示す。FHIR Implementation Guide representing how to create Electronic Medicinal Product Information (ePI) in alignment with Japanese PMDA requirements.",
   "packageId": "hl7.fhir.uv.epi-jp-ig",
   "license": "CC0-1.0",
   "fhirVersion": [
@@ -81,10 +81,10 @@
           "sourceUrl": "mapping.html"
         },
         {
-          "title": "Overview",
+          "title": "How to Build an ePI-JP",
           "generation": "markdown",
-          "name": "build-overview.html",
-          "sourceUrl": "build-overview.html"
+          "name": "howtobuild.html",
+          "sourceUrl": "howtobuild.html"
         },
         {
           "title": "Getting Started",

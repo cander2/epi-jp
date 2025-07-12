@@ -1,0 +1,62 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "JP-ePI-Bundle",
+  "url": "http://example.org/fhir/StructureDefinition/JP-ePI-Bundle",
+  "version": "0.1.0",
+  "name": "JPePIBundle",
+  "title": "Japanese ePI Bundle Profile",
+  "status": "draft",
+  "experimental": true,
+  "date": "2025-07-11",
+  "publisher": "ePI-JP Project",
+  "description": "Profile for Bundle resource tailored for Japanese electronic Product Information (ePI). This profile constrains the Bundle to contain the ePI Composition and related resources as per PMDA package insert requirements.",
+  "fhirVersion": "5.0.0",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Bundle",
+  "baseDefinition": "http://hl7.org/fhir/uv/emedicinal-product-info/StructureDefinition/Bundle-uv-epi",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Bundle",
+        "path": "Bundle",
+        "short": "Japanese ePI Document Bundle",
+        "definition": "A Bundle containing the Japanese ePI Composition and supporting resources."
+      },
+      {
+        "id": "Bundle.type",
+        "path": "Bundle.type",
+        "fixedCode": "document",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry",
+        "path": "Bundle.entry",
+        "short": "Entries in the ePI Bundle",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:composition",
+        "path": "Bundle.entry",
+        "sliceName": "composition",
+        "short": "The ePI Composition",
+        "min": 1,
+        "max": "1",
+        "mustSupport": true
+      },
+      {
+        "id": "Bundle.entry:composition.resource",
+        "path": "Bundle.entry.resource",
+        "type": [
+          {
+            "code": "Composition",
+            "profile": [
+              "http://example.org/fhir/StructureDefinition/JP-ePI-Composition"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

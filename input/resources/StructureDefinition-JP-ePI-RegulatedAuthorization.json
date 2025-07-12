@@ -1,0 +1,48 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "JP-ePI-RegulatedAuthorization",
+  "url": "http://example.org/fhir/StructureDefinition/JP-ePI-RegulatedAuthorization",
+  "version": "0.1.0",
+  "name": "JPePIRegulatedAuthorization",
+  "title": "Japanese ePI RegulatedAuthorization Profile",
+  "status": "draft",
+  "experimental": true,
+  "date": "2025-07-11",
+  "publisher": "ePI-JP Project",
+  "description": "Profile for RegulatedAuthorization resource tailored for Japanese ePI, mapping to Approval and Reexamination from PMDA XML.",
+  "fhirVersion": "5.0.0",
+  "kind": "resource",
+  "abstract": false,
+  "type": "RegulatedAuthorization",
+  "baseDefinition": "http://hl7.org/fhir/uv/emedicinal-product-info/StructureDefinition/RegulatedAuthorization-uv-epi",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "RegulatedAuthorization",
+        "path": "RegulatedAuthorization",
+        "short": "Japanese Regulated Authorization"
+      },
+      {
+        "id": "RegulatedAuthorization.identifier",
+        "path": "RegulatedAuthorization.identifier",
+        "short": "Approval number (e.g., YJ Code)",
+        "mustSupport": true
+      },
+      {
+        "id": "RegulatedAuthorization.holder",
+        "path": "RegulatedAuthorization.holder",
+        "short": "Marketing authorization holder",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://example.org/fhir/StructureDefinition/JP-ePI-Organization"
+            ]
+          }
+        ],
+        "mustSupport": true
+      }
+    ]
+  }
+}

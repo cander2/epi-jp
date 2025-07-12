@@ -1,0 +1,40 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "JP-ePI-PackagedProductDefinition",
+  "url": "http://example.org/fhir/StructureDefinition/JP-ePI-PackagedProductDefinition",
+  "version": "0.1.0",
+  "name": "JPePIPackagedProductDefinition",
+  "title": "Japanese ePI PackagedProductDefinition Profile",
+  "status": "draft",
+  "experimental": true,
+  "date": "2025-07-11",
+  "publisher": "ePI-JP Project",
+  "description": "Profile for PackagedProductDefinition resource tailored for Japanese ePI, mapping to Packaging from PMDA XML.",
+  "fhirVersion": "5.0.0",
+  "kind": "resource",
+  "abstract": false,
+  "type": "PackagedProductDefinition",
+  "baseDefinition": "http://hl7.org/fhir/uv/emedicinal-product-info/StructureDefinition/PackagedProductDefinition-uv-epi",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "PackagedProductDefinition",
+        "path": "PackagedProductDefinition",
+        "short": "Japanese Packaged Product Definition"
+      },
+      {
+        "id": "PackagedProductDefinition.packageFor",
+        "path": "PackagedProductDefinition.packageFor",
+        "short": "Reference to MedicinalProductDefinition",
+        "mustSupport": true
+      },
+      {
+        "id": "PackagedProductDefinition.packaging",
+        "path": "PackagedProductDefinition.packaging",
+        "short": "Packaging details",
+        "mustSupport": true
+      }
+    ]
+  }
+}

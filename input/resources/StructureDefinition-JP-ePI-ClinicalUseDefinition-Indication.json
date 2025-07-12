@@ -1,0 +1,39 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "JP-ePI-ClinicalUseDefinition-Indication",
+  "url": "http://example.org/fhir/StructureDefinition/JP-ePI-ClinicalUseDefinition-Indication",
+  "version": "0.1.0",
+  "name": "JPePIClinicalUseDefinitionIndication",
+  "title": "Japanese ePI ClinicalUseDefinition Indication Profile",
+  "status": "draft",
+  "experimental": true,
+  "date": "2025-07-11",
+  "publisher": "ePI-JP Project",
+  "description": "Profile for ClinicalUseDefinition (Indication subtype) tailored for Japanese ePI, mapping to Indications from PMDA XML.",
+  "fhirVersion": "5.0.0",
+  "kind": "resource",
+  "abstract": false,
+  "type": "ClinicalUseDefinition",
+  "baseDefinition": "http://hl7.org/fhir/uv/emedicinal-product-info/StructureDefinition/ClinicalUseDefinition-indication-uv-epi",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "ClinicalUseDefinition",
+        "path": "ClinicalUseDefinition",
+        "short": "Japanese Indication Definition"
+      },
+      {
+        "id": "ClinicalUseDefinition.type",
+        "path": "ClinicalUseDefinition.type",
+        "fixedCode": "indication"
+      },
+      {
+        "id": "ClinicalUseDefinition.indication",
+        "path": "ClinicalUseDefinition.indication",
+        "short": "Indication details",
+        "mustSupport": true
+      }
+    ]
+  }
+}
