@@ -24,6 +24,14 @@
   "fhirVersion": [
     "5.0.0"
   ],
+  "dependsOn": [
+    {
+      "packageId": "hl7.fhir.uv.emedicinal-product-info",
+      "version": "current",
+      "uri": "http://hl7.org/fhir/uv/emedicinal-product-info/ImplementationGuide/hl7.fhir.uv.emedicinal-product-info",
+      "id": "hl7_fhir_uv_emedicinal_product_info"
+    }
+  ],
   "definition": {
     "resource": [
       {

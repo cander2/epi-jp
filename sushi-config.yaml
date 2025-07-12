@@ -50,7 +50,8 @@ menu:
   Downloads: downloads.html
   Artifacts: artifacts.html
 
-
-
 instanceOptions:
   manualSliceOrdering: true # true | false
+
+dependencies:
+  hl7.fhir.uv.emedicinal-product-info: current
