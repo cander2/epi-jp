@@ -1,4 +1,6 @@
-This table maps elements from the PMDA's XML for Japanese Package Inserts (JPI) to FHIR resources compliant with the HL7 FHIR ePI Implementation Guide. It addresses Japan-specific requirements (e.g., YJCode, Japanese-language content).
+### Bundle
+
+The Bundle resource serves as the container for the ePI document, aggregating the Composition and all referenced resources into a single, cohesive FHIR document bundle.
 
 <style>
     table {
@@ -26,276 +28,1398 @@ This table maps elements from the PMDA's XML for Japanese Package Inserts (JPI) 
 <table>
     <thead>
         <tr>
-            <th>PMDA XML Element/Path</th>
-            <th>FHIR ePI Mapping</th>
+            <th>FHIR Resource</th>
+            <th>FHIR Element</th>
+            <th>JP XML/XSD Element</th>
             <th>Notes</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>&lt;PackageInsert&gt;</td>
             <td>Bundle</td>
-            <td>Maps to a Bundle of type 'document', encapsulating the ePI with a Composition as the entry point. (From older table; root element not explicitly in latest.)</td>
+            <td>id</td>
+            <td>n/a</td>
+            <td>The Bundle contains the Composition as the first entry, with other referenced resources.</td>
         </tr>
         <tr>
-            <td>package_insert/@id</td>
-            <td>MedicinalProductDefinition.identifier</td>
-            <td>Maps to the unique identifier for the product in MedicinalProductDefinition.</td>
+            <td>Bundle</td>
+            <td>meta.versionId</td>
+            <td>Document/Revision</td>
+            <td>Version identifier based on document revision (e.g., '第1版').</td>
         </tr>
         <tr>
-            <td>package_insert/@code or &lt;ApprovalNumber&gt;</td>
-            <td>RegulatedAuthorization.identifier</td>
-            <td>PMDA code or approval number; maps to identifier with system 'http://pmda.go.jp/approval'. Example: '874291'. Could also map to PackagedProductDefinition.identifier for packaging specifics. (Merged from both; prefer RegulatedAuthorization for regulatory IDs.)</td>
+            <td>Bundle</td>
+            <td>meta.lastUpdated</td>
+            <td>Document/RevisionDate</td>
+            <td>Last updated timestamp, mapped from revision date or set to current assembly time.</td>
         </tr>
         <tr>
-            <td>package_insert/revision_info/date or &lt;RevisionDate&gt;</td>
-            <td>Composition.date or Composition.extension:revisionDate</td>
-            <td>Represents the revision date of the package insert document. Example: '2022-02'. (Merged; older uses Composition.date directly.)</td>
+            <td>Bundle</td>
+            <td>identifier</td>
+            <td>Document/ProductCode</td>
+            <td>Unique identifier for the bundle, possibly using product code or document ID.</td>
         </tr>
         <tr>
-            <td>package_insert/revision_info/edition or &lt;Edition&gt;</td>
-            <td>Composition.version</td>
-            <td>Edition or version number of the document. Example: '第1版'.</td>
+            <td>Bundle</td>
+            <td>type</td>
+            <td>n/a</td>
+            <td>Set to 'document' for the ePI Bundle.</td>
         </tr>
         <tr>
-            <td>package_insert/pmda_code</td>
-            <td>MedicinalProductDefinition.identifier</td>
-            <td>PMDA-specific code for the medicinal product.</td>
+            <td>Bundle</td>
+            <td>timestamp</td>
+            <td>n/a</td>
+            <td>Current timestamp when the Bundle is assembled.</td>
         </tr>
         <tr>
-            <td>package_insert/therapeutic_category or &lt;TherapeuticCategory&gt;</td>
-            <td>MedicinalProductDefinition.classification</td>
-            <td>Maps to ATC code or therapeutic classification in MedicinalProductDefinition. Use SNOMED CT (e.g., '386908000' for antineoplastic) or Japan-specific code for “アロマターゼ阻害剤”.</td>
+            <td>Bundle</td>
+            <td>entry</td>
+            <td>n/a</td>
+            <td>Entries for Composition, Binary (if narrative), Organizations, etc.</td>
+        </tr>
+    </tbody>
+</table>
+
+### Composition
+
+The Composition resource represents the structured content of the electronic Package Insert (ePI), organizing sections such as indications, dosage, and precautions into a human-readable document.
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>FHIR Resource</th>
+            <th>FHIR Element</th>
+            <th>JP XML/XSD Element</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Composition</td>
+            <td>id</td>
+            <td>n/a</td>
+            <td>Unique identifier for the Composition resource.</td>
         </tr>
         <tr>
-            <td>package_insert/brand/name or &lt;Brand/BrandName&gt;</td>
-            <td>MedicinalProductDefinition.name.productName</td>
-            <td>Brand name of the product. Primary name in Japanese. Example: 'アロマシン錠25mg'. Set language='ja'.</td>
+            <td>Composition</td>
+            <td>status</td>
+            <td>n/a</td>
+            <td>Typically 'final' for published ePI.</td>
         </tr>
         <tr>
-            <td>package_insert/brand/product_code or &lt;YJCode&gt; or &lt;Brand/Code&gt;</td>
-            <td>MedicinalProductDefinition.identifier</td>
-            <td>Product-specific code (YJ code or similar). Maps to identifier with system 'http://pmda.go.jp/yjcode'. Example: '4291012F1022'.</td>
+            <td>Composition</td>
+            <td>type</td>
+            <td>n/a</td>
+            <td>Coded as 'Package Insert' or equivalent from value set.</td>
         </tr>
         <tr>
-            <td>package_insert/brand/english_name or &lt;Brand/BrandNameInEnglish&gt;</td>
-            <td>MedicinalProductDefinition.name.namePart (type: 'invented') with language extension</td>
-            <td>English brand name; use FHIR language extensions for multilingual support. Example: 'Aromasin Tablets 25mg'. Set language='en'.</td>
+            <td>Composition</td>
+            <td>subject</td>
+            <td>n/a</td>
+            <td>Reference to MedicinalProductDefinition.</td>
         </tr>
         <tr>
-            <td>package_insert/brand/kana_name or &lt;Brand/Kana&gt;</td>
-            <td>MedicinalProductDefinition.name.namePart (type: 'invented') with language extension</td>
-            <td>Kana (phonetic) name; Japanese-specific, may require custom extension. Example: 'あろましんじょう25mg'. Set language='ja-kana'.</td>
+            <td>Composition</td>
+            <td>date</td>
+            <td>Document/RevisionDate</td>
+            <td>Maps to the revision date of the document.</td>
         </tr>
         <tr>
-            <td>package_insert/brand/hot_code or &lt;Brand/HotCode&gt;</td>
-            <td>MedicinalProductDefinition.identifier or PackagedProductDefinition.identifier</td>
-            <td>HOT code for reimbursement or regulatory purposes. Example: '12'. Use PMDA-specific system URI. (Merged; older maps to PackagedProductDefinition.)</td>
+            <td>Composition</td>
+            <td>author</td>
+            <td>Document/Manufacturer</td>
+            <td>Reference to Organization (manufacturer).</td>
         </tr>
         <tr>
-            <td>package_insert/brand/approval_date or &lt;Brand/ApprovalDate&gt;</td>
-            <td>RegulatedAuthorization.validityPeriod.start or RegulatedAuthorization.date</td>
-            <td>Approval date from PMDA. Example: '2002-08'. Format as ISO 8601 ('2002-08-01'). (Merged; older uses .date, latest .validityPeriod.start for precision.)</td>
+            <td>Composition</td>
+            <td>title</td>
+            <td>Document/ProductName</td>
+            <td>Product name from the XML.</td>
         </tr>
         <tr>
-            <td>package_insert/brand/storage or &lt;Brand/StorageCondition&gt;</td>
-            <td>PackagedProductDefinition.shelfLifeStorage</td>
-            <td>Storage conditions (e.g., room temperature). Maps to storage instructions. Example: '室温保存'. Use coded storage conditions if available. (Merged; older uses .storage.)</td>
+            <td>Composition</td>
+            <td>text</td>
+            <td>Narrative content from entire XML</td>
+            <td>Overall narrative description of the entire document in XHTML format, distinct from title.</td>
         </tr>
         <tr>
-            <td>package_insert/brand/expiration or &lt;Brand/ShelfLife&gt;</td>
-            <td>PackagedProductDefinition.shelfLifeStorage.periodDuration</td>
-            <td>Shelf life/expiration period. Example: '3年'. Use FHIR Duration (e.g., '3 years').</td>
+            <td>Composition</td>
+            <td>language</td>
+            <td>Document/Language or default 'ja'</td>
+            <td>Language code, e.g., 'ja' for Japanese.</td>
         </tr>
         <tr>
-            <td>package_insert/brand/pack_size</td>
-            <td>PackagedProductDefinition.package.packaging.quantity</td>
-            <td>Number of units per pack (e.g., 28 tablets).</td>
+            <td>Composition</td>
+            <td>contained</td>
+            <td>Reference to Binary for images</td>
+            <td>Contained Binary resource for inline images; Binary has id, contentType (e.g., 'image/svg+xml'), and data (base64 encoded SVG).</td>
         </tr>
         <tr>
-            <td>&lt;Brand/JAN&gt;</td>
-            <td>PackagedProductDefinition.identifier</td>
-            <td>Maps to GS1 barcode identifier. Example: '21400AMY00186'. Use system 'http://gs1.org'. (From older; not in latest.)</td>
+            <td>Composition</td>
+            <td>version</td>
+            <td>Document/Revision</td>
+            <td>Version of the composition, mapped from document revision (e.g., '第1版').</td>
         </tr>
         <tr>
-            <td>package_insert/active_ingredient/name or &lt;ActiveIngredients/ActiveIngredient&gt;</td>
-            <td>MedicinalProductDefinition.ingredient.substance.name or Ingredient.substance.code</td>
-            <td>Active ingredient name (e.g., Exemestane). Maps to the active substance. Example: 'エキセメスタン'. Use UNII or CAS code if available, else text. (Merged.)</td>
+            <td>Composition</td>
+            <td>relatesTo</td>
+            <td>n/a</td>
+            <td>Relationships to other documents or versions if applicable.</td>
         </tr>
         <tr>
-            <td>&lt;ActiveIngredients&gt;</td>
+            <td>Composition</td>
+            <td>section</td>
+            <td>Various sections like Warnings, Indications, etc.</td>
+            <td>Each major section in XML maps to a Composition.section, with nested sub-sections.</td>
+        </tr>
+        <tr>
+            <td>Composition</td>
+            <td>section.id</td>
+            <td>n/a</td>
+            <td>Unique identifier for the section.</td>
+        </tr>
+        <tr>
+            <td>Composition</td>
+            <td>section.title</td>
+            <td>Section/Title</td>
+            <td>Title of the section from XML.</td>
+        </tr>
+        <tr>
+            <td>Composition</td>
+            <td>section.code</td>
+            <td>Section/Code</td>
+            <td>Coded concept for the section type (e.g., from LOINC or local codes for indications, contraindications).</td>
+        </tr>
+        <tr>
+            <td>Composition</td>
+            <td>section.text</td>
+            <td>Narrative content from XML sections</td>
+            <td>XHTML narrative derived from XML content.</td>
+        </tr>
+    </tbody>
+</table>
+
+### Binary
+
+The Binary will only handle images encoded as Base64 format. This means ePIs are always one XML file since images are embedded in the XML file rather than outside the XML.
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>FHIR Resource</th>
+            <th>FHIR Element</th>
+            <th>JP XML/XSD Element</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Binary</td>
+            <td>id</td>
+            <td>n/a</td>
+            <td>Identifier for binary content if used (e.g., for full PDF).</td>
+        </tr>
+        <tr>
+            <td>Binary</td>
+            <td>contentType</td>
+            <td>n/a</td>
+            <td>'application/pdf' or 'image/png' for attachments.</td>
+        </tr>
+        <tr>
+            <td>Binary</td>
+            <td>data</td>
+            <td>Attached files like images or PDFs</td>
+            <td>Base64 encoded content from uploaded files (e.g., the provided PDF).</td>
+        </tr>
+    </tbody>
+</table>
+
+### Organization
+
+The Organization resource describes entities involved in the product lifecycle, such as manufacturers or marketing authorization holders, including their contact and address details.
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>FHIR Resource</th>
+            <th>FHIR Element</th>
+            <th>JP XML/XSD Element</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Organization</td>
+            <td>id</td>
+            <td>Document/Manufacturer</td>
+            <td>Manufacturer's identifier.</td>
+        </tr>
+        <tr>
+            <td>Organization</td>
+            <td>identifier</td>
+            <td>Document/Manufacturer/ID</td>
+            <td>System-assigned identifier for the organization (e.g., business ID).</td>
+        </tr>
+        <tr>
+            <td>Organization</td>
+            <td>name</td>
+            <td>Document/Manufacturer/Name</td>
+            <td>Name of the manufacturing organization.</td>
+        </tr>
+        <tr>
+            <td>Organization</td>
+            <td>contact</td>
+            <td>Document/Manufacturer/Contact</td>
+            <td>Contact details if available.</td>
+        </tr>
+        <tr>
+            <td>Organization</td>
+            <td>contact.telecom.system.email</td>
+            <td>Document/Manufacturer/Contact/Email</td>
+            <td>Email contact system.</td>
+        </tr>
+        <tr>
+            <td>Organization</td>
+            <td>contact.telecom.system.url</td>
+            <td>Document/Manufacturer/Contact/URL</td>
+            <td>URL or website contact system.</td>
+        </tr>
+        <tr>
+            <td>Organization</td>
+            <td>contact.telecom.system.phone</td>
+            <td>Document/Manufacturer/Contact/Phone</td>
+            <td>Phone contact system.</td>
+        </tr>
+        <tr>
+            <td>Organization</td>
+            <td>contact.address.type</td>
+            <td>Document/Manufacturer/Address/Type</td>
+            <td>Type of address (e.g., postal, physical).</td>
+        </tr>
+        <tr>
+            <td>Organization</td>
+            <td>contact.address.text</td>
+            <td>Document/Manufacturer/Address/Text</td>
+            <td>Full text representation of the address.</td>
+        </tr>
+        <tr>
+            <td>Organization</td>
+            <td>contact.address.line</td>
+            <td>Document/Manufacturer/Address/Line</td>
+            <td>Street address lines.</td>
+        </tr>
+        <tr>
+            <td>Organization</td>
+            <td>contact.address.city</td>
+            <td>Document/Manufacturer/Address/City</td>
+            <td>City part of the address.</td>
+        </tr>
+        <tr>
+            <td>Organization</td>
+            <td>contact.address.district</td>
+            <td>Document/Manufacturer/Address/District</td>
+            <td>District or county part of the address.</td>
+        </tr>
+        <tr>
+            <td>Organization</td>
+            <td>contact.address.state</td>
+            <td>Document/Manufacturer/Address/State</td>
+            <td>State or province part of the address.</td>
+        </tr>
+        <tr>
+            <td>Organization</td>
+            <td>contact.address.postalcode</td>
+            <td>Document/Manufacturer/Address/PostalCode</td>
+            <td>Postal code of the address.</td>
+        </tr>
+        <tr>
+            <td>Organization</td>
+            <td>contact.address.country</td>
+            <td>Document/Manufacturer/Address/Country</td>
+            <td>Country of the address (e.g., Japan).</td>
+        </tr>
+    </tbody>
+</table>
+
+### Ingredient
+
+The Ingredient resource defines the active and inactive components of the medicinal product, including strength specifications for dosing.
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>FHIR Resource</th>
+            <th>FHIR Element</th>
+            <th>JP XML/XSD Element</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
             <td>Ingredient</td>
-            <td>Maps to Ingredient resource, referenced by MedicinalProductDefinition. (From older.)</td>
+            <td>id</td>
+            <td>n/a</td>
+            <td>Identifier for the ingredient.</td>
         </tr>
         <tr>
-            <td>package_insert/contraindication/item or &lt;ContraIndications/Item&gt;</td>
-            <td>Composition.section (code: 'contraindication') or ClinicalUseDefinition.contraindication</td>
-            <td>Section for contraindications; text in Composition.section.text. Each item (e.g., “妊婦又は妊娠している可能性のある女性”) maps to a contraindication.disease with text or SNOMED CT codes. (Merged; older emphasizes CUD, latest adds narrative option.)</td>
+            <td>Ingredient</td>
+            <td>identifier</td>
+            <td>n/a</td>
+            <td>System-assigned identifier for the ingredient.</td>
         </tr>
         <tr>
-            <td>&lt;ContraIndications&gt;</td>
-            <td>ClinicalUseDefinition</td>
-            <td>Maps to ClinicalUseDefinition of type 'contraindication'. Narrative text in Composition.section. (From older.)</td>
+            <td>Ingredient</td>
+            <td>for</td>
+            <td>Reference to MedicinalProductDefinition</td>
+            <td>Links to the product.</td>
         </tr>
         <tr>
-            <td>package_insert/precaution/item</td>
-            <td>Composition.section (code: 'precaution')</td>
-            <td>Precautions for use; may nest under warnings.</td>
+            <td>Ingredient</td>
+            <td>role</td>
+            <td>n/a</td>
+            <td>Coded as 'active' or 'excipient'.</td>
         </tr>
         <tr>
-            <td>package_insert/indication</td>
-            <td>Composition.section (code: 'indication') or MedicinalProductDefinition.indication</td>
-            <td>Disease or condition for which the product is indicated (e.g., postmenopausal breast cancer).</td>
+            <td>Ingredient</td>
+            <td>substance</td>
+            <td>ActiveIngredient/Name</td>
+            <td>Reference to SubstanceDefinition for the active ingredient.</td>
         </tr>
         <tr>
-            <td>package_insert/dosage</td>
-            <td>Composition.section (code: 'dosage')</td>
-            <td>Dosage and administration instructions.</td>
+            <td>Ingredient</td>
+            <td>strength.presentation</td>
+            <td>ActiveIngredient/Amount</td>
+            <td>Presentation strength details like 25mg.</td>
         </tr>
         <tr>
-            <td>package_insert/warning/item</td>
-            <td>Composition.section (code: 'warning')</td>
-            <td>General warnings and precautions.</td>
+            <td>Ingredient</td>
+            <td>strength.concentration</td>
+            <td>ActiveIngredient/Amount</td>
+            <td>Concentration strength details.</td>
+        </tr>
+    </tbody>
+</table>
+
+### SubstanceDefinition
+
+The SubstanceDefinition resource provides detailed information about the chemical or biological substance used in the product, including physico-chemical properties.
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>FHIR Resource</th>
+            <th>FHIR Element</th>
+            <th>JP XML/XSD Element</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>SubstanceDefinition</td>
+            <td>id</td>
+            <td>n/a</td>
+            <td>Identifier for the substance.</td>
         </tr>
         <tr>
-            <td>package_insert/interaction/item</td>
-            <td>Composition.section (code: 'interaction') or ClinicalUseDefinition.type='interaction'</td>
-            <td>Drug interactions; may reference Interaction resources.</td>
+            <td>SubstanceDefinition</td>
+            <td>identifier</td>
+            <td>n/a</td>
+            <td>System-assigned identifier for the substance.</td>
         </tr>
         <tr>
-            <td>package_insert/adverse_reaction/item</td>
-            <td>Composition.section (code: 'adverse-reaction') or ClinicalUseDefinition.type='undesirable-effect'</td>
-            <td>Adverse reactions, including frequencies.</td>
+            <td>SubstanceDefinition</td>
+            <td>name</td>
+            <td>ActiveIngredient/Name</td>
+            <td>Substance name (e.g., エキセメスタン).</td>
         </tr>
         <tr>
-            <td>package_insert/pharmacokinetics</td>
-            <td>Composition.section (code: 'pharmacokinetics')</td>
-            <td>PK data, including absorption, distribution, etc.</td>
+            <td>SubstanceDefinition</td>
+            <td>grade</td>
+            <td>n/a</td>
+            <td>Grade of the substance if applicable.</td>
         </tr>
         <tr>
-            <td>package_insert/clinical_study</td>
-            <td>Composition.section (code: 'clinical-study')</td>
-            <td>Summary of clinical trials.</td>
+            <td>SubstanceDefinition</td>
+            <td>molecularWeight</td>
+            <td>n/a</td>
+            <td>If provided in physico-chemical data.</td>
         </tr>
         <tr>
-            <td>package_insert/pharmacology</td>
-            <td>Composition.section (code: 'pharmacology')</td>
-            <td>Mechanism of action and pharmacodynamics.</td>
+            <td>SubstanceDefinition</td>
+            <td>molecularFormula</td>
+            <td>PhysicoChemicalProperties/MolecularFormula</td>
+            <td>Molecular formula from physico-chemical properties.</td>
         </tr>
         <tr>
-            <td>package_insert/physicochemical/name</td>
-            <td>MedicinalProductDefinition.name (scientific) or Ingredient.substance.name</td>
-            <td>Chemical name.</td>
+            <td>SubstanceDefinition</td>
+            <td>property</td>
+            <td>PhysicoChemicalProperties</td>
+            <td>Properties like solubility, melting point from XML.</td>
+        </tr>
+    </tbody>
+</table>
+
+### ManufacturedItemDefinition
+
+The ManufacturedItemDefinition resource describes the physical characteristics of the manufactured product, such as form, size, and appearance.
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>FHIR Resource</th>
+            <th>FHIR Element</th>
+            <th>JP XML/XSD Element</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ManufacturedItemDefinition</td>
+            <td>id</td>
+            <td>n/a</td>
+            <td>Identifier for the manufactured item.</td>
         </tr>
         <tr>
-            <td>package_insert/physicochemical/formula</td>
-            <td>Ingredient.substance.molecularFormula</td>
-            <td>Molecular formula (e.g., C20H24O2).</td>
+            <td>ManufacturedItemDefinition</td>
+            <td>identifier</td>
+            <td>n/a</td>
+            <td>System-assigned identifier for the manufactured item.</td>
         </tr>
         <tr>
-            <td>package_insert/physicochemical/weight</td>
-            <td>Ingredient.substance.molecularWeight</td>
-            <td>Molecular weight.</td>
+            <td>ManufacturedItemDefinition</td>
+            <td>name</td>
+            <td>Composition/Name</td>
+            <td>Name of the manufactured item.</td>
         </tr>
         <tr>
-            <td>package_insert/physicochemical/description</td>
-            <td>Ingredient.substance.description</td>
-            <td>Physical description (e.g., white powder).</td>
+            <td>ManufacturedItemDefinition</td>
+            <td>manufacturedDoseForm</td>
+            <td>DosageForm</td>
+            <td>Coded dose form (e.g., tablet).</td>
         </tr>
         <tr>
-            <td>package_insert/physicochemical/structure</td>
-            <td>Ingredient.substance.structure</td>
-            <td>Chemical structure if represented.</td>
+            <td>ManufacturedItemDefinition</td>
+            <td>unitOfPresentation</td>
+            <td>Packaging/Unit</td>
+            <td>Unit like 'tablet'.</td>
         </tr>
         <tr>
-            <td>package_insert/package</td>
-            <td>PackagedProductDefinition.package</td>
-            <td>Packaging details (e.g., 28 tablets PTP).</td>
+            <td>ManufacturedItemDefinition</td>
+            <td>manufacturer</td>
+            <td>Document/Manufacturer</td>
+            <td>Reference to Organization.</td>
         </tr>
         <tr>
-            <td>package_insert/reference/item</td>
-            <td>Composition.section (code: 'reference') or Citation</td>
-            <td>References to literature or studies.</td>
+            <td>ManufacturedItemDefinition</td>
+            <td>property</td>
+            <td>Composition</td>
+            <td>Properties for colour, flavour, shape, score, size, surface form, imprint, text, image of the product and pack.</td>
+        </tr>
+    </tbody>
+</table>
+
+### AdministrableProductDefinition
+
+The AdministrableProductDefinition resource specifies how the product is administered to the patient, including dose form and route.
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>FHIR Resource</th>
+            <th>FHIR Element</th>
+            <th>JP XML/XSD Element</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>AdministrableProductDefinition</td>
+            <td>id</td>
+            <td>n/a</td>
+            <td>Identifier for the administrable form.</td>
         </tr>
         <tr>
-            <td>package_insert/contact</td>
-            <td>Organization.contact (for manufacturer)</td>
-            <td>Contact information for inquiries.</td>
+            <td>AdministrableProductDefinition</td>
+            <td>identifier</td>
+            <td>n/a</td>
+            <td>System-assigned identifier for the administrable product.</td>
         </tr>
         <tr>
-            <td>package_insert/manufacturer</td>
-            <td>MedicinalProductDefinition.manufacturer or Organization</td>
-            <td>Manufacturer details.</td>
+            <td>AdministrableProductDefinition</td>
+            <td>description</td>
+            <td>DosageForm/Description</td>
+            <td>Description of the administrable product.</td>
         </tr>
         <tr>
-            <td>package_insert/composition/item or &lt;Composition&gt;</td>
-            <td>MedicinalProductDefinition.ingredient</td>
-            <td>Composition including excipients (e.g., carnauba wax). Maps ingredients to Ingredient resources, distinguishing active and inactive ingredients.</td>
+            <td>AdministrableProductDefinition</td>
+            <td>formOf</td>
+            <td>Reference to MedicinalProductDefinition</td>
+            <td>Links to the product.</td>
         </tr>
         <tr>
-            <td>&lt;Composition/Item/ActiveIngredient&gt;</td>
-            <td>Ingredient.substance.code</td>
-            <td>Maps to active ingredient with strength. Example: 'エキセメスタン 25.000mg'. Reference SubstanceDefinition if detailed. (From older.)</td>
+            <td>AdministrableProductDefinition</td>
+            <td>administrableDoseForm</td>
+            <td>DosageForm</td>
+            <td>Administrable form (e.g., oral tablet).</td>
         </tr>
         <tr>
-            <td>&lt;Composition/Item/Amount&gt;</td>
-            <td>Ingredient.strength</td>
-            <td>Maps to strength. Example: '25.000mg'. Use UCUM units ('mg'). (From older.)</td>
+            <td>AdministrableProductDefinition</td>
+            <td>unitOfPresentation</td>
+            <td>Packaging/Unit</td>
+            <td>Presentation unit.</td>
         </tr>
         <tr>
-            <td>&lt;Composition/Item/Excipients&gt;</td>
-            <td>Ingredient.substance.code</td>
-            <td>Maps to inactive ingredients as separate Ingredient resources with role='excipient'. Example: 'カルナウバロウ', etc. (From older.)</td>
+            <td>AdministrableProductDefinition</td>
+            <td>routeOfAdministration</td>
+            <td>AdministrationRoute</td>
+            <td>Route like 'oral'.</td>
         </tr>
         <tr>
-            <td>package_insert/property/item or &lt;Property&gt;</td>
-            <td>ManufacturedItemDefinition.property</td>
-            <td>Tablet properties (e.g., size, color).</td>
+            <td>AdministrableProductDefinition</td>
+            <td>property</td>
+            <td>DosageForm/Property</td>
+            <td>Properties for colour, flavour, shape, score, size, surface form, imprint, text, image of the product and pack.</td>
+        </tr>
+    </tbody>
+</table>
+
+### PackagedProductDefinition
+
+The PackagedProductDefinition resource details the packaging of the medicinal product, including container type, quantity, and storage conditions.
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>FHIR Resource</th>
+            <th>FHIR Element</th>
+            <th>JP XML/XSD Element</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>PackagedProductDefinition</td>
+            <td>id</td>
+            <td>n/a</td>
+            <td>Identifier for the package.</td>
         </tr>
         <tr>
-            <td>package_insert/non_clinical/toxicity</td>
-            <td>Composition.section (code: 'non-clinical')</td>
-            <td>Non-clinical data like toxicity studies.</td>
+            <td>PackagedProductDefinition</td>
+            <td>identifier</td>
+            <td>n/a</td>
+            <td>System-assigned identifier for the package.</td>
         </tr>
         <tr>
-            <td>package_insert/overdosage</td>
-            <td>Composition.section (code: 'overdosage')</td>
-            <td>Overdose information (not explicitly in sample, but schema supports).</td>
+            <td>PackagedProductDefinition</td>
+            <td>packageFor</td>
+            <td>Reference to MedicinalProductDefinition</td>
+            <td>Links to the product.</td>
         </tr>
         <tr>
-            <td>package_insert/pediatric</td>
-            <td>Composition.section (code: 'pediatric-use')</td>
-            <td>Pediatric precautions (not in sample).</td>
+            <td>PackagedProductDefinition</td>
+            <td>containedItem</td>
+            <td>Reference to ManufacturedItemDefinition</td>
+            <td>Points to a manufactured item.</td>
         </tr>
         <tr>
-            <td>package_insert/geriatric</td>
-            <td>Composition.section (code: 'geriatric-use')</td>
-            <td>Elderly use precautions.</td>
+            <td>PackagedProductDefinition</td>
+            <td>manufacturer</td>
+            <td>Document/Manufacturer</td>
+            <td>Reference to Organization (manufacturer).</td>
         </tr>
         <tr>
-            <td>package_insert/pregnancy</td>
-            <td>Composition.section (code: 'pregnancy')</td>
-            <td>Pregnancy and lactation warnings.</td>
+            <td>PackagedProductDefinition</td>
+            <td>type</td>
+            <td>Packaging/Type</td>
+            <td>Type of packaging.</td>
         </tr>
         <tr>
-            <td>package_insert/lactation</td>
-            <td>Composition.section (code: 'lactation')</td>
-            <td>Breastfeeding warnings.</td>
+            <td>PackagedProductDefinition</td>
+            <td>description</td>
+            <td>Packaging/Description</td>
+            <td>Description of the package.</td>
         </tr>
         <tr>
-            <td>package_insert/driving</td>
-            <td>Composition.section (code: 'driving')</td>
-            <td>Effects on ability to drive/operate machinery.</td>
+            <td>PackagedProductDefinition</td>
+            <td>packaging</td>
+            <td>Packaging</td>
+            <td>Details like PTP sheets, bottle size.</td>
         </tr>
         <tr>
-            <td>package_insert/excipient</td>
-            <td>MedicinalProductDefinition.ingredient (role: 'excipient')</td>
-            <td>List of excipients in composition.</td>
+            <td>PackagedProductDefinition</td>
+            <td>shelfLifeStorage</td>
+            <td>StorageConditions</td>
+            <td>Storage instructions and shelf life.</td>
+        </tr>
+    </tbody>
+</table>
+
+### RegulatedAuthorization
+
+The RegulatedAuthorization resource captures regulatory approval details for the product, including marketing authorization and holder information.
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>FHIR Resource</th>
+            <th>FHIR Element</th>
+            <th>JP XML/XSD Element</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>RegulatedAuthorization</td>
+            <td>id</td>
+            <td>n/a</td>
+            <td>Identifier for the authorization.</td>
         </tr>
         <tr>
-            <td>package_insert/marketing_holder</td>
-            <td>RegulatedAuthorization.holder</td>
-            <td>Marketing authorization holder (e.g., Pfizer).</td>
+            <td>RegulatedAuthorization</td>
+            <td>subject</td>
+            <td>Reference to MedicinalProductDefinition</td>
+            <td>The authorized product.</td>
+        </tr>
+        <tr>
+            <td>RegulatedAuthorization</td>
+            <td>type</td>
+            <td>n/a</td>
+            <td>'Marketing Authorization'.</td>
+        </tr>
+        <tr>
+            <td>RegulatedAuthorization</td>
+            <td>region</td>
+            <td>n/a</td>
+            <td>Japan (JP).</td>
+        </tr>
+        <tr>
+            <td>RegulatedAuthorization</td>
+            <td>status</td>
+            <td>ApprovalStatus</td>
+            <td>Approved or similar.</td>
+        </tr>
+        <tr>
+            <td>RegulatedAuthorization</td>
+            <td>date</td>
+            <td>ApprovalDate</td>
+            <td>Date of approval.</td>
+        </tr>
+        <tr>
+            <td>RegulatedAuthorization</td>
+            <td>holder</td>
+            <td>Document/Manufacturer</td>
+            <td>Reference to Organization (MAH).</td>
+        </tr>
+    </tbody>
+</table>
+
+### MedicinalProductDefinition
+
+The MedicinalProductDefinition resource provides a comprehensive definition of the medicinal product, including name, classification, and references to related resources like packaging and ingredients.
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>FHIR Resource</th>
+            <th>FHIR Element</th>
+            <th>JP XML/XSD Element</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>MedicinalProductDefinition</td>
+            <td>id</td>
+            <td>Document/ProductCode</td>
+            <td>Product identifier like 4291012F1022.</td>
+        </tr>
+        <tr>
+            <td>MedicinalProductDefinition</td>
+            <td>identifier</td>
+            <td>n/a</td>
+            <td>System-assigned identifier for the product.</td>
+        </tr>
+        <tr>
+            <td>MedicinalProductDefinition</td>
+            <td>name</td>
+            <td>Document/ProductName</td>
+            <td>Product name (e.g., アロマシン錠25mg).</td>
+        </tr>
+        <tr>
+            <td>MedicinalProductDefinition</td>
+            <td>domain</td>
+            <td>n/a</td>
+            <td>'Human use'.</td>
+        </tr>
+        <tr>
+            <td>MedicinalProductDefinition</td>
+            <td>status</td>
+            <td>n/a</td>
+            <td>Active.</td>
+        </tr>
+        <tr>
+            <td>MedicinalProductDefinition</td>
+            <td>type</td>
+            <td>n/a</td>
+            <td>Type of medicinal product.</td>
+        </tr>
+        <tr>
+            <td>MedicinalProductDefinition</td>
+            <td>version</td>
+            <td>Document/Revision</td>
+            <td>Version of the product definition.</td>
+        </tr>
+        <tr>
+            <td>MedicinalProductDefinition</td>
+            <td>combinedPharmaceuticalDoseForm</td>
+            <td>DosageForm</td>
+            <td>Combined form like 'film-coated tablet'.</td>
+        </tr>
+        <tr>
+            <td>MedicinalProductDefinition</td>
+            <td>indication</td>
+            <td>Indications</td>
+            <td>Text from indications section.</td>
+        </tr>
+        <tr>
+            <td>MedicinalProductDefinition</td>
+            <td>classification</td>
+            <td>TherapeuticCategory</td>
+            <td>ATC or Japanese classification.</td>
+        </tr>
+        <tr>
+            <td>MedicinalProductDefinition</td>
+            <td>description</td>
+            <td>Document/ProductDescription</td>
+            <td>Description of the medicinal product.</td>
+        </tr>
+        <tr>
+            <td>MedicinalProductDefinition</td>
+            <td>route</td>
+            <td>AdministrationRoute</td>
+            <td>Route of administration.</td>
+        </tr>
+        <tr>
+            <td>MedicinalProductDefinition</td>
+            <td>packagedMedicinalProduct</td>
+            <td>Packaging</td>
+            <td>Reference to PackagedProductDefinition.</td>
+        </tr>
+        <tr>
+            <td>MedicinalProductDefinition</td>
+            <td>marketingStatus</td>
+            <td>MarketingStatus</td>
+            <td>Status in Japan.</td>
+        </tr>
+    </tbody>
+</table>
+
+### ClinicalUseDefinition (Indication subtype)
+
+The ClinicalUseDefinition resource with Indication subtype specifies the approved indications or uses of the medicinal product.
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>FHIR Resource</th>
+            <th>FHIR Element</th>
+            <th>JP XML/XSD Element</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ClinicalUseDefinition (Indication subtype)</td>
+            <td>id</td>
+            <td>n/a</td>
+            <td>Identifier for indication.</td>
+        </tr>
+        <tr>
+            <td>ClinicalUseDefinition (Indication subtype)</td>
+            <td>identifier</td>
+            <td>n/a</td>
+            <td>System-assigned identifier for the indication.</td>
+        </tr>
+        <tr>
+            <td>ClinicalUseDefinition (Indication subtype)</td>
+            <td>type</td>
+            <td>n/a</td>
+            <td>'indication'.</td>
+        </tr>
+        <tr>
+            <td>ClinicalUseDefinition (Indication subtype)</td>
+            <td>subject</td>
+            <td>Reference to MedicinalProductDefinition</td>
+            <td>The product.</td>
+        </tr>
+        <tr>
+            <td>ClinicalUseDefinition (Indication subtype)</td>
+            <td>indication.diseaseSymptomProcedure</td>
+            <td>Indications</td>
+            <td>Coded or text indication (e.g., 閉経後乳癌).</td>
+        </tr>
+        <tr>
+            <td>ClinicalUseDefinition (Indication subtype)</td>
+            <td>indication.intendedEffect</td>
+            <td>n/a</td>
+            <td>Therapeutic effect.</td>
+        </tr>
+    </tbody>
+</table>
+
+### ClinicalUseDefinition (Contraindication subtype)
+
+The ClinicalUseDefinition resource with Contraindication subtype lists conditions or patient groups where the product should not be used.
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>FHIR Resource</th>
+            <th>FHIR Element</th>
+            <th>JP XML/XSD Element</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ClinicalUseDefinition (Contraindication subtype)</td>
+            <td>id</td>
+            <td>n/a</td>
+            <td>Identifier for contraindication.</td>
+        </tr>
+        <tr>
+            <td>ClinicalUseDefinition (Contraindication subtype)</td>
+            <td>identifier</td>
+            <td>n/a</td>
+            <td>System-assigned identifier for the contraindication.</td>
+        </tr>
+        <tr>
+            <td>ClinicalUseDefinition (Contraindication subtype)</td>
+            <td>type</td>
+            <td>n/a</td>
+            <td>'contraindication'.</td>
+        </tr>
+        <tr>
+            <td>ClinicalUseDefinition (Contraindication subtype)</td>
+            <td>subject</td>
+            <td>Reference to MedicinalProductDefinition</td>
+            <td>The product.</td>
+        </tr>
+        <tr>
+            <td>ClinicalUseDefinition (Contraindication subtype)</td>
+            <td>contraindication.diseaseSymptomProcedure</td>
+            <td>Contraindications</td>
+            <td>Coded or text (e.g., 妊婦又は妊娠している可能性のある女性).</td>
+        </tr>
+    </tbody>
+</table>
+
+### ClinicalUseDefinition (Interaction subtype)
+
+The ClinicalUseDefinition resource with Interaction subtype describes drug-drug or drug-food interactions that may affect the product's efficacy or safety.
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>FHIR Resource</th>
+            <th>FHIR Element</th>
+            <th>JP XML/XSD Element</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ClinicalUseDefinition (Interaction subtype)</td>
+            <td>id</td>
+            <td>n/a</td>
+            <td>Identifier for interaction.</td>
+        </tr>
+        <tr>
+            <td>ClinicalUseDefinition (Interaction subtype)</td>
+            <td>identifier</td>
+            <td>n/a</td>
+            <td>System-assigned identifier for the interaction.</td>
+        </tr>
+        <tr>
+            <td>ClinicalUseDefinition (Interaction subtype)</td>
+            <td>type</td>
+            <td>n/a</td>
+            <td>'interaction'.</td>
+        </tr>
+        <tr>
+            <td>ClinicalUseDefinition (Interaction subtype)</td>
+            <td>subject</td>
+            <td>Reference to MedicinalProductDefinition</td>
+            <td>The product.</td>
+        </tr>
+        <tr>
+            <td>ClinicalUseDefinition (Interaction subtype)</td>
+            <td>interaction.interactant</td>
+            <td>Interactions/Drug</td>
+            <td>Interacting substance or class (e.g., エストロゲン含有製剤).</td>
+        </tr>
+        <tr>
+            <td>ClinicalUseDefinition (Interaction subtype)</td>
+            <td>interaction.type</td>
+            <td>Interactions/Type</td>
+            <td>Interaction type.</td>
+        </tr>
+        <tr>
+            <td>ClinicalUseDefinition (Interaction subtype)</td>
+            <td>interaction.effect</td>
+            <td>Interactions/Effect</td>
+            <td>Description of effect.</td>
+        </tr>
+    </tbody>
+</table>
+
+### ClinicalUseDefinition (UndesirableEffect subtype)
+
+The ClinicalUseDefinition resource with UndesirableEffect subtype documents potential adverse effects or side effects of the product.
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>FHIR Resource</th>
+            <th>FHIR Element</th>
+            <th>JP XML/XSD Element</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ClinicalUseDefinition (UndesirableEffect subtype)</td>
+            <td>id</td>
+            <td>n/a</td>
+            <td>Identifier for undesirable effect.</td>
+        </tr>
+        <tr>
+            <td>ClinicalUseDefinition (UndesirableEffect subtype)</td>
+            <td>identifier</td>
+            <td>n/a</td>
+            <td>System-assigned identifier for the undesirable effect.</td>
+        </tr>
+        <tr>
+            <td>ClinicalUseDefinition (UndesirableEffect subtype)</td>
+            <td>type</td>
+            <td>n/a</td>
+            <td>'undesirable-effect'.</td>
+        </tr>
+        <tr>
+            <td>ClinicalUseDefinition (UndesirableEffect subtype)</td>
+            <td>subject</td>
+            <td>Reference to MedicinalProductDefinition</td>
+            <td>The product.</td>
+        </tr>
+        <tr>
+            <td>ClinicalUseDefinition (UndesirableEffect subtype)</td>
+            <td>undesirableEffect.symptomConditionEffect</td>
+            <td>AdverseReactions</td>
+            <td>Coded adverse effect (e.g., 肝炎).</td>
+        </tr>
+        <tr>
+            <td>ClinicalUseDefinition (UndesirableEffect subtype)</td>
+            <td>undesirableEffect.frequencyOfOccurrence</td>
+            <td>AdverseReactions/Frequency</td>
+            <td>Frequency like '頻度不明'.</td>
+        </tr>
+    </tbody>
+</table>
+
+### MedicationKnowledge
+
+The MedicationKnowledge resource is only used for structured dosing.
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>FHIR Resource</th>
+            <th>FHIR Element</th>
+            <th>JP XML/XSD Element</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>MedicationKnowledge</td>
+            <td>id</td>
+            <td>n/a</td>
+            <td>Identifier for medication knowledge.</td>
+        </tr>
+        <tr>
+            <td>MedicationKnowledge</td>
+            <td>identifier</td>
+            <td>n/a</td>
+            <td>System-assigned identifier for the medication knowledge.</td>
+        </tr>
+        <tr>
+            <td>MedicationKnowledge</td>
+            <td>status</td>
+            <td>n/a</td>
+            <td>Active.</td>
+        </tr>
+        <tr>
+            <td>MedicationKnowledge</td>
+            <td>indicationGuideline.indication</td>
+            <td>Indications</td>
+            <td>Indication guidelines from indications section.</td>
+        </tr>
+        <tr>
+            <td>MedicationKnowledge</td>
+            <td>indicationGuideline.dosingGuideline.dosage</td>
+            <td>DosageAndAdministration</td>
+            <td>Dosing guidelines including dosage instructions.</td>
+        </tr>
+        <tr>
+            <td>MedicationKnowledge</td>
+            <td>indicationGuideline.dosingGuideline.patientCharacteristic</td>
+            <td>Precautions/PatientCharacteristic</td>
+            <td>Patient characteristics for dosing, from precautions or similar.</td>
         </tr>
     </tbody>
 </table>
