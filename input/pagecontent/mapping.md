@@ -1,5 +1,128 @@
 This mapping document outlines the correspondence between elements in the Japanese Package Insert XML schema (as defined by PMDA) and the FHIR resources used in the ePI-JP Implementation Guide. It provides a detailed table for each FHIR resource, listing relevant elements, their mappings to XML/XSD, and notes on usage.
 
+### Executive Summary: FHIR Resource Mappings to PMDA XML in ePI-JP IG
+
+This mapping document details how elements from the PMDA (Pharmaceuticals and Medical Devices Agency) XML schema for Japanese Package Inserts are translated into FHIR R5 resources within the ePI-JP Implementation Guide, based on the core ePI IG. It ensures structured, interoperable representation of product information, with each FHIR resource handling specific aspects of the XML data. Below is a high-level overview of the mappings, focusing on major PMDA XML elements like `Document/ProductName`, `Indications`, `DosageForm`, `Document/Manufacturer`, `ActiveIngredient/Name`, `Packaging`, `ApprovalDate`, and `PhysicoChemicalProperties`:
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>High-Level Description of PMDA Elements</th>
+            <th>FHIR Resource</th>
+            <th>Major PMDA XML Elements Mapped</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>The root `Document` element encompasses the entire package insert XML, providing a structured container for all product information. `ProductCode` uniquely identifies the medicinal product for regulatory and bundling purposes.</td>
+            <td>Bundle</td>
+            <td>Overall document structure; e.g., `identifier` to `Document/ProductCode`</td>
+        </tr>
+        <tr>
+            <td>`ProductName` represents the official name of the manufactured product. Sections like `Indications` specify the approved uses or therapeutic contexts. `Manufacturer` identifies the sponsoring organization or applicant responsible for the product.</td>
+            <td>Composition</td>
+            <td>e.g., `title` to `Document/ProductName`, `section` to sections like `Indications` or `Warnings`, `author` to `Document/Manufacturer`</td>
+        </tr>
+        <tr>
+            <td>Attached files in PMDA XML refer to embedded or referenced media, such as images, which are handled as Base64-encoded content to ensure the ePI remains a single XML file.</td>
+            <td>Binary</td>
+            <td>e.g., `data` to attached files</td>
+        </tr>
+        <tr>
+            <td>`Manufacturer` and its sub-elements (e.g., `Name`, `Email`, `Address/City`) define the entity responsible for the product, including contact details and location for regulatory compliance.</td>
+            <td>Organization</td>
+            <td>e.g., `name` and contact/address to `Document/Manufacturer` sub-elements like `Name`, `Email`, or `Address/City`</td>
+        </tr>
+        <tr>
+            <td>`ActiveIngredient/Name` identifies the primary active substance in the product. `Amount` specifies the quantity or strength of the ingredient for dosing purposes.</td>
+            <td>Ingredient</td>
+            <td>e.g., `substance` to `ActiveIngredient/Name`, `strength` to `ActiveIngredient/Amount`</td>
+        </tr>
+        <tr>
+            <td>`ActiveIngredient/Name` names the chemical or biological substance. `PhysicoChemicalProperties` describes attributes like molecular formula, solubility, or melting point for quality and safety assessment.</td>
+            <td>SubstanceDefinition</td>
+            <td>e.g., `name` to `ActiveIngredient/Name`, `property`/`molecularFormula` to `PhysicoChemicalProperties`</td>
+        </tr>
+        <tr>
+            <td>`DosageForm` categorizes the product's formulation (e.g., tablet, liquid). Composition details under it outline physical properties like shape or size.</td>
+            <td>ManufacturedItemDefinition</td>
+            <td>e.g., `manufacturedDoseForm` to `DosageForm`, `property` to composition details</td>
+        </tr>
+        <tr>
+            <td>`DosageForm` defines how the product is prepared for administration. `AdministrationRoute` specifies the method of delivery (e.g., oral, intravenous).</td>
+            <td>AdministrableProductDefinition</td>
+            <td>e.g., `administrableDoseForm` to `DosageForm`, `routeOfAdministration` to `AdministrationRoute`</td>
+        </tr>
+        <tr>
+            <td>`Packaging` describes container types and quantities (e.g., bottle size). `StorageConditions` outlines requirements for shelf life and preservation.</td>
+            <td>PackagedProductDefinition</td>
+            <td>e.g., `packaging` and `type` to `Packaging` sub-elements, `shelfLifeStorage` to `StorageConditions`</td>
+        </tr>
+        <tr>
+            <td>`ApprovalDate` records the date of regulatory approval. `ApprovalStatus` indicates the authorization state (e.g., approved). `Manufacturer` as holder identifies the marketing authorization entity.</td>
+            <td>RegulatedAuthorization</td>
+            <td>e.g., `date` to `ApprovalDate`, `status` to `ApprovalStatus`, `holder` to `Document/Manufacturer`</td>
+        </tr>
+        <tr>
+            <td>`ProductName` is the official product designation. `Indications` lists approved therapeutic uses. `DosageForm` specifies formulation. `Packaging` details product presentation.</td>
+            <td>MedicinalProductDefinition</td>
+            <td>e.g., `name` to `Document/ProductName`, `indication` to `Indications`, `combinedPharmaceuticalDoseForm` to `DosageForm`, `packagedMedicinalProduct` to `Packaging`</td>
+        </tr>
+        <tr>
+            <td>`Indications` defines the approved medical conditions or symptoms for which the product is intended.</td>
+            <td>ClinicalUseDefinition (Indication subtype)</td>
+            <td>e.g., `indication.diseaseSymptomProcedure` to `Indications`</td>
+        </tr>
+        <tr>
+            <td>`Contraindications` specifies conditions or patient groups where the product is prohibited due to risk.</td>
+            <td>ClinicalUseDefinition (Contraindication subtype)</td>
+            <td>e.g., `contraindication.diseaseSymptomProcedure` to `Contraindications`</td>
+        </tr>
+        <tr>
+            <td>`Interactions` (e.g., `/Drug`) describes potential interactions with other substances affecting efficacy or safety.</td>
+            <td>ClinicalUseDefinition (Interaction subtype)</td>
+            <td>e.g., `interaction.interactant` to `Interactions/Drug`</td>
+        </tr>
+        <tr>
+            <td>`AdverseReactions` lists potential side effects or undesirable outcomes from product use.</td>
+            <td>ClinicalUseDefinition (UndesirableEffect subtype)</td>
+            <td>e.g., `undesirableEffect.symptomConditionEffect` to `AdverseReactions`</td>
+        </tr>
+        <tr>
+            <td>`Indications` outlines uses; `DosageAndAdministration` provides structured dosing instructions.</td>
+            <td>MedicationKnowledge</td>
+            <td>e.g., `indicationGuideline.indication` to `Indications`, `indicationGuideline.dosingGuideline.dosage` to `DosageAndAdministration`</td>
+        </tr>
+    </tbody>
+</table>
+
+### Detailed Mapping to FHIR Resources
+
+These mappings facilitate conversion from PMDA XML to FHIR, promoting data exchange while preserving regulatory compliance in Japan's ePI ecosystem. For full details, refer to the resource-specific tables.
+
 ### Bundle
 
 The Bundle resource serves as the container for the ePI document, aggregating the Composition and all referenced resources into a single, cohesive FHIR document bundle.
