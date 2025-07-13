@@ -1,3 +1,5 @@
+This mapping document outlines the correspondence between elements in the Japanese Package Insert XML schema (as defined by PMDA) and the FHIR resources used in the ePI-JP Implementation Guide. It provides a detailed table for each FHIR resource, listing relevant elements, their mappings to XML/XSD, and notes on usage.
+
 ### Bundle
 
 The Bundle resource serves as the container for the ePI document, aggregating the Composition and all referenced resources into a single, cohesive FHIR document bundle.
