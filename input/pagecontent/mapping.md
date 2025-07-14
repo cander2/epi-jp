@@ -1,127 +1,9 @@
 This mapping document outlines the correspondence between elements in the Japanese Package Insert XML schema (as defined by PMDA) and the FHIR resources used in the ePI-JP Implementation Guide. It provides a detailed table for each FHIR resource, listing relevant elements, their mappings to XML/XSD, and notes on usage.
 
+
 ### Executive Summary: FHIR Resource Mappings to PMDA XML in ePI-JP IG
 
 This mapping document details how elements from the PMDA (Pharmaceuticals and Medical Devices Agency) XML schema for Japanese Package Inserts are translated into FHIR R5 resources within the ePI-JP Implementation Guide, based on the core ePI IG. It ensures structured, interoperable representation of product information, with each FHIR resource handling specific aspects of the XML data. Below is a high-level overview of the mappings, focusing on major PMDA XML elements like `Document/ProductName`, `Indications`, `DosageForm`, `Document/Manufacturer`, `ActiveIngredient/Name`, `Packaging`, `ApprovalDate`, and `PhysicoChemicalProperties`:
-
-<style>
-    table {
-        border-collapse: collapse;
-        width: 100%;
-        margin: 20px 0;
-    }
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
-    th {
-        background-color: #f2f2f2;
-        font-weight: bold;
-    }
-    tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
-    tr:hover {
-        background-color: #f5f5f5;
-    }
-</style>
-
-<table>
-    <thead>
-        <tr>
-            <th>High-Level Description of PMDA Elements</th>
-            <th>FHIR Resource</th>
-            <th>Major PMDA XML Elements Mapped</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>The root `Document` element encompasses the entire package insert XML, providing a structured container for all product information. `ProductCode` uniquely identifies the medicinal product for regulatory and bundling purposes.</td>
-            <td>Bundle</td>
-            <td>Overall document structure; e.g., `identifier` to `Document/ProductCode`</td>
-        </tr>
-        <tr>
-            <td>`ProductName` represents the official name of the manufactured product. Sections like `Indications` specify the approved uses or therapeutic contexts. `Manufacturer` identifies the sponsoring organization or applicant responsible for the product.</td>
-            <td>Composition</td>
-            <td>e.g., `title` to `Document/ProductName`, `section` to sections like `Indications` or `Warnings`, `author` to `Document/Manufacturer`</td>
-        </tr>
-        <tr>
-            <td>Attached files in PMDA XML refer to embedded or referenced media, such as images, which are handled as Base64-encoded content to ensure the ePI remains a single XML file.</td>
-            <td>Binary</td>
-            <td>e.g., `data` to attached files</td>
-        </tr>
-        <tr>
-            <td>`Manufacturer` and its sub-elements (e.g., `Name`, `Email`, `Address/City`) define the entity responsible for the product, including contact details and location for regulatory compliance.</td>
-            <td>Organization</td>
-            <td>e.g., `name` and contact/address to `Document/Manufacturer` sub-elements like `Name`, `Email`, or `Address/City`</td>
-        </tr>
-        <tr>
-            <td>`ActiveIngredient/Name` identifies the primary active substance in the product. `Amount` specifies the quantity or strength of the ingredient for dosing purposes.</td>
-            <td>Ingredient</td>
-            <td>e.g., `substance` to `ActiveIngredient/Name`, `strength` to `ActiveIngredient/Amount`</td>
-        </tr>
-        <tr>
-            <td>`ActiveIngredient/Name` names the chemical or biological substance. `PhysicoChemicalProperties` describes attributes like molecular formula, solubility, or melting point for quality and safety assessment.</td>
-            <td>SubstanceDefinition</td>
-            <td>e.g., `name` to `ActiveIngredient/Name`, `property`/`molecularFormula` to `PhysicoChemicalProperties`</td>
-        </tr>
-        <tr>
-            <td>`DosageForm` categorizes the product's formulation (e.g., tablet, liquid). Composition details under it outline physical properties like shape or size.</td>
-            <td>ManufacturedItemDefinition</td>
-            <td>e.g., `manufacturedDoseForm` to `DosageForm`, `property` to composition details</td>
-        </tr>
-        <tr>
-            <td>`DosageForm` defines how the product is prepared for administration. `AdministrationRoute` specifies the method of delivery (e.g., oral, intravenous).</td>
-            <td>AdministrableProductDefinition</td>
-            <td>e.g., `administrableDoseForm` to `DosageForm`, `routeOfAdministration` to `AdministrationRoute`</td>
-        </tr>
-        <tr>
-            <td>`Packaging` describes container types and quantities (e.g., bottle size). `StorageConditions` outlines requirements for shelf life and preservation.</td>
-            <td>PackagedProductDefinition</td>
-            <td>e.g., `packaging` and `type` to `Packaging` sub-elements, `shelfLifeStorage` to `StorageConditions`</td>
-        </tr>
-        <tr>
-            <td>`ApprovalDate` records the date of regulatory approval. `ApprovalStatus` indicates the authorization state (e.g., approved). `Manufacturer` as holder identifies the marketing authorization entity.</td>
-            <td>RegulatedAuthorization</td>
-            <td>e.g., `date` to `ApprovalDate`, `status` to `ApprovalStatus`, `holder` to `Document/Manufacturer`</td>
-        </tr>
-        <tr>
-            <td>`ProductName` is the official product designation. `Indications` lists approved therapeutic uses. `DosageForm` specifies formulation. `Packaging` details product presentation.</td>
-            <td>MedicinalProductDefinition</td>
-            <td>e.g., `name` to `Document/ProductName`, `indication` to `Indications`, `combinedPharmaceuticalDoseForm` to `DosageForm`, `packagedMedicinalProduct` to `Packaging`</td>
-        </tr>
-        <tr>
-            <td>`Indications` defines the approved medical conditions or symptoms for which the product is intended.</td>
-            <td>ClinicalUseDefinition (Indication subtype)</td>
-            <td>e.g., `indication.diseaseSymptomProcedure` to `Indications`</td>
-        </tr>
-        <tr>
-            <td>`Contraindications` specifies conditions or patient groups where the product is prohibited due to risk.</td>
-            <td>ClinicalUseDefinition (Contraindication subtype)</td>
-            <td>e.g., `contraindication.diseaseSymptomProcedure` to `Contraindications`</td>
-        </tr>
-        <tr>
-            <td>`Interactions` (e.g., `/Drug`) describes potential interactions with other substances affecting efficacy or safety.</td>
-            <td>ClinicalUseDefinition (Interaction subtype)</td>
-            <td>e.g., `interaction.interactant` to `Interactions/Drug`</td>
-        </tr>
-        <tr>
-            <td>`AdverseReactions` lists potential side effects or undesirable outcomes from product use.</td>
-            <td>ClinicalUseDefinition (UndesirableEffect subtype)</td>
-            <td>e.g., `undesirableEffect.symptomConditionEffect` to `AdverseReactions`</td>
-        </tr>
-        <tr>
-            <td>`Indications` outlines uses; `DosageAndAdministration` provides structured dosing instructions.</td>
-            <td>MedicationKnowledge</td>
-            <td>e.g., `indicationGuideline.indication` to `Indications`, `indicationGuideline.dosingGuideline.dosage` to `DosageAndAdministration`</td>
-        </tr>
-    </tbody>
-</table>
-
-### Detailed Mapping to FHIR Resources
-
-These mappings facilitate conversion from PMDA XML to FHIR, promoting data exchange while preserving regulatory compliance in Japan's ePI ecosystem. For full details, refer to the resource-specific tables.
 
 ### Bundle
 
@@ -270,7 +152,7 @@ The Composition resource represents the structured content of the electronic Pac
             <td>Composition</td>
             <td>date</td>
             <td>Document/RevisionDate</td>
-            <td>Maps to the revision date of the document.</td>
+            <td>Maps to the revision date of the document, or Date of Preparation or Revision (作成又は改訂年月).</td>
         </tr>
         <tr>
             <td>Composition</td>
@@ -318,7 +200,7 @@ The Composition resource represents the structured content of the electronic Pac
             <td>Composition</td>
             <td>section</td>
             <td>Various sections like Warnings, Indications, etc.</td>
-            <td>Each major section in XML maps to a Composition.section, with nested sub-sections.</td>
+            <td>Each major section in XML maps to a Composition.section, with nested sub-sections. For example, maps to Warnings (警告).</td>
         </tr>
         <tr>
             <td>Composition</td>
@@ -388,19 +270,19 @@ The Binary will only handle images encoded as Base64 format. This means ePIs are
             <td>Binary</td>
             <td>id</td>
             <td>n/a</td>
-            <td>Identifier for binary content if used (e.g., for full PDF).</td>
+            <td>Identifier for binary content if used (e.g., for images in composition).</td>
         </tr>
         <tr>
             <td>Binary</td>
             <td>contentType</td>
             <td>n/a</td>
-            <td>'application/pdf' or 'image/png' for attachments.</td>
+            <td>'image/png' or similar for embedded images.</td>
         </tr>
         <tr>
             <td>Binary</td>
             <td>data</td>
-            <td>Attached files like images or PDFs</td>
-            <td>Base64 encoded content from uploaded files (e.g., the provided PDF).</td>
+            <td>Attached files like images</td>
+            <td>Base64 encoded content for images, ensuring inline embedding in the ePI XML.</td>
         </tr>
     </tbody>
 </table>
@@ -594,24 +476,24 @@ The Ingredient resource defines the active and inactive components of the medici
             <td>Ingredient</td>
             <td>role</td>
             <td>n/a</td>
-            <td>Coded as 'active' or 'excipient'.</td>
+            <td>Coded as 'active' or 'excipient' (e.g., for Active Ingredients or Additives).</td>
         </tr>
         <tr>
             <td>Ingredient</td>
             <td>substance</td>
-            <td>ActiveIngredient/Name</td>
-            <td>Reference to SubstanceDefinition for the active ingredient.</td>
+            <td>ActiveIngredient/Name or IndividualAdditives</td>
+            <td>Reference to SubstanceDefinition for the active ingredient or additives (添加剤).</td>
         </tr>
         <tr>
             <td>Ingredient</td>
             <td>strength.presentation</td>
-            <td>ActiveIngredient/Amount</td>
-            <td>Presentation strength details like 25mg.</td>
+            <td>ActiveIngredient/Amount or ContainedAmount</td>
+            <td>Presentation strength details like 25mg (含有量).</td>
         </tr>
         <tr>
             <td>Ingredient</td>
             <td>strength.concentration</td>
-            <td>ActiveIngredient/Amount</td>
+            <td>ActiveIngredient/Amount or ContainedAmount</td>
             <td>Concentration strength details.</td>
         </tr>
     </tbody>
@@ -669,8 +551,8 @@ The SubstanceDefinition resource provides detailed information about the chemica
         <tr>
             <td>SubstanceDefinition</td>
             <td>name</td>
-            <td>ActiveIngredient/Name</td>
-            <td>Substance name (e.g., エキセメスタン).</td>
+            <td>ActiveIngredient/Name or GenericName</td>
+            <td>Substance name (e.g., エキセメスタン) or Generic Name (一般的名称).</td>
         </tr>
         <tr>
             <td>SubstanceDefinition</td>
@@ -693,8 +575,8 @@ The SubstanceDefinition resource provides detailed information about the chemica
         <tr>
             <td>SubstanceDefinition</td>
             <td>property</td>
-            <td>PhysicoChemicalProperties</td>
-            <td>Properties like solubility, melting point from XML.</td>
+            <td>PhysicoChemicalProperties or DescriptionOfActiveIngredients</td>
+            <td>Properties like solubility, melting point from XML, or properties of active ingredients (性状).</td>
         </tr>
     </tbody>
 </table>
@@ -775,8 +657,8 @@ The ManufacturedItemDefinition resource describes the physical characteristics o
         <tr>
             <td>ManufacturedItemDefinition</td>
             <td>property</td>
-            <td>Composition</td>
-            <td>Properties for colour, flavour, shape, score, size, surface form, imprint, text, image of the product and pack.</td>
+            <td>Composition or Property</td>
+            <td>Properties for colour (色調), flavour, shape (外形), score, size (大きさ), surface form, imprint, text, image of the product and pack. Also maps to CompositionAndProperty, PropertyForBrand, etc.</td>
         </tr>
     </tbody>
 </table>
@@ -864,7 +746,7 @@ The AdministrableProductDefinition resource specifies how the product is adminis
             <td>AdministrableProductDefinition</td>
             <td>property</td>
             <td>DosageForm/Property</td>
-            <td>Properties for colour, flavour, shape, score, size, surface form, imprint, text, image of the product and pack.</td>
+            <td>Properties for colour, flavour, shape, score, size, surface form, imprint, text, image of the product and pack. Maps to PropertyForConstituentUnits, etc.</td>
         </tr>
     </tbody>
 </table>
@@ -952,13 +834,13 @@ The PackagedProductDefinition resource details the packaging of the medicinal pr
             <td>PackagedProductDefinition</td>
             <td>packaging</td>
             <td>Packaging</td>
-            <td>Details like PTP sheets, bottle size.</td>
+            <td>Details like PTP sheets, bottle size (包装).</td>
         </tr>
         <tr>
             <td>PackagedProductDefinition</td>
             <td>shelfLifeStorage</td>
-            <td>StorageConditions</td>
-            <td>Storage instructions and shelf life.</td>
+            <td>StorageConditions or ShelfLife</td>
+            <td>Storage instructions and shelf life (貯法、有効期間).</td>
         </tr>
     </tbody>
 </table>
@@ -1033,14 +915,20 @@ The RegulatedAuthorization resource captures regulatory approval details for the
         <tr>
             <td>RegulatedAuthorization</td>
             <td>date</td>
-            <td>ApprovalDate</td>
-            <td>Date of approval.</td>
+            <td>ApprovalDate or StartingDateOfMarketing</td>
+            <td>Date of approval or starting date of marketing (承認番号、販売開始年月).</td>
         </tr>
         <tr>
             <td>RegulatedAuthorization</td>
             <td>holder</td>
             <td>Document/Manufacturer</td>
             <td>Reference to Organization (MAH).</td>
+        </tr>
+        <tr>
+            <td>RegulatedAuthorization</td>
+            <td>identifier</td>
+            <td>ApprovalAndLicenseNo</td>
+            <td>Approval number (承認番号).</td>
         </tr>
     </tbody>
 </table>
@@ -1091,14 +979,14 @@ The MedicinalProductDefinition resource provides a comprehensive definition of t
         <tr>
             <td>MedicinalProductDefinition</td>
             <td>identifier</td>
-            <td>n/a</td>
-            <td>System-assigned identifier for the product.</td>
+            <td>Sccj</td>
+            <td>System-assigned identifier for the product, or Japanese Standard Commodity Classification Number (日本標準商品分類番号).</td>
         </tr>
         <tr>
             <td>MedicinalProductDefinition</td>
             <td>name</td>
-            <td>Document/ProductName</td>
-            <td>Product name (e.g., アロマシン錠25mg).</td>
+            <td>Document/ProductName or StandardName or GenericName</td>
+            <td>Product name (e.g., アロマシン錠25mg), Standard Name (基準名), or Generic Name (一般的名称).</td>
         </tr>
         <tr>
             <td>MedicinalProductDefinition</td>
@@ -1139,8 +1027,8 @@ The MedicinalProductDefinition resource provides a comprehensive definition of t
         <tr>
             <td>MedicinalProductDefinition</td>
             <td>classification</td>
-            <td>TherapeuticCategory</td>
-            <td>ATC or Japanese classification.</td>
+            <td>TherapeuticClassification</td>
+            <td>ATC or Japanese classification (薬効分類名).</td>
         </tr>
         <tr>
             <td>MedicinalProductDefinition</td>
@@ -1165,6 +1053,12 @@ The MedicinalProductDefinition resource provides a comprehensive definition of t
             <td>marketingStatus</td>
             <td>MarketingStatus</td>
             <td>Status in Japan.</td>
+        </tr>
+        <tr>
+            <td>MedicinalProductDefinition</td>
+            <td>legalStatusOfSupply</td>
+            <td>RegulatoryClassification</td>
+            <td>Regulatory classification (規制区分).</td>
         </tr>
     </tbody>
 </table>
@@ -1310,7 +1204,7 @@ The ClinicalUseDefinition resource with Contraindication subtype lists condition
             <td>ClinicalUseDefinition (Contraindication subtype)</td>
             <td>contraindication.diseaseSymptomProcedure</td>
             <td>Contraindications</td>
-            <td>Coded or text (e.g., 妊婦又は妊娠している可能性のある女性).</td>
+            <td>Coded or text (e.g., 妊婦又は妊娠している可能性のある女性). Maps to 禁忌.</td>
         </tr>
     </tbody>
 </table>
@@ -1380,7 +1274,7 @@ The ClinicalUseDefinition resource with Interaction subtype describes drug-drug 
             <td>ClinicalUseDefinition (Interaction subtype)</td>
             <td>interaction.interactant</td>
             <td>Interactions/Drug</td>
-            <td>Interacting substance or class (e.g., エストロゲン含有製剤).</td>
+            <td>Interacting substance or class (e.g., エストロゲン含有製剤). Maps to 相互作用.</td>
         </tr>
         <tr>
             <td>ClinicalUseDefinition (Interaction subtype)</td>
@@ -1462,7 +1356,7 @@ The ClinicalUseDefinition resource with UndesirableEffect subtype documents pote
             <td>ClinicalUseDefinition (UndesirableEffect subtype)</td>
             <td>undesirableEffect.symptomConditionEffect</td>
             <td>AdverseReactions</td>
-            <td>Coded adverse effect (e.g., 肝炎).</td>
+            <td>Coded adverse effect (e.g., 肝炎). Maps to 副作用, SeriousAdverse, OtherAdverseEvent.</td>
         </tr>
         <tr>
             <td>ClinicalUseDefinition (UndesirableEffect subtype)</td>
@@ -1537,14 +1431,14 @@ The MedicationKnowledge resource is only used for structured dosing.
         <tr>
             <td>MedicationKnowledge</td>
             <td>indicationGuideline.dosingGuideline.dosage</td>
-            <td>DosageAndAdministration</td>
-            <td>Dosing guidelines including dosage instructions.</td>
+            <td>DosageAndAdministration or InfoDoseAdmin</td>
+            <td>Dosing guidelines including dosage instructions (用法及び用量).</td>
         </tr>
         <tr>
             <td>MedicationKnowledge</td>
             <td>indicationGuideline.dosingGuideline.patientCharacteristic</td>
             <td>Precautions/PatientCharacteristic</td>
-            <td>Patient characteristics for dosing, from precautions or similar.</td>
+            <td>Patient characteristics for dosing, from precautions or similar (特定の背景を有する患者に関する注意).</td>
         </tr>
     </tbody>
 </table>
