@@ -1,4 +1,7 @@
-# Use Cases
+<div align="center"><strong>Discussions related to Japan specific use cases are ongoing.</strong></div>
+<div align="center"><strong>This page will be updated periodically to reflect the results of those discussions.</strong></div>
+
+---
 
 Not all 14 resources are required to support all ePI-related use cases. Different resources can be combined to support various scenarios. To assist implementers in selecting the appropriate resources, ePI resources are arranged into the following four types and sub-types:
 
