@@ -67,6 +67,7 @@ Refer to [ePI Components](components.html) for an overview of in-scope resources
 <table style="border-collapse: collapse; width: 100%;">
     <thead>
         <tr>
+            <th style="border: 1px solid black; padding: 8px; text-align: left; background-color: #f2f2f2;">#</th>
             <th style="border: 1px solid black; padding: 8px; text-align: left; background-color: #f2f2f2;">Use Case</th>
             <th style="border: 1px solid black; padding: 8px; text-align: left; background-color: #f2f2f2;">Description</th>
             <th style="border: 1px solid black; padding: 8px; text-align: left; background-color: #f2f2f2;">Key Resources</th>
@@ -74,44 +75,40 @@ Refer to [ePI Components](components.html) for an overview of in-scope resources
     </thead>
     <tbody>
         <tr>
+            <td style="border: 1px solid black; padding: 8px;">a</td>
             <td style="border: 1px solid black; padding: 8px;">Advanced Search</td>
             <td style="border: 1px solid black; padding: 8px;">Search by company, product name, license, manufactured form, administrable form, or packaging details.</td>
             <td style="border: 1px solid black; padding: 8px;">Organization, Medicinal Product Definition, Regulated Product, Manufactured Product Definition, Automated Product Description, Packaged Product</td>
         </tr>
         <tr>
+            <td style="border: 1px solid black; padding: 8px;">b</td>
             <td style="border: 1px solid black; padding: 8px;">Drug Shortages</td>
             <td style="border: 1px solid black; padding: 8px;">Identify alternative products by company, product, license, manufactured form, and packaging to address shortages.</td>
             <td style="border: 1px solid black; padding: 8px;">Organization, Medicinal Product Definition, Regulated Product, Manufactured Product Definition, Packaged Product</td>
         </tr>
         <tr>
+            <td style="border: 1px solid black; padding: 8px;">c</td>
             <td style="border: 1px solid black; padding: 8px;">Cross-border Travel</td>
             <td style="border: 1px solid black; padding: 8px;">Match prescriptions across borders using company and product details.</td>
             <td style="border: 1px solid black; padding: 8px;">Organization, Medicinal Product Definition, Manufactured Product Definition</td>
         </tr>
         <tr>
+            <td style="border: 1px solid black; padding: 8px;">d</td>
             <td style="border: 1px solid black; padding: 8px;">Distribution</td>
             <td style="border: 1px solid black; padding: 8px;">Support ordering and distribution with product and pack identifiers (e.g., GTIN, SKUs).</td>
             <td style="border: 1px solid black; padding: 8px;">Organization, Medicinal Product Definition, Regulated Product, Packaged Product</td>
         </tr>
         <tr>
+            <td style="border: 1px solid black; padding: 8px;">e</td>
             <td style="border: 1px solid black; padding: 8px;">Allergens</td>
             <td style="border: 1px solid black; padding: 8px;">Identify potential allergens (e.g., lactose, aspartame) in ingredients.</td>
             <td style="border: 1px solid black; padding: 8px;">Manufactured Product Definition (Ingredient)</td>
         </tr>
         <tr>
+            <td style="border: 1px solid black; padding: 8px;">f</td>
             <td style="border: 1px solid black; padding: 8px;">Electronic Health</td>
             <td style="border: 1px solid black; padding: 8px;">Support Electronic Medical Records (EMR) and ePrescription by uniquely identifying products and manufacturers. Optionally, differentiate manufactured and administrable forms.</td>
             <td style="border: 1px solid black; padding: 8px;">Organization, Medicinal Product Definition, Regulated Product, Manufactured Product Definition, Automated Product Description</td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid black; padding: 8px;">Pharmacovigilance</td>
-            <td style="border: 1px solid black; padding: 8px;">Track products by manufacturer, authorization, and packaging for adverse event reporting.</td>
-            <td style="border: 1px solid black; padding: 8px;">Organization, Medicinal Product Definition, Regulated Product, Packaged Product</td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid black; padding: 8px;">Inventory Management</td>
-            <td style="border: 1px solid black; padding: 8px;">Optimize stock management using packaging and product details.</td>
-            <td style="border: 1px solid black; padding: 8px;">Organization, Medicinal Product Definition, Regulated Product, Packaged Product</td>
         </tr>
     </tbody>
 </table>
