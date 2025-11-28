@@ -1,4 +1,4 @@
-<div align="center"><strong>Discussions related to Japan specific use cases are ongoing.</strong></div>
+<div align="center"><strong>Discussions related to Japan specific use cases are planned.</strong></div>
 <div align="center"><strong>This page will be updated periodically to reflect the results of those discussions.</strong></div>
 
 ---
